@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CustomTextBox extends StatefulWidget {
-  CustomTextBox({
-    Key key,
-    this.labelText,
-    this.icon,
-    this.setText,
-    this.textInputType,
-    this.isPassword = false
-  }) : super(key: key);
+  CustomTextBox(
+      {Key key,
+      @required this.labelText,
+      @required this.icon,
+      @required this.setText,
+      @required this.textInputType,
+      this.isPassword = false})
+      : super(key: key);
 
   final String labelText;
   final IconData icon;
@@ -35,9 +35,14 @@ class _TextBoxState extends State<CustomTextBox> {
           });
         },
         decoration: InputDecoration(
-          prefixIcon: Icon(widget.icon, color: Theme.of(context).primaryColor,),
-          labelText: widget.labelText,
-          labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+          prefixIcon: Icon(
+            widget.icon,
+            color: Theme.of(context).primaryColor,
+          ),
+          hintText: widget.labelText,
+           hintStyle: TextStyle(color: Theme.of(context).primaryColor),
+          //labelText: widget.labelText,
+          //labelStyle: TextStyle(color: Theme.of(context).primaryColor),
           filled: true,
           fillColor: Theme.of(context).accentColor,
           border: OutlineInputBorder(

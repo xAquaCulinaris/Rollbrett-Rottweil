@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:rollbrett_rottweil/login/rollbrett_logo.dart';
+import 'package:rollbrett_rottweil/login/register_view.dart';
+import 'package:rollbrett_rottweil/reusable/rollbrett_logo.dart';
 import 'package:rollbrett_rottweil/reusable/button.dart';
 import 'package:rollbrett_rottweil/reusable/textBox.dart';
 
 class Login extends StatelessWidget {
-  String email = "";
-  String password = "";
+  String _email = "";
+  String _password = "";
 
   _loginButtonPressed() {
-    print("Email: " + email);
+    print("Email: " + _email + "\n");
+    print("Password: " + _password);
   }
 
   _setEmail(String text) {
-    email = text;
+    _email = text;
   }
 
   _setPassword(String text) {
-    password = text;
+    _password = text;
   }
 
   @override
@@ -24,7 +26,7 @@ class Login extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
-        child: new Column(
+        child: Column(
           children: [
             SizedBox(height: 80),
             RollbrettLogo(),
@@ -45,7 +47,7 @@ class Login extends StatelessWidget {
             Button(text: "LOGIN", function: _loginButtonPressed),
             ForgotPasswordButton(),
             Spacer(),
-            SignUpButton()
+            SignUpButton(context)
           ],
         ),
       ),
@@ -71,8 +73,13 @@ class ForgotPasswordButton extends StatelessWidget {
 }
 
 class SignUpButton extends StatelessWidget {
+  SignUpButton(this.context);
+
+  final BuildContext context;
+
+
   _signUpButtonPressed() {
-    print("signup pressed");
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Register()));
   }
 
   @override
