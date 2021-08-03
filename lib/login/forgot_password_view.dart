@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
 import 'package:rollbrett_rottweil/reusable/app_bar.dart';
 import 'package:rollbrett_rottweil/reusable/button.dart';
+import 'package:rollbrett_rottweil/reusable/custom_dialog.dart';
 import 'package:rollbrett_rottweil/reusable/textBox.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -16,7 +17,16 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   }
 
   _resetPassword() {
-    print("Reset password");
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CustomDialog(
+            title: AppLocalizations.of(context).translate('password_reset'),
+            description:
+                AppLocalizations.of(context).translate('password_reset_message'),
+            buttonText: "Okay",
+          );
+        });
   }
 
   @override

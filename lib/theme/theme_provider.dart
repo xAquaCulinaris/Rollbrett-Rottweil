@@ -5,10 +5,10 @@ class MyThemes {
     brightness: Brightness.dark,
     scaffoldBackgroundColor: Colors.grey.shade900,
     primaryColor: Colors.black,
-    accentColor: Colors.grey[350],
+    accentColor: Colors.grey[400],
     colorScheme: ColorScheme.dark(),
     
-    elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(primary: Colors.grey[350], shape: StadiumBorder()))
+    elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(primary: Colors.grey[400], shape: StadiumBorder()))
   );
 
   static final lightTheme = ThemeData(
