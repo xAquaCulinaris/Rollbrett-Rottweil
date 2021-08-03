@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rollbrett_rottweil/app_localizations.dart';
 import 'package:rollbrett_rottweil/reusable/dropdown_list.dart';
 import 'package:rollbrett_rottweil/reusable/rollbrett_logo.dart';
 import 'package:rollbrett_rottweil/reusable/button.dart';
@@ -38,9 +39,9 @@ class Register extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SizedBox(
-        height: screenHeight-keyboardHeight,
+        height: screenHeight - keyboardHeight,
         child: SingleChildScrollView(
-                  child: Center(
+          child: Center(
               child: Column(
             children: [
               SizedBox(height: 15),
@@ -60,43 +61,42 @@ class Register extends StatelessWidget {
                 ],
               ),
               RollbrettLogo(),
-
               SizedBox(height: 15),
               CustomTextBox(
-                  labelText: "Username",
+                  labelText: AppLocalizations.of(context).translate('username'),
                   icon: Icons.person,
                   setText: _setUsername,
                   textInputType: TextInputType.text),
-
               SizedBox(height: 15),
               CustomTextBox(
                   labelText: "Email",
                   icon: Icons.email,
                   setText: _setEmail,
                   textInputType: TextInputType.emailAddress),
-
               SizedBox(height: 15),
               DropDownList(
-                  itemList: ["Skateboard", "BMX", "Scooter"],
-                  icon: Icons.accessible_forward,
-                  labelText: "What are you riding?"),
-
+                itemList: ["Skateboard", "BMX", "Scooter"],
+                icon: Icons.accessible_forward,
+              ),
               SizedBox(height: 15),
               CustomTextBox(
-                  labelText: "Password",
+                  labelText: AppLocalizations.of(context).translate('password'),
                   icon: Icons.lock,
                   setText: _setPassword,
                   textInputType: TextInputType.text),
-
               SizedBox(height: 15),
-               CustomTextBox(
-                   labelText: "Confirm Password",
-                   icon: Icons.lock,
-                   setText: _setConfirmPassword,
-                   textInputType: TextInputType.text),
-
+              CustomTextBox(
+                  labelText: AppLocalizations.of(context)
+                      .translate('confirm_password'),
+                  icon: Icons.lock,
+                  setText: _setConfirmPassword,
+                  textInputType: TextInputType.text),
               SizedBox(height: 15),
-              Button(text: "REGISTER", function: _registerButtonPressed)
+              Button(
+                text: AppLocalizations.of(context).translate('REGISTER'),
+                function: _registerButtonPressed,
+              ),
+              SizedBox(height: 15)
             ],
           )),
         ),

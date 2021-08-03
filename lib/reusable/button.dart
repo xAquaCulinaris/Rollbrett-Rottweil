@@ -23,7 +23,7 @@ class _ButtonState extends State<Button> {
       height: MediaQuery.of(context).size.width * 0.15,
       child: ElevatedButton(
         onPressed: widget.function,
-        child: Text(widget.text, style: TextStyle(fontSize: 25)),
+        child: Text(widget.text, style: TextStyle(fontSize: 22)),
       ),
     );
   }

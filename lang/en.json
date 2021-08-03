@@ -1,0 +1,11 @@
+{
+    "login": "LOGIN",
+    "REGISTER": "REGISTER",
+    "register": "Register",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "sign_up": "Sign up",
+    "forgot_password": "Fortgot Password?",
+    "no_account": "Don't have an account?",
+    "username": "Username"
+}

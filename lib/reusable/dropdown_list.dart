@@ -4,13 +4,11 @@ class DropDownList extends StatefulWidget {
   DropDownList(
       {Key key,
       @required this.itemList,
-      @required this.icon,
-      @required this.labelText})
+      @required this.icon})
       : super(key: key);
 
   final List<String> itemList;
   final IconData icon;
-  final String labelText;
 
   @override
   _DropDownListState createState() => _DropDownListState();
@@ -55,8 +53,6 @@ class _DropDownListState extends State<DropDownList> {
           ),
           decoration: InputDecoration(
               prefixIcon: Icon(widget.icon, color: Theme.of(context).primaryColor),
-              hintText: widget.labelText,
-              hintStyle: TextStyle(color: Theme.of(context).primaryColor),
               //labelText: widget.labelText,
               //labelStyle: TextStyle(color: Theme.of(context).primaryColor),
               filled: true,
