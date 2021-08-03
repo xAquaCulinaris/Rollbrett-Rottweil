@@ -7,5 +7,7 @@
     "sign_up": "Registrier dich",
     "forgot_password": "Passwort vergessen?",
     "no_account": "Noch kein Account?",
-    "username": "Benutzername"
+    "username": "Benutzername",
+    "reset_password": "Password zurücksetzen",
+    "reset": "Zurücksetzen" 
 }

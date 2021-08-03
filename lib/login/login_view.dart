@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
+import 'package:rollbrett_rottweil/login/forgot_password_view.dart';
 import 'package:rollbrett_rottweil/login/register_view.dart';
 import 'package:rollbrett_rottweil/reusable/rollbrett_logo.dart';
 import 'package:rollbrett_rottweil/reusable/button.dart';
@@ -30,7 +31,7 @@ class Login extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 80),
-            RollbrettLogo(),
+            RollbrettLogo(LogoSize.big),
             SizedBox(height: 40),
             CustomTextBox(
                 labelText: "Email",
@@ -48,7 +49,7 @@ class Login extends StatelessWidget {
             Button(
                 text: AppLocalizations.of(context).translate('login'),
                 function: _loginButtonPressed),
-            ForgotPasswordButton(),
+            ForgotPasswordButton(context),
             Spacer(),
             SignUpButton(context)
           ],
@@ -59,8 +60,13 @@ class Login extends StatelessWidget {
 }
 
 class ForgotPasswordButton extends StatelessWidget {
+  ForgotPasswordButton(this.context);
+
+  final BuildContext context;
+
   _forgotPassworButtonPressed() {
-    print("forogt password pressed");
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => ForgotPassword()));
   }
 
   @override
@@ -91,7 +97,12 @@ class SignUpButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(AppLocalizations.of(context).translate('no_account'), style:  TextStyle(color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.black : Colors.grey)),
+          Text(AppLocalizations.of(context).translate('no_account'),
+              style: TextStyle(
+                  color: MediaQuery.of(context).platformBrightness ==
+                          Brightness.light
+                      ? Colors.black
+                      : Colors.grey)),
           TextButton(
               onPressed: _signUpButtonPressed,
               child: Text(

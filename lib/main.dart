@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
         var retLocale = supportedLocales.first;
         // Check if the current device locale is supported
         if (locale != null) {
-          print ("user locale ${locale.first.languageCode}, ${locale.first.countryCode}");
           for (var supportedLocale in supportedLocales) {
             if (supportedLocale.languageCode == locale.first.languageCode) {
               retLocale = supportedLocale;
@@ -36,8 +35,6 @@ class MyApp extends StatelessWidget {
             }
           }
         }
-
-
         return retLocale;
       },
       home: Login(),

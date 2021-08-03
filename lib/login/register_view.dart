@@ -44,7 +44,6 @@ class Register extends StatelessWidget {
           child: Center(
               child: Column(
             children: [
-              SizedBox(height: 15),
               Row(
                 children: [
                   SafeArea(
@@ -60,7 +59,7 @@ class Register extends StatelessWidget {
                   ),
                 ],
               ),
-              RollbrettLogo(),
+              RollbrettLogo(LogoSize.medium),
               SizedBox(height: 15),
               CustomTextBox(
                   labelText: AppLocalizations.of(context).translate('username'),

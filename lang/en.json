@@ -5,7 +5,9 @@
     "password": "Password",
     "confirm_password": "Confirm Password",
     "sign_up": "Sign up",
-    "forgot_password": "Fortgot Password?",
+    "forgot_password": "Forgot Password?",
     "no_account": "Don't have an account?",
-    "username": "Username"
+    "username": "Username",
+    "reset_password": "Reset Password",
+    "reset": "Reset"
 }
