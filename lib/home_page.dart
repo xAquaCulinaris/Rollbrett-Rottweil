@@ -1,39 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:rollbrett_rottweil/app_localizations.dart';
+import 'package:rollbrett_rottweil/course_preview/course_preview.dart';
+import 'package:rollbrett_rottweil/local_dealer/local_dealer.dart';
 import 'package:rollbrett_rottweil/reusable/rollbrett_logo.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice.dart';
+import 'custom_icons.dart';
 
 class HomePage extends StatelessWidget {
-  _coursePreviewPressed() {}
+  _coursePreviewPressed(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CoursePreview()));
+  }
 
-  _skateDicePressed() {}
+  _skateDicePressed(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => SkateDice()));
+  }
 
-  _lcaleDealerPressed() {}
+  _localeDealerPressed(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => LocalDealer()));
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(children: [
-          HomePageTopBar(),
-          SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              HomePageButton("Course Preview", Icons.accessible_forward_sharp,
-                  _coursePreviewPressed),
-              HomePageButton(
-                  "Skate Dice", Icons.pest_control_rodent, _skateDicePressed),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DisabledHomePageButton(
-                  "Course Preview", Icons.accessible_forward_sharp, null),
-              HomePageButton(
-                  "Skate Dice", Icons.pest_control_rodent, _skateDicePressed),
-            ],
-          ),
-        ]),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(children: [
+            HomePageTopBar(),
+            SizedBox(height: 15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                //TODO: fix icons
+                HomePageButton(
+                    AppLocalizations.of(context).translate('course_preview'),
+                    CustomIcons.noun_half_pipe_699586,
+                    () => _coursePreviewPressed(context)),
+                HomePageButton("Skate Dice", CustomIcons.dice,
+                    () => _skateDicePressed(context)),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                DisabledHomePageButton(
+                    "Own the Spot", CustomIcons.video_camera, null),
+                HomePageButton("Local Dealer", CustomIcons.skateboard,
+                    () => _localeDealerPressed(context)),
+              ],
+            ),
+          ]),
+        ),
       ),
     );
   }
@@ -172,11 +192,15 @@ class DisabledHomePageButton extends StatelessWidget {
         HomePageButton(text, icon, function),
         Column(
           children: [
-            Icon(Icons.lock, size: 50, color: Theme.of(context).accentColor,),
+            Icon(
+              Icons.lock,
+              size: 50,
+              color: Theme.of(context).accentColor,
+            ),
             Text(
               "Coming soon",
               style: TextStyle(
-                fontSize: 22,
+                  fontSize: 22,
                   color: Theme.of(context).accentColor,
                   fontWeight: FontWeight.w900),
             ),

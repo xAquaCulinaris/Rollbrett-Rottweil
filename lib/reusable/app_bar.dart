@@ -28,7 +28,7 @@ class CustomAppBar extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Text(text == null ? "" : text,
-                    style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.06)),
+                    style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.07, fontWeight: FontWeight.w800, color: Theme.of(context).accentColor)),
               ),
             ],
           )
