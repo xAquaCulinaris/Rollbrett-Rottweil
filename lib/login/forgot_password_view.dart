@@ -6,17 +6,23 @@ import 'package:rollbrett_rottweil/reusable/custom_dialog.dart';
 import 'package:rollbrett_rottweil/reusable/textBox.dart';
 
 class ForgotPassword extends StatefulWidget {
+  ForgotPassword(this.email);
+  String email;
+
+
   @override
   _ForgotPasswordState createState() => _ForgotPasswordState();
 }
 
+
+
 class _ForgotPasswordState extends State<ForgotPassword> {
-  String email;
   _setEmail(String text) {
-    email = text;
+    widget.email = text;
   }
 
   _resetPassword() {
+    print("email: " + widget.email);
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -41,7 +47,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               labelText: "Email",
               icon: Icons.email,
               setText: _setEmail,
-              textInputType: TextInputType.emailAddress),
+              textInputType: TextInputType.emailAddress,
+              initialText: widget.email,),
           SizedBox(height: 15),
           Button(
             text: AppLocalizations.of(context).translate("reset"),

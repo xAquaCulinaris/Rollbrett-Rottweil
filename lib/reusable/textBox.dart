@@ -7,7 +7,8 @@ class CustomTextBox extends StatefulWidget {
       @required this.icon,
       @required this.setText,
       @required this.textInputType,
-      this.isPassword = false})
+      this.isPassword = false,
+      this.initialText})
       : super(key: key);
 
   final String labelText;
@@ -15,6 +16,7 @@ class CustomTextBox extends StatefulWidget {
   final Function setText;
   final TextInputType textInputType;
   final bool isPassword;
+  final String initialText;
 
   @override
   _TextBoxState createState() => _TextBoxState();
@@ -26,6 +28,7 @@ class _TextBoxState extends State<CustomTextBox> {
     return Padding(
       padding: EdgeInsets.only(left: 16, right: 16),
       child: TextFormField(
+        initialValue: widget.initialText,
         style: TextStyle(color: Theme.of(context).primaryColor),
         keyboardType: widget.textInputType,
         obscureText: widget.isPassword,
@@ -40,7 +43,7 @@ class _TextBoxState extends State<CustomTextBox> {
             color: Theme.of(context).primaryColor,
           ),
           hintText: widget.labelText,
-           hintStyle: TextStyle(color: Theme.of(context).primaryColor),
+          hintStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.w700),
           //labelText: widget.labelText,
           //labelStyle: TextStyle(color: Theme.of(context).primaryColor),
           filled: true,

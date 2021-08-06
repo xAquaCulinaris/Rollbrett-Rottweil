@@ -4,11 +4,13 @@ class DropDownList extends StatefulWidget {
   DropDownList(
       {Key key,
       @required this.itemList,
-      @required this.icon})
+      @required this.icon,
+      @required this.setDropDownValue})
       : super(key: key);
 
   final List<String> itemList;
   final IconData icon;
+  final Function setDropDownValue;
 
   @override
   _DropDownListState createState() => _DropDownListState();
@@ -18,6 +20,7 @@ class _DropDownListState extends State<DropDownList> {
   @override
   void initState() {
     selectedItem = widget.itemList.first;
+    widget.setDropDownValue(selectedItem);
     super.initState();
   }
 
@@ -28,8 +31,9 @@ class _DropDownListState extends State<DropDownList> {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16),
       child: Theme(
-        data: Theme.of(context).copyWith(canvasColor: Theme.of(context).accentColor),
-              child: DropdownButtonFormField<String>(
+        data: Theme.of(context)
+            .copyWith(canvasColor: Theme.of(context).accentColor),
+        child: DropdownButtonFormField<String>(
           items: widget.itemList.map((text) {
             return DropdownMenuItem(
               child: Text(text),
@@ -40,11 +44,13 @@ class _DropDownListState extends State<DropDownList> {
             setState(() {
               selectedItem = value;
             });
-
+            widget.setDropDownValue(selectedItem);
             print("selectedItem: " + selectedItem);
           },
           value: selectedItem,
-          style: TextStyle(color: Theme.of(context).primaryColor),
+          style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontWeight: FontWeight.w700),
           dropdownColor: Theme.of(context).accentColor,
           icon: Icon(
             // Add this
@@ -52,16 +58,17 @@ class _DropDownListState extends State<DropDownList> {
             color: Theme.of(context).primaryColor, // Add this
           ),
           decoration: InputDecoration(
-              prefixIcon: Icon(widget.icon, color: Theme.of(context).primaryColor),
-              //labelText: widget.labelText,
-              //labelStyle: TextStyle(color: Theme.of(context).primaryColor),
-              filled: true,
-              fillColor: Theme.of(context).accentColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(20),
-              ),
+            prefixIcon:
+                Icon(widget.icon, color: Theme.of(context).primaryColor),
+            //labelText: widget.labelText,
+            //labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+            filled: true,
+            fillColor: Theme.of(context).accentColor,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(20),
             ),
+          ),
         ),
       ),
     );

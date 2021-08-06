@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
+import 'package:rollbrett_rottweil/home_page.dart';
 import 'package:rollbrett_rottweil/login/forgot_password_view.dart';
 import 'package:rollbrett_rottweil/login/register_view.dart';
 import 'package:rollbrett_rottweil/reusable/rollbrett_logo.dart';
@@ -10,13 +11,20 @@ class Login extends StatelessWidget {
   String _email = "";
   String _password = "";
 
-  _loginButtonPressed() {
+  _loginButtonPressed(BuildContext context) {
     print("Email: " + _email + "\n");
     print("Password: " + _password);
+
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 
   _setEmail(String text) {
     _email = text;
+  }
+
+  String _getEmail() {
+    return _email;
   }
 
   _setPassword(String text) {
@@ -48,8 +56,8 @@ class Login extends StatelessWidget {
             SizedBox(height: 60),
             Button(
                 text: AppLocalizations.of(context).translate('login'),
-                function: _loginButtonPressed),
-            ForgotPasswordButton(context),
+                function: () => _loginButtonPressed(context)),
+            ForgotPasswordButton(context, _getEmail),
             Spacer(),
             SignUpButton(context)
           ],
@@ -60,13 +68,18 @@ class Login extends StatelessWidget {
 }
 
 class ForgotPasswordButton extends StatelessWidget {
-  ForgotPasswordButton(this.context);
+  ForgotPasswordButton(this.context, this._getEmail);
 
   final BuildContext context;
+  final Function _getEmail;
 
   _forgotPassworButtonPressed() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => ForgotPassword()));
+      context,
+      MaterialPageRoute(
+        builder: (context) => ForgotPassword(_getEmail()),
+      ),
+    );
   }
 
   @override
