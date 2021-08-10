@@ -12,5 +12,6 @@
     "reset": "Reset",
     "password_reset": "Password reset",
     "password_reset_message": "If there is an account that matches the email, a reset link has been sent to this email",
-    "course_preview": "Park preview"
+    "course_preview": "Park preview",
+    "logout": "Logout"
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
-import 'package:rollbrett_rottweil/reusable/app_bar.dart';
+import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 
 class CoursePreview extends StatelessWidget {
   @override
@@ -51,7 +51,9 @@ class ObstacleListViewItem extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 20, color: Theme.of(context).primaryColor),
                 ),
-                Image(image: AssetImage('assets/images/rail.jpg'))
+                Image(
+                  image: AssetImage('assets/images/mannypad.jpeg'),
+                )
               ],
             ),
           ),

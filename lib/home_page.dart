@@ -8,6 +8,7 @@ import 'custom_icons.dart';
 
 class HomePage extends StatelessWidget {
   _coursePreviewPressed(BuildContext context) {
+    print(MediaQuery.of(context).size.height);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => CoursePreview()));
   }
@@ -74,7 +75,9 @@ class HomePageTopBar extends StatelessWidget {
           children: [
             Align(
                 alignment: Alignment.topCenter,
-                child: RollbrettLogo(LogoSize.medium)),
+                child: RollbrettLogo(MediaQuery.of(context).size.height > 750.0
+                    ? LogoSize.medium
+                    : LogoSize.small)),
             LogoutButton()
           ],
         ),
@@ -83,7 +86,7 @@ class HomePageTopBar extends StatelessWidget {
           "Rollbrett Rottweil",
           style: TextStyle(
               color: Theme.of(context).accentColor,
-              fontSize: MediaQuery.of(context).size.width / 12,
+              fontSize: MediaQuery.of(context).size.width / 13,
               fontWeight: FontWeight.w600),
         )
       ],
@@ -105,18 +108,17 @@ class LogoutButton extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FlatButton(
+            TextButton(
               onPressed: () => {Navigator.of(context).pop()},
               child: Column(
-                // Replace with a Row for horizontal icon + text
-                children: <Widget>[
+                children: [
                   Icon(
                     Icons.power_settings_new,
                     color: Theme.of(context).accentColor,
                     size: MediaQuery.of(context).size.width * 0.08,
                   ),
                   Text(
-                    "Logout",
+                    AppLocalizations.of(context).translate("logout"),
                     style: TextStyle(color: Theme.of(context).accentColor),
                   )
                 ],

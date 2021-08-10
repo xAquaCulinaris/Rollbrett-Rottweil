@@ -38,22 +38,22 @@ class Login extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            SizedBox(height: 80),
+            SizedBox(height: MediaQuery.of(context).size.height / 20),
             RollbrettLogo(LogoSize.big),
-            SizedBox(height: 40),
+            SizedBox(height: MediaQuery.of(context).size.height / 18),
             CustomTextBox(
                 labelText: "Email",
                 icon: Icons.email,
                 setText: _setEmail,
                 textInputType: TextInputType.emailAddress),
-            SizedBox(height: 15),
+            SizedBox(height: MediaQuery.of(context).size.height / 60),
             CustomTextBox(
                 labelText: AppLocalizations.of(context).translate('password'),
                 icon: Icons.lock,
                 setText: _setPassword,
                 textInputType: TextInputType.text,
                 isPassword: true),
-            SizedBox(height: 60),
+            SizedBox(height: MediaQuery.of(context).size.height / 15),
             Button(
                 text: AppLocalizations.of(context).translate('login'),
                 function: () => _loginButtonPressed(context)),

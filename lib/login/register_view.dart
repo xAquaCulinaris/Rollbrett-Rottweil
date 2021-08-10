@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
+import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 import 'package:rollbrett_rottweil/reusable/dropdown_list.dart';
 import 'package:rollbrett_rottweil/reusable/rollbrett_logo.dart';
 import 'package:rollbrett_rottweil/reusable/button.dart';
@@ -89,23 +90,9 @@ class RegisterTopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: [
-            SafeArea(
-              child: IconButton(
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: Theme.of(context).accentColor,
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-          ],
-        ),
+        CustomAppBar(),
         RollbrettLogo(LogoSize.medium),
-        SizedBox(height: 15),
+        SizedBox(height: MediaQuery.of(context).size.height / 50),
         TextBoxes(
           setUsername: setUsername,
           setEmail: setEmail,
@@ -145,36 +132,36 @@ class TextBoxes extends StatelessWidget {
           icon: Icons.person,
           setText: setUsername,
           textInputType: TextInputType.text),
-      SizedBox(height: 15),
+      SizedBox(height: MediaQuery.of(context).size.height / 100),
       CustomTextBox(
           labelText: "Email",
           icon: Icons.email,
           setText: setEmail,
           textInputType: TextInputType.emailAddress),
-      SizedBox(height: 15),
+      SizedBox(height: MediaQuery.of(context).size.height / 100),
       DropDownList(
         itemList: ["Skateboard", "BMX", "Scooter"],
         icon: Icons.accessible_forward,
         setDropDownValue: setDropDownValue,
       ),
-      SizedBox(height: 15),
+      SizedBox(height: MediaQuery.of(context).size.height / 100),
       CustomTextBox(
           labelText: AppLocalizations.of(context).translate('password'),
           icon: Icons.lock,
           setText: setPassword,
           textInputType: TextInputType.text),
-      SizedBox(height: 15),
+      SizedBox(height: MediaQuery.of(context).size.height / 100),
       CustomTextBox(
           labelText: AppLocalizations.of(context).translate('confirm_password'),
           icon: Icons.lock,
           setText: setConfirmPassword,
           textInputType: TextInputType.text),
-      SizedBox(height: 15),
+      SizedBox(height: MediaQuery.of(context).size.height / 100),
       Button(
         text: AppLocalizations.of(context).translate('REGISTER'),
         function: registerButtonPressed,
       ),
-      SizedBox(height: 15)
+      SizedBox(height: MediaQuery.of(context).size.height / 100),
     ]);
   }
 }

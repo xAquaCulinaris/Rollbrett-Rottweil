@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  CustomAppBar({Key key, this.text});
+  CustomAppBar({Key key, this.text, this.iconRight, this.functionRight});
   final String text;
+  final IconData iconRight;
+  final Function functionRight;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,8 +31,20 @@ class CustomAppBar extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Text(text == null ? "" : text,
-                    style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.07, fontWeight: FontWeight.w800, color: Theme.of(context).accentColor)),
+                    style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width * 0.07,
+                        fontWeight: FontWeight.w800,
+                        color: Theme.of(context).accentColor)),
               ),
+              iconRight != null
+                  ? Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                          icon: Icon(iconRight,
+                              color: Theme.of(context).accentColor),
+                          onPressed: functionRight),
+                    )
+                  : Spacer()
             ],
           )
         ],
