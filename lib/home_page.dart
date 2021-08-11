@@ -168,7 +168,7 @@ class HomePageButton extends StatelessWidget {
                   text,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 20, color: Theme.of(context).primaryColor),
+                      fontSize: 20, color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold),
                 ),
               ],
             ),

@@ -44,7 +44,7 @@ class CustomAppBar extends StatelessWidget {
                               color: Theme.of(context).accentColor),
                           onPressed: functionRight),
                     )
-                  : Spacer()
+                  : SizedBox()
             ],
           )
         ],

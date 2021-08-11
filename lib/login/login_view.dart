@@ -105,7 +105,6 @@ class SignUpButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO handle forgot password
     return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

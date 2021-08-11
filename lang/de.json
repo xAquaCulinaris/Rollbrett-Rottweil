@@ -13,5 +13,6 @@
     "password_reset": "Passwort zurückgesetzt",
     "password_reset_message": "Wenn ein Konto vorhanden ist, das mit der Email übereinstimmt, wurde ein Link zum Zurücksetzen an diese Email gesendet",
     "course_preview": "Park vorschau",
-    "logout": "Abmelden"
+    "logout": "Abmelden",
+    "roll_dice": "Würfeln"
 }
