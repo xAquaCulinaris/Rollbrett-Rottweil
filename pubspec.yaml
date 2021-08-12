@@ -24,6 +24,18 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^5.0.0
+  flutter_launcher_icons: ^0.9.1
+  flutter_native_splash: ^1.2.1
+
+flutter_icons: 
+  image_path: "assets/images/rollbrett_rottweil.jpg"
+  android: true
+  ios: true
+
+flutter_native_splash:
+  color: "#000000"
+  android: true
+  ios: true
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

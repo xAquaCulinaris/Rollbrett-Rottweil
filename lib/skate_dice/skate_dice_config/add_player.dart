@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
-import 'package:rollbrett_rottweil/reusable/button.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 import 'package:rollbrett_rottweil/reusable/textBox.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
@@ -17,7 +16,7 @@ class _AddPlayerState extends State<AddPlayer> {
   @override
   Widget build(BuildContext context) {
     TextEditingController _controller = TextEditingController();
-    String _name;
+    String _name = "";
     setName(String text) {
       _name = text;
     }
