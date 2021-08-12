@@ -8,7 +8,10 @@ class CustomTextBox extends StatefulWidget {
       @required this.setText,
       @required this.textInputType,
       this.isPassword = false,
-      this.initialText})
+      this.initialText,
+      this.suffixIcon,
+      this.suffixFunction,
+      this.controller})
       : super(key: key);
 
   final String labelText;
@@ -17,6 +20,9 @@ class CustomTextBox extends StatefulWidget {
   final TextInputType textInputType;
   final bool isPassword;
   final String initialText;
+  final IconData suffixIcon;
+  final Function suffixFunction;
+  final TextEditingController controller;
 
   @override
   _TextBoxState createState() => _TextBoxState();
@@ -28,8 +34,9 @@ class _TextBoxState extends State<CustomTextBox> {
     return Padding(
       padding: EdgeInsets.only(left: 16, right: 16),
       child: TextFormField(
+        controller: widget.controller,
         initialValue: widget.initialText,
-        style: TextStyle(color: Theme.of(context).primaryColor),
+        style: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width /20),
         keyboardType: widget.textInputType,
         obscureText: widget.isPassword,
         onChanged: (value) {
@@ -42,8 +49,19 @@ class _TextBoxState extends State<CustomTextBox> {
             widget.icon,
             color: Theme.of(context).primaryColor,
           ),
+          suffixIcon: widget.suffixIcon == null
+              ? null
+              : IconButton(
+                  icon: Icon(
+                    widget.suffixIcon,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  onPressed: widget.suffixFunction,
+                ),
           hintText: widget.labelText,
-          hintStyle: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.w700),
+          hintStyle: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontWeight: FontWeight.w700),
           //labelText: widget.labelText,
           //labelStyle: TextStyle(color: Theme.of(context).primaryColor),
           filled: true,

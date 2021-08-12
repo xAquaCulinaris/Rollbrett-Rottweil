@@ -14,5 +14,6 @@
     "password_reset_message": "If there is an account that matches the email, a reset link has been sent to this email",
     "course_preview": "Park preview",
     "logout": "Logout",
-    "roll_dice": "Roll dice"
+    "roll_dice": "Roll dice",
+    "add_player": "Add player"
 }

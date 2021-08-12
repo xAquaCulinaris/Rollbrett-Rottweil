@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
 import 'package:rollbrett_rottweil/reusable/button.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
+import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/add_player.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_dice.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_player.dart';
 import 'dart:async';
@@ -16,8 +19,14 @@ class SkateDice extends StatelessWidget {
   Widget build(BuildContext context) {
     //TODO remove only for testing
     int counter = 0;
+
     _settingButtonPressed() {
-      print("setting button pressed");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AddPlayer(),
+        ),
+      );
     }
 
     _rollDiceButtonPressed() {
@@ -35,7 +44,7 @@ class SkateDice extends StatelessWidget {
         });
       }
 
-         if (counter == 1) {
+      if (counter == 1) {
         _dice1.state.animate("BACK SIDE");
         Timer(Duration(milliseconds: 100), () {
           _dice2.state.animate("50-50");
@@ -48,7 +57,7 @@ class SkateDice extends StatelessWidget {
         });
       }
 
-         if (counter == 2) {
+      if (counter == 2) {
         _dice1.state.animate("NOSESLIDE");
         Timer(Duration(milliseconds: 100), () {
           _dice2.state.animate("HUBBA");
@@ -79,13 +88,36 @@ class SkateDice extends StatelessWidget {
               text: AppLocalizations.of(context).translate("roll_dice"),
               function: _rollDiceButtonPressed),
           Spacer(),
-          SkateDicePlayer(name: "Marian"),
-          SkateDicePlayer(name: "Scott"),
+          _players(),
           Spacer(),
         ],
       ),
     );
   }
+
+  _players() => Consumer<PlayerList>(builder: (context, players, child) {
+        print("length: " + players.players.length.toString());
+        if (players.players.length == 0) {
+          print("in here");
+          return Button(
+            text: AppLocalizations.of(context).translate("add_player"),
+            function: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddPlayer()),
+              );
+            },
+          );
+        }
+        print("not here");
+        return ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: players.players.length,
+          itemBuilder: (BuildContext context, int index) =>
+              SkateDicePlayer(name: players.players[index].name),
+        );
+      });
 }
 
 class SkateDices extends StatefulWidget {

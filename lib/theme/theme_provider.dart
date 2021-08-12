@@ -8,7 +8,8 @@ class MyThemes {
     primaryColor: Colors.black,
     accentColor: Colors.grey[400],
     colorScheme: ColorScheme.dark(),
-    elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(primary: Colors.grey[400], shape: StadiumBorder()))
+    elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(primary: Colors.grey[400], shape: StadiumBorder())),
+    textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.grey[500], selectionColor: Colors.grey[500])
   );
 
   static final lightTheme = ThemeData(
@@ -18,6 +19,7 @@ class MyThemes {
     primaryColor: Colors.white,
     accentColor: Colors.grey[850],
     colorScheme: ColorScheme.light(),
-    elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(primary: Colors.grey[850], shape: StadiumBorder()))
+    elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(primary: Colors.grey[850], shape: StadiumBorder())),
+    textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.grey[950], selectionColor: Colors.grey[950])
   );
 }
