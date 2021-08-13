@@ -15,6 +15,7 @@ class AddPlayer extends StatefulWidget {
 class _AddPlayerState extends State<AddPlayer> {
   final key = GlobalKey<AnimatedListState>();
   TextEditingController _controller = TextEditingController();
+  //TODO name max 6 letters or it will be to big on skate dice screen
   String _name = "";
 
   removeItem(int index) {

@@ -11,10 +11,10 @@ class CoursePreview extends StatelessWidget {
           CustomAppBar(
             text: AppLocalizations.of(context).translate('course_preview'),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [ObstacleListViewItem(), ObstacleListViewItem()],
-          )
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [ObstacleListViewItem(), ObstacleListViewItem()],
+          // )
         ],
       ),
     );

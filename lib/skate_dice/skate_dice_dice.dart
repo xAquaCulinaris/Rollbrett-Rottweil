@@ -19,12 +19,12 @@ class _SkateDiceDiceState extends State<SkateDiceDice>
   @override
   void initState() {
     _animationController = AnimationController(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
       vsync: this,
     );
     _animation = CurvedAnimation(
       parent: _animationController,
-      curve: Curves.elasticOut,
+      curve: Curves.easeInOutBack,
     );
     super.initState();
   }
@@ -48,7 +48,23 @@ class _SkateDiceDiceState extends State<SkateDiceDice>
             color: Theme.of(context).accentColor,
             borderRadius: new BorderRadius.all(const Radius.circular(30.0)),
           ),
-          child: Center(child: Text(trickName, style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width / 14, color: Theme.of(context).primaryColor), textAlign: TextAlign.center)),
+          child: Center(
+              child: AnimatedSwitcher(
+            duration: Duration(milliseconds: 200),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return ScaleTransition(
+                scale: _animationController,
+                child: child,
+              );
+            },
+            child: Text(trickName,
+                key: ValueKey<String>(trickName),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: MediaQuery.of(context).size.width / 14,
+                    color: Theme.of(context).primaryColor),
+                textAlign: TextAlign.center),
+          )),
         ),
       ),
     );
