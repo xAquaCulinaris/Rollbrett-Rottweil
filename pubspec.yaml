@@ -26,6 +26,7 @@ dependencies:
   provider: ^5.0.0
   flutter_launcher_icons: ^0.9.1
   flutter_native_splash: ^1.2.1
+  bottom_navy_bar: ^6.0.0
 
 flutter_icons: 
   image_path: "assets/images/rollbrett_rottweil.jpg"

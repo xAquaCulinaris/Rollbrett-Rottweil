@@ -5,6 +5,7 @@ import 'package:rollbrett_rottweil/reusable/button.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/add_player.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/nav_bar.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_dice.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_player.dart';
 import 'dart:async';
@@ -24,7 +25,7 @@ class SkateDice extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => AddPlayer(),
+          builder: (context) => NavBar(),
         ),
       );
     }

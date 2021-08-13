@@ -1,3 +1,4 @@
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
@@ -13,13 +14,15 @@ class AddPlayer extends StatefulWidget {
 }
 
 class _AddPlayerState extends State<AddPlayer> {
+  int index = 0;
   final key = GlobalKey<AnimatedListState>();
   TextEditingController _controller = TextEditingController();
   //TODO name max 6 letters or it will be to big on skate dice screen
   String _name = "";
 
   removeItem(int index) {
-    String name = Provider.of<PlayerList>(context, listen: false).removePlayer(index);
+    String name =
+        Provider.of<PlayerList>(context, listen: false).removePlayer(index);
     key.currentState.removeItem(
         index,
         (context, animation) =>
@@ -45,8 +48,7 @@ class _AddPlayerState extends State<AddPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CustomAppBar(
@@ -63,9 +65,11 @@ class _AddPlayerState extends State<AddPlayer> {
           ),
           _players(),
         ],
-      ),
+    
     );
   }
+
+  
 
   _players() {
     return Consumer<PlayerList>(builder: (context, players, child) {
