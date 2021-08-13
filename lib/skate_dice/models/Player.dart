@@ -7,7 +7,7 @@ class Player {
 }
 
 class PlayerList extends ChangeNotifier {
-  List<Player> _players = [];
+  List<Player> _players = [Player("marian")];
 
   List<Player> get players => _players;
 
@@ -16,8 +16,9 @@ class PlayerList extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removePlayer(String name) {
-    _players.removeWhere((p) => p.name == name);
+  String removePlayer(int index) {
+    String name = _players.removeAt(index).name;
     notifyListeners();
+    return name;
   }
 }

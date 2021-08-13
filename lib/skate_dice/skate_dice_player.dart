@@ -53,6 +53,7 @@ class _SkateDicePlayerState extends State<SkateDicePlayer> {
         IconButton(
             icon: Icon(Icons.add, color: Theme.of(context).accentColor),
             onPressed: _addLetter),
+        Spacer()
       ],
     );
   }

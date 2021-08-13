@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => PlayerList(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Rollbrett Rottweil',
         theme: MyThemes.lightTheme,
         darkTheme: MyThemes.darkTheme,

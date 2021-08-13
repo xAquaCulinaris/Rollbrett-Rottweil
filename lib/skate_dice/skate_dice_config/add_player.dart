@@ -13,25 +13,37 @@ class AddPlayer extends StatefulWidget {
 }
 
 class _AddPlayerState extends State<AddPlayer> {
+  final key = GlobalKey<AnimatedListState>();
+  TextEditingController _controller = TextEditingController();
+  String _name = "";
+
+  removeItem(int index) {
+    String name = Provider.of<PlayerList>(context, listen: false).removePlayer(index);
+    key.currentState.removeItem(
+        index,
+        (context, animation) =>
+            PlayerItem(name, animation, () => removeItem(index)));
+  }
+
+  setName(String text) {
+    _name = text;
+  }
+
+  _addButtonPressed() {
+    if (_name != "") {
+      Provider.of<PlayerList>(context, listen: false).addPlayer(_name);
+      if (mounted)
+        setState(() {
+          _controller.clear();
+          _name = "";
+        });
+      key.currentState.insertItem(
+          Provider.of<PlayerList>(context, listen: false).players.length - 1);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController _controller = TextEditingController();
-    String _name = "";
-    setName(String text) {
-      _name = text;
-    }
-
-    _addButtonPressed() {
-      if (_name != "") {
-        Provider.of<PlayerList>(context, listen: false).addPlayer(_name);
-        if (mounted)
-          setState(() {
-            _controller.clear();
-            _name = "";
-          });
-      }
-    }
-
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,53 +66,58 @@ class _AddPlayerState extends State<AddPlayer> {
     );
   }
 
-  _players() => Consumer<PlayerList>(builder: (context, players, child) {
-        return ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: players.players.length,
-          itemBuilder: (BuildContext context, int index) =>
-              PlayerItem(players.players[index].name),
-        );
-      });
+  _players() {
+    return Consumer<PlayerList>(builder: (context, players, child) {
+      return AnimatedList(
+        key: key,
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        initialItemCount: players.players.length,
+        itemBuilder: (context, index, animation) => PlayerItem(
+            players.players[index].name, animation, () => removeItem(index)),
+      );
+    });
+  }
 }
 
 class PlayerItem extends StatelessWidget {
-  const PlayerItem(this.name);
+  const PlayerItem(this.name, this.animation, this.removeFunction);
   final String name;
+  final Animation animation;
+  final Function removeFunction;
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: Padding(
-        padding: EdgeInsets.only(left: 16, right: 16, top: 16),
-        child: Container(
-            height: MediaQuery.of(context).size.width / 8,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(25)),
-                color: Theme.of(context).accentColor),
-            child: Row(
-              children: [
-                Spacer(),
-                Text(name,
-                    style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: MediaQuery.of(context).size.width / 12)),
-                Spacer(),
-                IconButton(
-                  icon: Icon(
-                    Icons.remove,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  onPressed: () {
-                    Provider.of<PlayerList>(context, listen: false)
-                        .removePlayer(name);
-                  },
-                )
-              ],
-            )),
+    return ScaleTransition(
+      scale: animation,
+      child: Align(
+        alignment: Alignment.center,
+        child: Padding(
+          padding: EdgeInsets.only(left: 32, right: 32, top: 16),
+          child: Container(
+              height: MediaQuery.of(context).size.width / 6,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                  color: Theme.of(context).accentColor),
+              child: Row(
+                children: [
+                  Spacer(),
+                  Text(name,
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: MediaQuery.of(context).size.width / 12)),
+                  Spacer(),
+                  IconButton(
+                    icon: Icon(
+                      Icons.remove,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    onPressed: removeFunction,
+                  )
+                ],
+              )),
+        ),
       ),
     );
   }
