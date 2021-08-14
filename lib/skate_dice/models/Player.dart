@@ -7,7 +7,7 @@ class Player {
 }
 
 class PlayerList extends ChangeNotifier {
-  List<Player> _players = [Player("marian")];
+  List<Player> _players = [];
 
   List<Player> get players => _players;
 

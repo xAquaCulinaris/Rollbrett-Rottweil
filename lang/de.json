@@ -16,5 +16,6 @@
     "logout": "Abmelden",
     "roll_dice": "Würfeln",
     "add_player": "Spieler hinzufügen",
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "no_players": "Kein Spieler"
 }

@@ -16,5 +16,6 @@
     "logout": "Logout",
     "roll_dice": "Roll dice",
     "add_player": "Add player",
-    "settings": "Settings"
+    "settings": "Settings",
+    "no_players": "No players"
 }

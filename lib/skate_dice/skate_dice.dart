@@ -73,7 +73,6 @@ class SkateDice extends StatelessWidget {
 
       counter++;
 
-      print("rolling dices");
     }
 
     return Scaffold(
@@ -97,20 +96,10 @@ class SkateDice extends StatelessWidget {
   }
 
   _players() => Consumer<PlayerList>(builder: (context, players, child) {
-        print("length: " + players.players.length.toString());
         if (players.players.length == 0) {
-          print("in here");
-          return Button(
-            text: AppLocalizations.of(context).translate("add_player"),
-            function: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AddPlayer()),
-              );
-            },
-          );
+         return Text(AppLocalizations.of(context).translate("no_players"), style: TextStyle(color: Theme.of(context).accentColor, fontSize: MediaQuery.of(context).size.width/25),);
         }
-        print("not here");
+
         return ListView.builder(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,

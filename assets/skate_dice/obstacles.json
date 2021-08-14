@@ -1,0 +1,63 @@
+[
+    {
+        "name": "Ledges",
+        "obstacles": [
+            {
+                "name": "Mannypad Ledge",
+                "obstacleType": "grind",
+                "checked": false
+            },
+            {
+                "name": "Hubba",
+                "obstacleType": "grind",
+                "checked": false
+            },
+            {
+                "name": "Brunnen",
+                "obstacleType": "grind",
+                "checked": false
+            }
+        ]
+    },
+    {
+        "name": "Rails",
+        "obstacles": [
+            {
+                "name": "Bump to Rail",
+                "obstacleType": "grind",
+                "checked": false
+            },
+            {
+                "name": "Down Rail",
+                "obstacleType": "grind",
+                "checked": false
+            },
+            {
+                "name": "Flat Rail",
+                "obstacleType": "grind",
+                "checked": false
+            }
+        ]
+    },
+
+    {
+        "name": "Gaps",
+        "obstacles": [
+            {
+                "name": "Stair",
+                "obstacleType": "flat",
+                "checked": false
+            },
+            {
+                "name": "Rottweiler",
+                "obstacleType": "flat",
+                "checked": false
+            },
+            {
+                "name": "Taco",
+                "obstacleType": "flat",
+                "checked": false
+            }
+        ]
+    }
+]

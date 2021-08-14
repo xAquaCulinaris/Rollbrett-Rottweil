@@ -1,45 +1,10 @@
 import 'package:flutter/material.dart';
-
-class CustomCheckboxListItem extends StatefulWidget {
-  final String name;
-  bool checked;
-
-  CustomCheckboxListItem(this.name, this.checked);
-
-  @override
-  _CustomCheckboxListItemState createState() => _CustomCheckboxListItemState();
-}
-
-class _CustomCheckboxListItemState extends State<CustomCheckboxListItem> {
-  _itemPressed() {
-    if (mounted)
-      setState(() {
-        widget.checked = !widget.checked;
-      });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 2),
-      child: TextButton(
-        onPressed: _itemPressed,
-        child: Text(
-          widget.name,
-          style: TextStyle(
-              color:
-                  widget.checked ? Theme.of(context).accentColor : Colors.red,
-              fontSize: MediaQuery.of(context).size.height / 40),
-        ),
-      ),
-    );
-  }
-}
+import 'package:provider/provider.dart';
+import 'package:rollbrett_rottweil/skate_dice/models/ObstacleProvider.dart';
 
 class CustomCheckboxHeader extends StatefulWidget {
-  final List<CustomCheckboxListItem> items;
-  final String name;
-  const CustomCheckboxHeader({Key key, @required this.name, this.items})
+  final headerIndex;
+  const CustomCheckboxHeader({Key key, @required this.headerIndex})
       : super(key: key);
 
   @override
@@ -59,29 +24,33 @@ class _CustomCheckboxHeaderState extends State<CustomCheckboxHeader> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ObstacleProvider>(context);
+    final _allObstacleHeaders = provider.obstacles;
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8),
-          child: TextButton(
-            onPressed: _textPressed,
-            child: Row(
-              children: [
-                buildIcon(),
-                Text(widget.name,
-                    style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        fontSize: MediaQuery.of(context).size.height / 25)),
-              ],
-            ),
+        TextButton(
+          onPressed: _textPressed,
+          child: Row(
+            children: [
+              buildIcon(),
+              Text(_allObstacleHeaders[widget.headerIndex].name,
+                  style: TextStyle(
+                      color: Theme.of(context).accentColor,
+                      fontSize: MediaQuery.of(context).size.height / 25)),
+            ],
           ),
         ),
         if (expanded)
-          Expanded(
-            child: ListView(
-              children: widget.items,
-            ),
-          )
+          //Change
+          ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.all(0),
+              shrinkWrap: true,
+              itemCount:
+                  _allObstacleHeaders[widget.headerIndex].obstacles.length,
+              itemBuilder: (context, index) {
+                return CustomCheckboxListItem(widget.headerIndex, index);
+              })
       ],
     );
   }
@@ -90,5 +59,56 @@ class _CustomCheckboxHeaderState extends State<CustomCheckboxHeader> {
     return expanded
         ? Icon(Icons.arrow_drop_down, color: Theme.of(context).accentColor)
         : Icon(Icons.arrow_right, color: Theme.of(context).accentColor);
+  }
+}
+
+class CustomCheckboxListItem extends StatefulWidget {
+  final int headerIndex;
+  final int obstacleIndex;
+
+  CustomCheckboxListItem(this.headerIndex, this.obstacleIndex);
+
+  @override
+  _CustomCheckboxListItemState createState() => _CustomCheckboxListItemState();
+}
+
+class _CustomCheckboxListItemState extends State<CustomCheckboxListItem> {
+  @override
+  Widget build(BuildContext context) {
+    final provider = Provider.of<ObstacleProvider>(context);
+    final _allObstacleHeaders = provider.obstacles;
+    return Padding(
+      padding: const EdgeInsets.only(left: 32.0),
+      child: Row(
+        children: [
+          TextButton(
+            onPressed: () {
+              if (mounted)
+                setState(() {
+                  _allObstacleHeaders[widget.headerIndex]
+                          .obstacles[widget.obstacleIndex]
+                          .checked =
+                      !_allObstacleHeaders[widget.headerIndex]
+                          .obstacles[widget.obstacleIndex]
+                          .checked;
+                });
+            },
+            child: Text(
+              _allObstacleHeaders[widget.headerIndex]
+                  .obstacles[widget.obstacleIndex]
+                  .name,
+              style: TextStyle(
+                  color: _allObstacleHeaders[widget.headerIndex]
+                          .obstacles[widget.obstacleIndex]
+                          .checked
+                      ? Theme.of(context).accentColor
+                      : Theme.of(context).disabledColor,
+                  fontSize: MediaQuery.of(context).size.height / 25),
+            ),
+          ),
+          Spacer()
+        ],
+      ),
+    );
   }
 }

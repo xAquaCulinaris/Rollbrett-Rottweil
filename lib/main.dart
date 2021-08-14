@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
 import 'package:rollbrett_rottweil/login/login_view.dart';
+import 'package:rollbrett_rottweil/skate_dice/models/ObstacleProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
 import 'package:rollbrett_rottweil/theme/theme_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,8 +15,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => PlayerList(),
+    return MultiProvider(
+      providers: [
+        ListenableProvider<PlayerList>(create: (_) => PlayerList()),
+        ListenableProvider<ObstacleProvider>(create: (_) => ObstacleProvider()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Rollbrett Rottweil',
