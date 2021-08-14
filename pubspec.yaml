@@ -29,7 +29,7 @@ dependencies:
   bottom_navy_bar: ^6.0.0
 
 flutter_icons: 
-  image_path: "assets/images/rollbrett_rottweil.jpg"
+  image_path: "assets/images/app_icon.png"
   android: true
   ios: true
 

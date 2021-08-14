@@ -3,8 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
 import 'package:rollbrett_rottweil/reusable/button.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
+import 'package:rollbrett_rottweil/skate_dice/models/Item.dart';
+import 'package:rollbrett_rottweil/skate_dice/provider/ObstacleProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
-import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/add_player.dart';
+import 'package:rollbrett_rottweil/skate_dice/provider/TrickProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/nav_bar.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_dice.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_player.dart';
@@ -18,6 +20,8 @@ class SkateDice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final providerObstacle = Provider.of<ObstacleProvider>(context);
+    final providerTrick = Provider.of<TrickProvider>(context);
     //TODO remove only for testing
     int counter = 0;
 
@@ -31,6 +35,17 @@ class SkateDice extends StatelessWidget {
     }
 
     _rollDiceButtonPressed() {
+      List<Item> _obstacles = providerObstacle.getSelectedObstacles();
+      List<Item> _tricks = providerTrick.getSelectedTricks();
+
+      for (Item obstacle in _obstacles) {
+        print(obstacle.name);
+      }
+
+      for (Item trick in _tricks) {
+        print(trick.name);
+      }
+
       //TODO replace only for testing
       if (counter == 0) {
         _dice1.state.animate("FRONT SIDE");
@@ -72,7 +87,6 @@ class SkateDice extends StatelessWidget {
       }
 
       counter++;
-
     }
 
     return Scaffold(
@@ -97,7 +111,12 @@ class SkateDice extends StatelessWidget {
 
   _players() => Consumer<PlayerList>(builder: (context, players, child) {
         if (players.players.length == 0) {
-         return Text(AppLocalizations.of(context).translate("no_players"), style: TextStyle(color: Theme.of(context).accentColor, fontSize: MediaQuery.of(context).size.width/25),);
+          return Text(
+            AppLocalizations.of(context).translate("no_players"),
+            style: TextStyle(
+                color: Theme.of(context).accentColor,
+                fontSize: MediaQuery.of(context).size.width / 25),
+          );
         }
 
         return ListView.builder(

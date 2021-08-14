@@ -1,0 +1,36 @@
+[
+    {
+        "name": "Flat tricks",
+        "items": [
+            {
+                "name": "Kickflip",
+                "obstacleType": "flat"
+            },
+            {
+                "name": "Heelflip",
+                "obstacleType": "flat"
+            },
+            {
+                "name": "180",
+                "obstacleType": "flat"
+            }
+        ]
+    },
+    {
+        "name": "Grinds/Slides",
+        "items": [
+            {
+                "name": "50-50",
+                "obstacleType": "grind"
+            },
+            {
+                "name": "Nosegrind",
+                "obstacleType": "grind"
+            },
+            {
+                "name": "Smithgrind",
+                "obstacleType": "grind"
+            }
+        ]
+    }
+]

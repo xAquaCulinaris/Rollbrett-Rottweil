@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
-import 'package:rollbrett_rottweil/skate_dice/models/ObstacleProvider.dart';
+import 'package:rollbrett_rottweil/skate_dice/provider/ObstacleProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/checkbox_list_item.dart';
 
 class ConfigureObstacles extends StatefulWidget {
@@ -15,7 +15,7 @@ class _ConfigureObstaclesState extends State<ConfigureObstacles> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ObstacleProvider>(context);
-    final _allObstacleHeaders = provider.obstacles;
+    final _allObstacleHeaders = provider.items;
 
     return SingleChildScrollView(
       child: Column(
@@ -28,6 +28,7 @@ class _ConfigureObstaclesState extends State<ConfigureObstacles> {
               int _index = _allObstacleHeaders.indexOf(obstacleHeader);
               return CustomCheckboxHeader(
                 headerIndex: _index,
+                provider: provider,
               );
             }).toList(),
           ),

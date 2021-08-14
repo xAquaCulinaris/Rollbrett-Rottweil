@@ -1,62 +1,58 @@
 [
     {
         "name": "Ledges",
-        "obstacles": [
+        "items": [
             {
                 "name": "Mannypad Ledge",
-                "obstacleType": "grind",
-                "checked": false
+                "obstacleType": "grind"
             },
             {
                 "name": "Hubba",
-                "obstacleType": "grind",
-                "checked": false
+                "obstacleType": "grind"
             },
             {
                 "name": "Brunnen",
-                "obstacleType": "grind",
-                "checked": false
+                "obstacleType": "grind"
             }
         ]
     },
     {
         "name": "Rails",
-        "obstacles": [
+        "items": [
             {
                 "name": "Bump to Rail",
-                "obstacleType": "grind",
-                "checked": false
+                "obstacleType": "grind"
+             
             },
             {
                 "name": "Down Rail",
-                "obstacleType": "grind",
-                "checked": false
+                "obstacleType": "grind"
+               
             },
             {
                 "name": "Flat Rail",
-                "obstacleType": "grind",
-                "checked": false
+                "obstacleType": "grind"
+                
             }
         ]
     },
-
     {
         "name": "Gaps",
-        "obstacles": [
+        "items": [
             {
                 "name": "Stair",
-                "obstacleType": "flat",
-                "checked": false
+                "obstacleType": "flat"
+             
             },
             {
                 "name": "Rottweiler",
-                "obstacleType": "flat",
-                "checked": false
+                "obstacleType": "flat"
+              
             },
             {
                 "name": "Taco",
-                "obstacleType": "flat",
-                "checked": false
+                "obstacleType": "flat"
+              
             }
         ]
     }

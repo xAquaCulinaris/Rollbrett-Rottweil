@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:rollbrett_rottweil/skate_dice/models/ObstacleProvider.dart';
 
 class CustomCheckboxHeader extends StatefulWidget {
+  final provider;
   final headerIndex;
-  const CustomCheckboxHeader({Key key, @required this.headerIndex})
+  const CustomCheckboxHeader({Key key, @required this.headerIndex, @required this.provider})
       : super(key: key);
 
   @override
@@ -24,8 +23,8 @@ class _CustomCheckboxHeaderState extends State<CustomCheckboxHeader> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ObstacleProvider>(context);
-    final _allObstacleHeaders = provider.obstacles;
+    //final provider = Provider.of<ObstacleProvider>(context);
+    final _allObstacleHeaders = widget.provider.items;
     return Column(
       children: [
         TextButton(
@@ -47,9 +46,9 @@ class _CustomCheckboxHeaderState extends State<CustomCheckboxHeader> {
             padding: EdgeInsets.all(0),
               shrinkWrap: true,
               itemCount:
-                  _allObstacleHeaders[widget.headerIndex].obstacles.length,
+                  _allObstacleHeaders[widget.headerIndex].items.length,
               itemBuilder: (context, index) {
-                return CustomCheckboxListItem(widget.headerIndex, index);
+                return CustomCheckboxListItem(widget.headerIndex, index, widget.provider);
               })
       ],
     );
@@ -65,8 +64,9 @@ class _CustomCheckboxHeaderState extends State<CustomCheckboxHeader> {
 class CustomCheckboxListItem extends StatefulWidget {
   final int headerIndex;
   final int obstacleIndex;
+  final provider;
 
-  CustomCheckboxListItem(this.headerIndex, this.obstacleIndex);
+  CustomCheckboxListItem(this.headerIndex, this.obstacleIndex, this.provider);
 
   @override
   _CustomCheckboxListItemState createState() => _CustomCheckboxListItemState();
@@ -75,8 +75,7 @@ class CustomCheckboxListItem extends StatefulWidget {
 class _CustomCheckboxListItemState extends State<CustomCheckboxListItem> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ObstacleProvider>(context);
-    final _allObstacleHeaders = provider.obstacles;
+    final _allObstacleHeaders = widget.provider.items;
     return Padding(
       padding: const EdgeInsets.only(left: 32.0),
       child: Row(
@@ -86,20 +85,20 @@ class _CustomCheckboxListItemState extends State<CustomCheckboxListItem> {
               if (mounted)
                 setState(() {
                   _allObstacleHeaders[widget.headerIndex]
-                          .obstacles[widget.obstacleIndex]
+                          .items[widget.obstacleIndex]
                           .checked =
                       !_allObstacleHeaders[widget.headerIndex]
-                          .obstacles[widget.obstacleIndex]
+                          .items[widget.obstacleIndex]
                           .checked;
                 });
             },
             child: Text(
               _allObstacleHeaders[widget.headerIndex]
-                  .obstacles[widget.obstacleIndex]
+                  .items[widget.obstacleIndex]
                   .name,
               style: TextStyle(
                   color: _allObstacleHeaders[widget.headerIndex]
-                          .obstacles[widget.obstacleIndex]
+                          .items[widget.obstacleIndex]
                           .checked
                       ? Theme.of(context).accentColor
                       : Theme.of(context).disabledColor,
