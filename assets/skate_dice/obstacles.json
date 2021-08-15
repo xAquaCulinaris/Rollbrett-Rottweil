@@ -22,17 +22,14 @@
             {
                 "name": "Bump to Rail",
                 "obstacleType": "grind"
-             
             },
             {
                 "name": "Down Rail",
                 "obstacleType": "grind"
-               
             },
             {
                 "name": "Flat Rail",
                 "obstacleType": "grind"
-                
             }
         ]
     },
@@ -42,17 +39,55 @@
             {
                 "name": "Stair",
                 "obstacleType": "flat"
-             
             },
             {
                 "name": "Rottweiler",
                 "obstacleType": "flat"
-              
             },
             {
-                "name": "Taco",
+                "name": "Lodongap",
                 "obstacleType": "flat"
-              
+            },
+            {
+                "name": "Brunnen",
+                "obstacleType": "flat"
+            },
+            {
+                "name": "Hipp",
+                "obstacleType": "flat"
+            }
+        ]
+    },
+    {
+        "name": "Mannypads",
+        "items": [
+            {
+                "name": "Mannypad",
+                "obstacleType": "manual"
+            },
+            {
+                "name": "Brunnen",
+                "obstacleType": "manual"
+            },
+            {
+                "name": "Bump to Mannypad",
+                "obstacleType": "manual"
+            }
+        ]
+    }, {
+        "name": "Transition",
+        "items": [
+            {
+                "name": "Taco",
+                "obstacleType": "transition"
+            },
+            {
+                "name": "Rounded Quarter",
+                "obstacleType": "transition"
+            },
+            {
+                "name": "Quarter",
+                "obstacleType": "transition"
             }
         ]
     }

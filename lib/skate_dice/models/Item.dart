@@ -28,8 +28,8 @@ class Item {
       case 'grind':
         this.obstacleType = ObstacleType.Grind;
         break;
-      case 'manny':
-        this.obstacleType = ObstacleType.MannyPad;
+      case 'manual':
+        this.obstacleType = ObstacleType.Manual;
         break;
       case 'transition':
         this.obstacleType = ObstacleType.Transition;
@@ -38,4 +38,4 @@ class Item {
   }
 }
 
-enum ObstacleType { Flat, Grind, MannyPad, Transition }
+enum ObstacleType { Flat, Grind, Manual, Transition }

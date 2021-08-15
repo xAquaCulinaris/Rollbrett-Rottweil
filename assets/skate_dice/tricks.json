@@ -13,6 +13,30 @@
             {
                 "name": "180",
                 "obstacleType": "flat"
+            },
+            {
+                "name": "360 Flip",
+                "obstacleType": "flat"
+            },
+            {
+                "name": "Shuvit",
+                "obstacleType": "flat"
+            },
+            {
+                "name": "Varial Flip",
+                "obstacleType": "flat"
+            },
+            {
+                "name": "Varial Heel",
+                "obstacleType": "flat"
+            },
+            {
+                "name": "Hardflip",
+                "obstacleType": "flat"
+            },
+            {
+                "name": "Inwardheel",
+                "obstacleType": "flat"
             }
         ]
     },
@@ -30,6 +54,76 @@
             {
                 "name": "Smithgrind",
                 "obstacleType": "grind"
+            },
+            {
+                "name": "5-0",
+                "obstacleType": "grind"
+            },
+            {
+                "name": "Boardslide",
+                "obstacleType": "grind"
+            },
+            {
+                "name": "Tailslide",
+                "obstacleType": "grind"
+            },
+            {
+                "name": "Lipslide",
+                "obstacleType": "grind"
+            },
+            {
+                "name": "Noseslide",
+                "obstacleType": "grind"
+            },
+            {
+                "name": "Croocked",
+                "obstacleType": "grind"
+            },
+            {
+                "name": "Salad",
+                "obstacleType": "grind"
+            }
+        ]
+    },
+    {
+        "name": "Manuals",
+        "items": [
+            {
+                "name": "Nose Manual",
+                "obstacleType": "manual"
+            },
+            {
+                "name": "Manual",
+                "obstacleType": "manual"
+            }
+        ]
+    },
+    {
+        "name": "Transition",
+        "items": [
+            {
+                "name": "50-50",
+                "obstacleType": "transition"
+            },
+            {
+                "name": "Axel Stall",
+                "obstacleType": "transition"
+            },
+            {
+                "name": "Disaster",
+                "obstacleType": "transition"
+            },
+            {
+                "name": "Noseblunt",
+                "obstacleType": "transition"
+            },
+            {
+                "name": "Blunt",
+                "obstacleType": "transition"
+            },
+            {
+                "name": "Slasher",
+                "obstacleType": "transition"
             }
         ]
     }

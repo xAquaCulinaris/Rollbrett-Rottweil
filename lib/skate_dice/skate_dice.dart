@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
@@ -22,8 +24,6 @@ class SkateDice extends StatelessWidget {
   Widget build(BuildContext context) {
     final providerObstacle = Provider.of<ObstacleProvider>(context);
     final providerTrick = Provider.of<TrickProvider>(context);
-    //TODO remove only for testing
-    int counter = 0;
 
     _settingButtonPressed() {
       Navigator.push(
@@ -37,56 +37,26 @@ class SkateDice extends StatelessWidget {
     _rollDiceButtonPressed() {
       List<Item> _obstacles = providerObstacle.getSelectedObstacles();
       List<Item> _tricks = providerTrick.getSelectedTricks();
+      Item _obstacle = _obstacles[Random().nextInt(_obstacles.length)];
+      List<Item> _avaibleTricks = [];
 
-      for (Item obstacle in _obstacles) {
-        print(obstacle.name);
-      }
+      _avaibleTricks.addAll(_tricks
+          .where((element) => element.obstacleType == _obstacle.obstacleType));
+      Item _trick = _avaibleTricks[Random().nextInt(_avaibleTricks.length)];
 
-      for (Item trick in _tricks) {
-        print(trick.name);
-      }
+      print("Obstacle: " + _obstacle.name);
+      print("Tricks: " + _trick.name);
 
-      //TODO replace only for testing
-      if (counter == 0) {
-        _dice1.state.animate("FRONT SIDE");
-        Timer(Duration(milliseconds: 100), () {
-          _dice2.state.animate("NOSE GRIND");
-        });
-        Timer(Duration(milliseconds: 200), () {
-          _dice3.state.animate("SHUVIT OUT");
-        });
-        Timer(Duration(milliseconds: 300), () {
-          _dice4.state.animate("");
-        });
-      }
-
-      if (counter == 1) {
-        _dice1.state.animate("BACK SIDE");
-        Timer(Duration(milliseconds: 100), () {
-          _dice2.state.animate("50-50");
-        });
-        Timer(Duration(milliseconds: 200), () {
-          _dice3.state.animate("KICKFLIP OUT");
-        });
-        Timer(Duration(milliseconds: 300), () {
-          _dice4.state.animate("");
-        });
-      }
-
-      if (counter == 2) {
-        _dice1.state.animate("NOSESLIDE");
-        Timer(Duration(milliseconds: 100), () {
-          _dice2.state.animate("HUBBA");
-        });
-        Timer(Duration(milliseconds: 200), () {
-          _dice3.state.animate("SHUVIT OUT");
-        });
-        Timer(Duration(milliseconds: 300), () {
-          _dice4.state.animate("");
-        });
-      }
-
-      counter++;
+      _dice1.state.animate(_trick.name);
+      Timer(Duration(milliseconds: 100), () {
+        _dice2.state.animate(_obstacle.name);
+      });
+      Timer(Duration(milliseconds: 200), () {
+        _dice3.state.animate("");
+      });
+      Timer(Duration(milliseconds: 300), () {
+        _dice4.state.animate("");
+      });
     }
 
     return Scaffold(
