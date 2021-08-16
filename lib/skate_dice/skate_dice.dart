@@ -8,6 +8,8 @@ import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Item.dart';
 import 'package:rollbrett_rottweil/skate_dice/provider/ObstacleProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
+import 'package:rollbrett_rottweil/skate_dice/provider/SettingProvider.dart';
+import 'package:rollbrett_rottweil/skate_dice/provider/StanceProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/provider/TrickProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/nav_bar.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_dice.dart';
@@ -24,6 +26,8 @@ class SkateDice extends StatelessWidget {
   Widget build(BuildContext context) {
     final providerObstacle = Provider.of<ObstacleProvider>(context);
     final providerTrick = Provider.of<TrickProvider>(context);
+    final providerStance = Provider.of<StanceProvider>(context);
+    final providerSettings = Provider.of<SettingsProvider>(context);
 
     _settingButtonPressed() {
       Navigator.push(
@@ -34,28 +38,45 @@ class SkateDice extends StatelessWidget {
       );
     }
 
-    _rollDiceButtonPressed() {
+    List<Item> _getTrick() {
+      List<Item> trick = [];
+      //TODO check if stance is activated
+      //TODO add difficulty handling
+      if (providerSettings.getStance()) {
+        List<Item> _stances = providerStance.getSelectedStance();
+        trick.add(_stances[Random().nextInt(_stances.length)]);
+      }
+
       List<Item> _obstacles = providerObstacle.getSelectedObstacles();
       List<Item> _tricks = providerTrick.getSelectedTricks();
+
+      //final obstacle
       Item _obstacle = _obstacles[Random().nextInt(_obstacles.length)];
+      //final trick
       List<Item> _avaibleTricks = [];
 
       _avaibleTricks.addAll(_tricks
           .where((element) => element.obstacleType == _obstacle.obstacleType));
       Item _trick = _avaibleTricks[Random().nextInt(_avaibleTricks.length)];
 
-      print("Obstacle: " + _obstacle.name);
-      print("Tricks: " + _trick.name);
+      trick.add(_trick);
+      trick.add(_obstacle);
 
-      _dice1.state.animate(_trick.name);
+      return trick;
+    }
+
+    _rollDiceButtonPressed() {
+      List<Item> trick = _getTrick();
+
+      _dice1.state.animate(trick.length > 0 ? trick[0].name : "");
       Timer(Duration(milliseconds: 100), () {
-        _dice2.state.animate(_obstacle.name);
+        _dice2.state.animate(trick.length > 1 ? trick[1].name : "");
       });
       Timer(Duration(milliseconds: 200), () {
-        _dice3.state.animate("");
+        _dice3.state.animate(trick.length > 2 ? trick[2].name : "");
       });
       Timer(Duration(milliseconds: 300), () {
-        _dice4.state.animate("");
+        _dice4.state.animate(trick.length > 3 ? trick[3].name : "");
       });
     }
 
