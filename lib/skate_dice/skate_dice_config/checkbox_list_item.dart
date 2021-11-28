@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:rollbrett_rottweil/skate_dice/models/ItemHeader.dart';
+import 'package:rollbrett_rottweil/skate_dice/models/ItemInterface.dart';
 
 class CustomCheckboxHeader extends StatefulWidget {
-  final provider;
+  //final provider;
+  final allObstacleHeaders;
   final headerIndex;
-  const CustomCheckboxHeader({Key key, @required this.headerIndex, @required this.provider})
+  final bool selectOnlyOne;
+  final Function updateFunction;
+  const CustomCheckboxHeader(
+      {Key key,
+      @required this.headerIndex,
+      @required this.allObstacleHeaders,
+      @required this.updateFunction,
+      this.selectOnlyOne = false})
       : super(key: key);
 
   @override
@@ -24,7 +34,7 @@ class _CustomCheckboxHeaderState extends State<CustomCheckboxHeader> {
   @override
   Widget build(BuildContext context) {
     //final provider = Provider.of<ObstacleProvider>(context);
-    final _allObstacleHeaders = widget.provider.items;
+    final _allObstacleHeaders = widget.allObstacleHeaders;
     return Column(
       children: [
         TextButton(
@@ -42,13 +52,17 @@ class _CustomCheckboxHeaderState extends State<CustomCheckboxHeader> {
         if (expanded)
           //Change
           ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.all(0),
+              physics: NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.all(0),
               shrinkWrap: true,
-              itemCount:
-                  _allObstacleHeaders[widget.headerIndex].items.length,
+              itemCount: _allObstacleHeaders[widget.headerIndex].items.length,
               itemBuilder: (context, index) {
-                return CustomCheckboxListItem(widget.headerIndex, index, widget.provider);
+                return CustomCheckboxListItem(
+                    headerIndex: widget.headerIndex,
+                    obstacleIndex: index,
+                    allObstacleHeaders: widget.allObstacleHeaders,
+                    updateFunction: widget.updateFunction,
+                    selectOnlyOne: widget.selectOnlyOne);
               })
       ],
     );
@@ -64,9 +78,18 @@ class _CustomCheckboxHeaderState extends State<CustomCheckboxHeader> {
 class CustomCheckboxListItem extends StatefulWidget {
   final int headerIndex;
   final int obstacleIndex;
-  final provider;
+  final bool selectOnlyOne;
+   final Function updateFunction;
+  final allObstacleHeaders;
 
-  CustomCheckboxListItem(this.headerIndex, this.obstacleIndex, this.provider);
+  const CustomCheckboxListItem(
+      {Key key,
+      @required this.headerIndex,
+      @required this.obstacleIndex,
+      @required this.allObstacleHeaders,
+      @required this.updateFunction,
+      this.selectOnlyOne})
+      : super(key: key);
 
   @override
   _CustomCheckboxListItemState createState() => _CustomCheckboxListItemState();
@@ -75,22 +98,14 @@ class CustomCheckboxListItem extends StatefulWidget {
 class _CustomCheckboxListItemState extends State<CustomCheckboxListItem> {
   @override
   Widget build(BuildContext context) {
-    final _allObstacleHeaders = widget.provider.items;
+    final _allObstacleHeaders = widget.allObstacleHeaders;
     return Padding(
       padding: const EdgeInsets.only(left: 32.0),
       child: Row(
         children: [
           TextButton(
             onPressed: () {
-              if (mounted)
-                setState(() {
-                  _allObstacleHeaders[widget.headerIndex]
-                          .items[widget.obstacleIndex]
-                          .checked =
-                      !_allObstacleHeaders[widget.headerIndex]
-                          .items[widget.obstacleIndex]
-                          .checked;
-                });
+              widget.updateFunction(_allObstacleHeaders, widget.headerIndex, widget.obstacleIndex);
             },
             child: Text(
               _allObstacleHeaders[widget.headerIndex]
@@ -110,4 +125,35 @@ class _CustomCheckboxListItemState extends State<CustomCheckboxListItem> {
       ),
     );
   }
+
+/*
+//TODO investigate why not updated
+  void updateChecks(List<ItemHeader> _allObstacleHeaders) {
+    if (!widget.selectOnlyOne) {
+      if (mounted)
+        setState(() {
+          _allObstacleHeaders[widget.headerIndex]
+                  .items[widget.obstacleIndex]
+                  .checked =
+              !_allObstacleHeaders[widget.headerIndex]
+                  .items[widget.obstacleIndex]
+                  .checked;
+        });
+    } else {
+      for (int i = 0;
+          i < _allObstacleHeaders[widget.headerIndex].items.length;
+          i++) {
+        if (mounted)
+          setState(() {
+            _allObstacleHeaders[widget.headerIndex].items[i].checked = false;
+          });
+      }
+      if (mounted)
+        setState(() {
+          _allObstacleHeaders[widget.headerIndex]
+              .items[widget.obstacleIndex]
+              .checked = true;
+        });
+    }
+  }*/
 }

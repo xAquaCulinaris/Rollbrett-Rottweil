@@ -1,5 +1,3 @@
-//TODO move nav bar in this class
-
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';

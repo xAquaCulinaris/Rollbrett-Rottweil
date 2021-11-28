@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
 import 'package:rollbrett_rottweil/reusable/button.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
-import 'package:rollbrett_rottweil/skate_dice/models/Item.dart';
+import 'package:rollbrett_rottweil/skate_dice/models/TrickObstacleItem.dart';
 import 'package:rollbrett_rottweil/skate_dice/provider/ObstacleProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
 import 'package:rollbrett_rottweil/skate_dice/provider/TrickProvider.dart';
@@ -34,18 +34,32 @@ class SkateDice extends StatelessWidget {
       );
     }
 
-    _rollDiceButtonPressed() {
-      List<Item> _obstacles = providerObstacle.getSelectedObstacles();
-      List<Item> _tricks = providerTrick.getSelectedTricks();
-      Item _obstacle = _obstacles[Random().nextInt(_obstacles.length)];
-      List<Item> _avaibleTricks = [];
+    List<TrickObstacleItem> _getPossibleTricks(List<TrickObstacleItem> _tricks, TrickObstacleItem _obstacle) {
+      List<TrickObstacleItem> possibleTricks = [];
 
-      _avaibleTricks.addAll(_tricks
+      possibleTricks.addAll(_tricks
           .where((element) => element.obstacleType == _obstacle.obstacleType));
-      Item _trick = _avaibleTricks[Random().nextInt(_avaibleTricks.length)];
+      return possibleTricks;
+    }
+
+    _rollDiceButtonPressed() {
+      //Get all selected obstacles
+      List<TrickObstacleItem> _obstacles = providerObstacle.getSelectedObstacles();
+      //Get all selected tricks
+      List<TrickObstacleItem> _tricks = providerTrick.getSelectedTricks();
+      // Choose random obsacle
+      TrickObstacleItem _obstacle = _obstacles[Random().nextInt(_obstacles.length)];
+      // Filter tricks that are possible on this obstalce
+      List<TrickObstacleItem> _avaibleTricks = _getPossibleTricks(_tricks, _obstacle);
+      //Choose random trick from available obstacle
+      TrickObstacleItem _trick = _avaibleTricks[Random().nextInt(_avaibleTricks.length)];
 
       print("Obstacle: " + _obstacle.name);
       print("Tricks: " + _trick.name);
+
+      //TODO check if stance is activated
+
+      //TODO check if direction is activated
 
       _dice1.state.animate(_trick.name);
       Timer(Duration(milliseconds: 100), () {

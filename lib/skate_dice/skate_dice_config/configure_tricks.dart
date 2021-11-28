@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
+import 'package:rollbrett_rottweil/skate_dice/models/ItemHeader.dart';
 import 'package:rollbrett_rottweil/skate_dice/provider/TrickProvider.dart';
 
 import 'checkbox_list_item.dart';
@@ -28,12 +29,23 @@ class _ConfigureTricksState extends State<ConfigureTricks> {
             children: _allTrickHeaders.map((obstacleHeader) {
               int _index = _allTrickHeaders.indexOf(obstacleHeader);
               return CustomCheckboxHeader(
-                headerIndex: _index, provider: provider,
+                updateFunction: updateChecks,
+                headerIndex: _index,
+                allObstacleHeaders: _allTrickHeaders,
               );
             }).toList(),
           ),
         ],
       ),
     );
+  }
+
+  void updateChecks(List<ItemHeader> _allObstacleHeaders, int headerIndex,
+      int obstacleIndex) {
+    if (mounted)
+      setState(() {
+        _allObstacleHeaders[headerIndex].items[obstacleIndex].checked =
+            !_allObstacleHeaders[headerIndex].items[obstacleIndex].checked;
+      });
   }
 }
