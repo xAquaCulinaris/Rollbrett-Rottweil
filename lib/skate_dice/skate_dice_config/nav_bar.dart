@@ -1,3 +1,5 @@
+//TODO move nav bar in this class
+
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
@@ -41,7 +43,7 @@ class _NavBarState extends State<NavBar> {
 
   Widget buildBottomNavBar() {
     return BottomNavyBar(
-        itemCornerRadius: 16,
+      itemCornerRadius: 16,
         containerHeight: MediaQuery.of(context).size.height / 11,
         selectedIndex: _index,
         items: <BottomNavyBarItem>[

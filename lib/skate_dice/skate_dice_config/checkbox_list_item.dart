@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-//TODO on name click disable all, on icon click expand
 class CustomCheckboxHeader extends StatefulWidget {
   final provider;
   final headerIndex;
-  const CustomCheckboxHeader(
-      {Key key, @required this.headerIndex, @required this.provider})
+  const CustomCheckboxHeader({Key key, @required this.headerIndex, @required this.provider})
       : super(key: key);
 
   @override
@@ -34,26 +32,23 @@ class _CustomCheckboxHeaderState extends State<CustomCheckboxHeader> {
           child: Row(
             children: [
               buildIcon(),
-              Text(
-                _allObstacleHeaders[widget.headerIndex].name,
-                style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontSize: MediaQuery.of(context).size.height / 25,
-                    fontWeight: FontWeight.bold),
-              ),
+              Text(_allObstacleHeaders[widget.headerIndex].name,
+                  style: TextStyle(
+                      color: Theme.of(context).accentColor,
+                      fontSize: MediaQuery.of(context).size.height / 25)),
             ],
           ),
         ),
         if (expanded)
           //Change
           ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.all(0),
+            physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.all(0),
               shrinkWrap: true,
-              itemCount: _allObstacleHeaders[widget.headerIndex].items.length,
+              itemCount:
+                  _allObstacleHeaders[widget.headerIndex].items.length,
               itemBuilder: (context, index) {
-                return CustomCheckboxListItem(
-                    widget.headerIndex, index, widget.provider);
+                return CustomCheckboxListItem(widget.headerIndex, index, widget.provider);
               })
       ],
     );

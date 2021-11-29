@@ -26,37 +26,35 @@ class _SkateDicePlayerState extends State<SkateDicePlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 16.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(width: MediaQuery.of(context).size.width / 30),
-          Text(
-            widget.name,
-            style: TextStyle(
-                color: Theme.of(context).accentColor,
-                fontSize: MediaQuery.of(context).size.height / 25,
-                fontWeight: FontWeight.w700),
-          ),
-          Spacer(),
-          //TODO get custom bold icons
-          IconButton(
-              icon: Icon(Icons.remove, color: Theme.of(context).accentColor),
-              onPressed: _removeLetter),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(width: MediaQuery.of(context).size.width / 30),
+        Text(
+          widget.name,
+          style: TextStyle(
+              color: Theme.of(context).accentColor,
+              fontSize: MediaQuery.of(context).size.height / 25,
+              fontWeight: FontWeight.w700),
+        ),
+        Spacer(),
+        //TODO get custom bold icons
+        IconButton(
+            icon: Icon(Icons.remove, color: Theme.of(context).accentColor),
+            onPressed: _removeLetter),
 
-          for (var i = 0; i < 5; i++)
-            _letterCounter > i
-                ? LetterItem(
-                    letter: _skate.elementAt(i),
-                  )
-                : LetterPlaceholder(),
+        for (var i = 0; i < 5; i++)
+          _letterCounter > i
+              ? LetterItem(
+                  letter: _skate.elementAt(i),
+                )
+              : LetterPlaceholder(),
 
-          IconButton(
-              icon: Icon(Icons.add, color: Theme.of(context).accentColor),
-              onPressed: _addLetter)
-        ],
-      ),
+        IconButton(
+            icon: Icon(Icons.add, color: Theme.of(context).accentColor),
+            onPressed: _addLetter),
+        Spacer()
+      ],
     );
   }
 }

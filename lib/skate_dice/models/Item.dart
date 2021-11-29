@@ -8,7 +8,8 @@ class ItemHeader {
   factory ItemHeader.fromJson(Map<String, dynamic> json) {
     List<Item> itemList = [];
     for (var item in json['items']) {
-      itemList.add(Item(item['name'], item['obstacleType']));
+      itemList.add(Item(
+          item['name'], item['obstacleType']));
     }
     return ItemHeader(json['name'], itemList);
   }
@@ -33,11 +34,8 @@ class Item {
       case 'transition':
         this.obstacleType = ObstacleType.Transition;
         break;
-      case 'none':
-        this.obstacleType = ObstacleType.none;
-        break;
     }
   }
 }
 
-enum ObstacleType { Flat, Grind, Manual, Transition, none }
+enum ObstacleType { Flat, Grind, Manual, Transition }

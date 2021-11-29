@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 import 'package:rollbrett_rottweil/skate_dice/provider/ObstacleProvider.dart';
-import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/checkbox_item.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/checkbox_list_item.dart';
 
 class ConfigureObstacles extends StatefulWidget {
   const ConfigureObstacles({Key key}) : super(key: key);
@@ -17,7 +17,6 @@ class _ConfigureObstaclesState extends State<ConfigureObstacles> {
     final provider = Provider.of<ObstacleProvider>(context);
     final _allObstacleHeaders = provider.items;
 
-//TODO add scrolling (column sucks)
     return SingleChildScrollView(
       child: Column(
         children: [

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 import 'package:rollbrett_rottweil/skate_dice/provider/TrickProvider.dart';
 
-import 'checkbox_item.dart';
+import 'checkbox_list_item.dart';
 
 class ConfigureTricks extends StatefulWidget {
   const ConfigureTricks({Key key}) : super(key: key);
@@ -28,8 +28,7 @@ class _ConfigureTricksState extends State<ConfigureTricks> {
             children: _allTrickHeaders.map((obstacleHeader) {
               int _index = _allTrickHeaders.indexOf(obstacleHeader);
               return CustomCheckboxHeader(
-                headerIndex: _index,
-                provider: provider,
+                headerIndex: _index, provider: provider,
               );
             }).toList(),
           ),

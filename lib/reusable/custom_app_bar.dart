@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//TODO adjust textsize acording to text.length
 class CustomAppBar extends StatelessWidget {
   CustomAppBar({Key key, this.text, this.iconRight, this.functionRight});
   final String text;

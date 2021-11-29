@@ -4,8 +4,6 @@ import 'package:rollbrett_rottweil/app_localizations.dart';
 import 'package:rollbrett_rottweil/login/login_view.dart';
 import 'package:rollbrett_rottweil/skate_dice/provider/ObstacleProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
-import 'package:rollbrett_rottweil/skate_dice/provider/SettingProvider.dart';
-import 'package:rollbrett_rottweil/skate_dice/provider/StanceProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/provider/TrickProvider.dart';
 import 'package:rollbrett_rottweil/theme/theme_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -23,8 +21,6 @@ class MyApp extends StatelessWidget {
         ListenableProvider<PlayerList>(create: (_) => PlayerList()),
         ListenableProvider<ObstacleProvider>(create: (_) => ObstacleProvider()),
         ListenableProvider<TrickProvider>(create: (_) => TrickProvider()),
-        ListenableProvider<StanceProvider>(create: (_) => StanceProvider()),
-        ListenableProvider<SettingsProvider>(create: (_) => SettingsProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
