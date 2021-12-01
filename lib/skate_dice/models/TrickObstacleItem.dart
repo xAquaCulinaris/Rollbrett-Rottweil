@@ -7,8 +7,9 @@ class TrickObstacleItem extends ItemInterface{
   
   ObstacleType obstacleType;
 
-  TrickObstacleItem(String name, String obstacleType) {
+  TrickObstacleItem(String name, String obstacleType, bool directional) {
     this.name = name;
+    this.directional = directional;
     switch (obstacleType) {
       case 'flat':
         this.obstacleType = ObstacleType.Flat;

@@ -4,39 +4,48 @@
         "items": [
             {
                 "name": "Kickflip",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "false"
             },
             {
                 "name": "Heelflip",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "false"
             },
             {
                 "name": "180",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "true"
             },
             {
                 "name": "360 Flip",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "false"
             },
             {
                 "name": "Shuvit",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "true"
             },
             {
                 "name": "Varial Flip",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "false"
             },
             {
                 "name": "Varial Heel",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "false"
             },
             {
                 "name": "Hardflip",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "false"
             },
             {
                 "name": "Inwardheel",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "false"
             }
         ]
     },
@@ -45,43 +54,59 @@
         "items": [
             {
                 "name": "50-50",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "true"
             },
             {
                 "name": "Nosegrind",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "true"
+                
             },
             {
                 "name": "Smithgrind",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "true"
             },
             {
                 "name": "5-0",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "true"
             },
             {
                 "name": "Boardslide",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "true"
             },
             {
                 "name": "Tailslide",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "true"
             },
             {
                 "name": "Lipslide",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "true"
             },
             {
                 "name": "Noseslide",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "true"
             },
             {
                 "name": "Croocked",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "true"
             },
             {
                 "name": "Salad",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "true"
+            },
+            {
+                "name": "Suski",
+                "obstacleType": "grind",
+                "directional": "true"
             }
         ]
     },
@@ -90,11 +115,13 @@
         "items": [
             {
                 "name": "Nose Manual",
-                "obstacleType": "manual"
+                "obstacleType": "manual",
+                "directional": "false"
             },
             {
                 "name": "Manual",
-                "obstacleType": "manual"
+                "obstacleType": "manual",
+                "directional": "false"
             }
         ]
     },
@@ -103,27 +130,33 @@
         "items": [
             {
                 "name": "50-50",
-                "obstacleType": "transition"
+                "obstacleType": "transition",
+                "directional": "true"
             },
             {
                 "name": "Axel Stall",
-                "obstacleType": "transition"
+                "obstacleType": "transition",
+                "directional": "true"
             },
             {
                 "name": "Disaster",
-                "obstacleType": "transition"
+                "obstacleType": "transition",
+                "directional": "true"
             },
             {
                 "name": "Noseblunt",
-                "obstacleType": "transition"
+                "obstacleType": "transition",
+                "directional": "true"
             },
             {
                 "name": "Blunt",
-                "obstacleType": "transition"
+                "obstacleType": "transition",
+                "directional": "true"
             },
             {
                 "name": "Slasher",
-                "obstacleType": "transition"
+                "obstacleType": "transition",
+                "directional": "true"
             }
         ]
     }

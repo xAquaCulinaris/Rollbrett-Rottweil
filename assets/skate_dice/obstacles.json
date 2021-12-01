@@ -4,15 +4,18 @@
         "items": [
             {
                 "name": "Mannypad Ledge",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "false"
             },
             {
                 "name": "Hubba",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "false"
             },
             {
                 "name": "Brunnen",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "false"
             }
         ]
     },
@@ -21,15 +24,18 @@
         "items": [
             {
                 "name": "Bump to Rail",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "false"
             },
             {
                 "name": "Down Rail",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "false"
             },
             {
                 "name": "Flat Rail",
-                "obstacleType": "grind"
+                "obstacleType": "grind",
+                "directional": "false"
             }
         ]
     },
@@ -38,23 +44,28 @@
         "items": [
             {
                 "name": "Stair",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "false"
             },
             {
                 "name": "Rottweiler",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "false"
             },
             {
                 "name": "Lodongap",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "false"
             },
             {
                 "name": "Brunnen",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "false"
             },
             {
                 "name": "Hipp",
-                "obstacleType": "flat"
+                "obstacleType": "flat",
+                "directional": "false"
             }
         ]
     },
@@ -63,15 +74,18 @@
         "items": [
             {
                 "name": "Mannypad",
-                "obstacleType": "manual"
+                "obstacleType": "manual",
+                "directional": "false"
             },
             {
                 "name": "Brunnen",
-                "obstacleType": "manual"
+                "obstacleType": "manual",
+                "directional": "false"
             },
             {
                 "name": "Bump to Mannypad",
-                "obstacleType": "manual"
+                "obstacleType": "manual",
+                "directional": "false"
             }
         ]
     }, {
@@ -79,15 +93,18 @@
         "items": [
             {
                 "name": "Taco",
-                "obstacleType": "transition"
+                "obstacleType": "transition",
+                "directional": "false"
             },
             {
                 "name": "Rounded Quarter",
-                "obstacleType": "transition"
+                "obstacleType": "transition",
+                "directional": "false"
             },
             {
                 "name": "Quarter",
-                "obstacleType": "transition"
+                "obstacleType": "transition",
+                "directional": "false"
             }
         ]
     }

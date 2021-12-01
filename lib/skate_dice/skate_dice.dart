@@ -7,6 +7,7 @@ import 'package:rollbrett_rottweil/reusable/button.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/TrickObstacleItem.dart';
 import 'package:rollbrett_rottweil/skate_dice/provider/ObstacleProvider.dart';
+import 'package:rollbrett_rottweil/skate_dice/provider/SettingProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
 import 'package:rollbrett_rottweil/skate_dice/provider/TrickProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/nav_bar.dart';
@@ -24,6 +25,7 @@ class SkateDice extends StatelessWidget {
   Widget build(BuildContext context) {
     final providerObstacle = Provider.of<ObstacleProvider>(context);
     final providerTrick = Provider.of<TrickProvider>(context);
+    final settingProvider = Provider.of<SettingsProvider>(context);
 
     _settingButtonPressed() {
       Navigator.push(
@@ -34,7 +36,8 @@ class SkateDice extends StatelessWidget {
       );
     }
 
-    List<TrickObstacleItem> _getPossibleTricks(List<TrickObstacleItem> _tricks, TrickObstacleItem _obstacle) {
+    List<TrickObstacleItem> _getPossibleTricks(
+        List<TrickObstacleItem> _tricks, TrickObstacleItem _obstacle) {
       List<TrickObstacleItem> possibleTricks = [];
 
       possibleTricks.addAll(_tricks
@@ -42,33 +45,53 @@ class SkateDice extends StatelessWidget {
       return possibleTricks;
     }
 
+    _getRandomDirection() {
+      List<String> directions = ["FS", "BS"];
+      return directions[Random().nextInt(2)];
+    }
+
+    //TODO handle difficulty
     _rollDiceButtonPressed() {
       //Get all selected obstacles
-      List<TrickObstacleItem> _obstacles = providerObstacle.getSelectedObstacles();
+      List<TrickObstacleItem> _obstacles =
+          providerObstacle.getSelectedObstacles();
       //Get all selected tricks
       List<TrickObstacleItem> _tricks = providerTrick.getSelectedTricks();
       // Choose random obsacle
-      TrickObstacleItem _obstacle = _obstacles[Random().nextInt(_obstacles.length)];
+      TrickObstacleItem _obstacle =
+          _obstacles[Random().nextInt(_obstacles.length)];
       // Filter tricks that are possible on this obstalce
-      List<TrickObstacleItem> _avaibleTricks = _getPossibleTricks(_tricks, _obstacle);
+      List<TrickObstacleItem> _avaibleTricks =
+          _getPossibleTricks(_tricks, _obstacle);
       //Choose random trick from available obstacle
-      TrickObstacleItem _trick = _avaibleTricks[Random().nextInt(_avaibleTricks.length)];
+      TrickObstacleItem _trick =
+          _avaibleTricks[Random().nextInt(_avaibleTricks.length)];
 
       print("Obstacle: " + _obstacle.name);
       print("Tricks: " + _trick.name);
+      
+      if (settingProvider.getShowStance()) {
+        //TODO handle
+      }
 
-      //TODO check if stance is activated
+      String _direction = "";
+      if (settingProvider.getShowDirections()) {
+        if(_trick.directional)
+          _direction = _getRandomDirection();
+      }
 
-      //TODO check if direction is activated
+      if (settingProvider.getTrickIntoGrind()) {
+        //TODO  handle
+      }
 
-      _dice1.state.animate(_trick.name);
-      Timer(Duration(milliseconds: 100), () {
+      _dice1.state.animate(_direction + " " + _trick.name);
+      Timer(Duration(milliseconds: 75), () {
         _dice2.state.animate(_obstacle.name);
       });
-      Timer(Duration(milliseconds: 200), () {
+      Timer(Duration(milliseconds: 150), () {
         _dice3.state.animate("");
       });
-      Timer(Duration(milliseconds: 300), () {
+      Timer(Duration(milliseconds: 225), () {
         _dice4.state.animate("");
       });
     }
