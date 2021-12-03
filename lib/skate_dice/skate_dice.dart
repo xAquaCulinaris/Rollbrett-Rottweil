@@ -20,6 +20,17 @@ class SkateDice extends StatelessWidget {
   final SkateDiceDice _dice2 = SkateDiceDice();
   final SkateDiceDice _dice3 = SkateDiceDice();
   final SkateDiceDice _dice4 = SkateDiceDice();
+  final List<String> directions = ["FS", "BS"];
+  //TODO change that because of difficulty (and maybe stance selection)
+  final List<String> stances = [
+    "Regular",
+    "Regular",
+    "Regular",
+    "Fakie",
+    "Fakie",
+    "Switch",
+    "Nollie"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +57,17 @@ class SkateDice extends StatelessWidget {
     }
 
     _getRandomDirection() {
-      List<String> directions = ["FS", "BS"];
       return directions[Random().nextInt(2)];
+    }
+
+    _getRandomStance() {
+      return stances[Random().nextInt(stances.length)];
     }
 
     //TODO handle difficulty
     _rollDiceButtonPressed() {
+      List<String> diceTexts = [];
+
       //Get all selected obstacles
       List<TrickObstacleItem> _obstacles =
           providerObstacle.getSelectedObstacles();
@@ -67,32 +83,35 @@ class SkateDice extends StatelessWidget {
       TrickObstacleItem _trick =
           _avaibleTricks[Random().nextInt(_avaibleTricks.length)];
 
-      print("Obstacle: " + _obstacle.name);
-      print("Tricks: " + _trick.name);
-      
       if (settingProvider.getShowStance()) {
-        //TODO handle
+        diceTexts.add(_getRandomStance());
       }
 
-      String _direction = "";
-      if (settingProvider.getShowDirections()) {
-        if(_trick.directional)
-          _direction = _getRandomDirection();
+      if (settingProvider.getShowDirections() && _trick.directional) {
+        diceTexts.add(_getRandomDirection() + "\n" + _trick.name);
+      } else {
+        diceTexts.add(_trick.name);
       }
+
+      diceTexts.add(_obstacle.name);
 
       if (settingProvider.getTrickIntoGrind()) {
         //TODO  handle
       }
 
-      _dice1.state.animate(_direction + " " + _trick.name);
+      for (int i = diceTexts.length; i < 4; i++) {
+        diceTexts.add("");
+      }
+
+      _dice1.state.animate(diceTexts[0]);
       Timer(Duration(milliseconds: 75), () {
-        _dice2.state.animate(_obstacle.name);
+        _dice2.state.animate(diceTexts[1]);
       });
       Timer(Duration(milliseconds: 150), () {
-        _dice3.state.animate("");
+        _dice3.state.animate(diceTexts[2]);
       });
       Timer(Duration(milliseconds: 225), () {
-        _dice4.state.animate("");
+        _dice4.state.animate(diceTexts[3]);
       });
     }
 

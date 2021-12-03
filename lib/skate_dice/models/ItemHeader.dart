@@ -16,6 +16,7 @@ class ItemHeader {
       String name = item['name'];
       String obstacleType = item['obstacleType'];
       bool directional = item['directional'].toString().parseBool();
+
       // If obstacle type is not set create a settings item
       if (obstacleType == null)
         itemList.add(SettingItem(name, directional));

@@ -4,5 +4,7 @@ class SettingItem extends ItemInterface {
   SettingItem(String name, bool directional) {
     this.name = name;
     this.directional = directional;
+    if(name == "Yes")
+      this.checked = false;
   }
 }
