@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rollbrett_rottweil/skate_dice/models/ItemHeader.dart';
-import 'package:rollbrett_rottweil/skate_dice/models/ItemInterface.dart';
 
 class CustomCheckboxHeader extends StatefulWidget {
   //final provider;

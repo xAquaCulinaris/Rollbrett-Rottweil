@@ -80,11 +80,6 @@ class _SkateDiceState extends State<SkateDice> {
           Spacer(),
           _players(),
           Spacer(),
-          //TODO remove tmp again
-          Button(
-              text: "Change difficulty",
-              function: () => Provider.of<DiceList>(context, listen: false)
-                  .updateDifficulty(Difficulty.Hard))
         ],
       ),
     );

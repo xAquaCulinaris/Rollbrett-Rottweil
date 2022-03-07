@@ -9,6 +9,7 @@ class ItemHeader {
   final List<ItemInterface> items;
 
   ItemHeader(this.name, this.items);
+  
 
   factory ItemHeader.fromJson(Map<String, dynamic> json) {
     List<ItemInterface> itemList = [];

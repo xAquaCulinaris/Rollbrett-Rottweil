@@ -11,26 +11,20 @@ class DiceList extends ChangeNotifier {
   void updateDifficulty(Difficulty difficulty) {
     if (difficulty != currentDifficulty) {
       if (difficulty == Difficulty.Easy) {
-        diceList.clear();
-        diceList.add(SkateDiceDice());
-        diceList.add(SkateDiceDice());
-      }
-
-      else if (difficulty == Difficulty.Medium) {
-        diceList.clear();
-        diceList.add(SkateDiceDice());
-        diceList.add(SkateDiceDice());
-        diceList.add(SkateDiceDice());
-      }
-
-       else if (difficulty == Difficulty.Hard) {
-        diceList.clear();
-        diceList.add(SkateDiceDice());
-        diceList.add(SkateDiceDice());
-        diceList.add(SkateDiceDice());
+        if (currentDifficulty == Difficulty.Hard) diceList.removeLast();
+        diceList.removeLast();
+      } else if (difficulty == Difficulty.Medium) {
+        if (currentDifficulty == Difficulty.Easy)
+          diceList.add(SkateDiceDice());
+        else
+          diceList.removeLast();
+      } else if (difficulty == Difficulty.Hard) {
+        if (currentDifficulty == Difficulty.Easy)
+          diceList.add(SkateDiceDice());
         diceList.add(SkateDiceDice());
       }
     }
+    currentDifficulty = difficulty;
     notifyListeners();
   }
 }
