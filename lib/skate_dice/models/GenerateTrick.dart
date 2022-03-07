@@ -55,15 +55,16 @@ class GenerateTrick {
   }
 
   List<String> generateTrick() {
-    List<String> diceTexts = [];
     //TODO function shouldnt be called every time
+    List<String> diceTexts = [];
+    
     //Get all selected obstacles
     List<TrickObstacleItem> _obstacles =
         providerObstacle.getSelectedObstacles();
     //Get all selected tricks
     List<TrickObstacleItem> _tricks = providerTrick.getSelectedTricks();
+    
     // Choose random obsacle
-
     TrickObstacleItem _obstacle;
     if (_obstacles.length > 0)
       _obstacle = _obstacles[Random().nextInt(_obstacles.length)];
@@ -74,31 +75,31 @@ class GenerateTrick {
     TrickObstacleItem _trick = _getTrick(_tricks, _obstacle);
     if (_trick == null) return List<String>.empty();
 
-    if (settingProvider.getShowStance()) {
-      diceTexts.add(_getRandomStance());
+    switch (settingProvider.getDifficulty()) {
+      case Difficulty.Easy:
+        diceTexts.add(_trick.name);
+        diceTexts.add(_obstacle.name);
+        break;
+      case Difficulty.Medium:
+        diceTexts.add(_getRandomStance());
+        diceTexts.add(_trick.name);
+        diceTexts.add(_obstacle.name);
+        break;
+      case Difficulty.Hard:
+        diceTexts.add(_getRandomStance());
+        if (_trick.directional) {
+          diceTexts.add(_getRandomDirection());
+          diceTexts.add(_trick.name);
+          diceTexts.add(_obstacle.name);
+        } else {
+          diceTexts.add(_trick.name);
+          diceTexts.add(_obstacle.name);
+          diceTexts.add("Placeholder");
+        }
+
+        break;
     }
-
-    if (settingProvider.getShowDirections() && _trick.directional) {
-      diceTexts.add(_getRandomDirection() + "\n" + _trick.name);
-    } else {
-      diceTexts.add(_trick.name);
-    }
-
-    diceTexts.add(_obstacle.name);
-
-    if (settingProvider.getTrickIntoGrind()) {
-      //TODO  handle
-    }
-
-    //fill array with empty entrys
-    _fillTrick(diceTexts);
 
     return diceTexts;
-  }
-
-  _fillTrick(List<String> diceTexts) {
-    for (int i = diceTexts.length; i < 4; i++) {
-      diceTexts.add("");
-    }
   }
 }

@@ -9,6 +9,8 @@ import 'package:rollbrett_rottweil/skate_dice/provider/TrickProvider.dart';
 import 'package:rollbrett_rottweil/theme/theme_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'skate_dice/provider/DiceList.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ListenableProvider<PlayerList>(create: (_) => PlayerList()),
+        ListenableProvider<DiceList>(create: (_) => DiceList()),
         ListenableProvider<ObstacleProvider>(create: (_) => ObstacleProvider()),
         ListenableProvider<TrickProvider>(create: (_) => TrickProvider()),
         ListenableProvider<SettingsProvider>(create: (_) => SettingsProvider()),

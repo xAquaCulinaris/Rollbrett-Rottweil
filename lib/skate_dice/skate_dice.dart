@@ -6,15 +6,32 @@ import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/GenerateTrick.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/nav_bar.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/skate_dice_place_holder.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_dice.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_player.dart';
 import 'dart:async';
 
-class SkateDice extends StatelessWidget {
-  final SkateDiceDice _dice1 = SkateDiceDice();
-  final SkateDiceDice _dice2 = SkateDiceDice();
-  final SkateDiceDice _dice3 = SkateDiceDice();
-  final SkateDiceDice _dice4 = SkateDiceDice();
+import 'provider/DiceList.dart';
+import 'provider/SettingProvider.dart';
+
+//dynamicly create skate dices
+class SkateDice extends StatefulWidget {
+  @override
+  _SkateDiceState createState() => _SkateDiceState();
+}
+
+class _SkateDiceState extends State<SkateDice> {
+  var settingProvider;
+
+  // TODO currently default difficulty is easy and gets never changed
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      settingProvider = Provider.of<SettingsProvider>(context, listen: false);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +45,7 @@ class SkateDice extends StatelessWidget {
     }
 
     _rollDiceButtonPressed() {
+      //TODO check why at first press no tricks available
       List<String> diceTexts =
           GenerateTrick.getInstace(context).generateTrick();
 
@@ -35,16 +53,15 @@ class SkateDice extends StatelessWidget {
         //TODO show error message
         print("no possible tricks");
       else {
-        _dice1.state.animate(diceTexts[0]);
-        Timer(Duration(milliseconds: 75), () {
-          _dice2.state.animate(diceTexts[1]);
-        });
-        Timer(Duration(milliseconds: 150), () {
-          _dice3.state.animate(diceTexts[2]);
-        });
-        Timer(Duration(milliseconds: 225), () {
-          _dice4.state.animate(diceTexts[3]);
-        });
+        int duration = 0;
+        for (int i = 0; i < diceTexts.length; i++) {
+          Timer(Duration(milliseconds: duration), () {
+            SkateDiceDice dice =
+                Provider.of<DiceList>(context, listen: false).diceList[i];
+            dice.state.animate(diceTexts[i]);
+          });
+          duration += 100;
+        }
       }
     }
 
@@ -55,7 +72,7 @@ class SkateDice extends StatelessWidget {
               text: "Skate Dice",
               iconRight: Icons.settings,
               functionRight: _settingButtonPressed),
-          SkateDices(_dice1, _dice2, _dice3, _dice4),
+          _dices(),
           SizedBox(height: MediaQuery.of(context).size.height / 100),
           Button(
               text: AppLocalizations.of(context).translate("roll_dice"),
@@ -63,6 +80,11 @@ class SkateDice extends StatelessWidget {
           Spacer(),
           _players(),
           Spacer(),
+          //TODO remove tmp again
+          Button(
+              text: "Change difficulty",
+              function: () => Provider.of<DiceList>(context, listen: false)
+                  .updateDifficulty(Difficulty.Hard))
         ],
       ),
     );
@@ -86,33 +108,25 @@ class SkateDice extends StatelessWidget {
               SkateDicePlayer(name: players.players[index].name),
         );
       });
-}
 
-class SkateDices extends StatefulWidget {
-  const SkateDices(this.dice1, this.dice2, this.dice3, this.dice4);
-
-  final SkateDiceDice dice1, dice2, dice3, dice4;
-
-  @override
-  _SkateDicesState createState() => _SkateDicesState();
-}
-
-class _SkateDicesState extends State<SkateDices> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(children: [
-      SizedBox(height: MediaQuery.of(context).size.height / 100),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          widget.dice1,
-          widget.dice2,
-        ],
-      ),
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        widget.dice3,
-        widget.dice4,
-      ])
-    ]);
-  }
+  _dices() => Consumer<DiceList>(builder: (context, dices, child) {
+        return Column(children: [
+          SizedBox(height: MediaQuery.of(context).size.height / 100),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              dices.diceList[0],
+              dices.diceList[1],
+            ],
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            dices.diceList.length >= 3
+                ? dices.diceList[2]
+                : SkateDicePlaceholder(),
+            dices.diceList.length >= 4
+                ? dices.diceList[3]
+                : SkateDicePlaceholder(),
+          ])
+        ]);
+      });
 }
