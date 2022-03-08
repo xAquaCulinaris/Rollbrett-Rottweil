@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
 import 'package:rollbrett_rottweil/login/login_view.dart';
-import 'package:rollbrett_rottweil/skate_dice/provider/ObstacleProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
-import 'package:rollbrett_rottweil/skate_dice/provider/SettingProvider.dart';
-import 'package:rollbrett_rottweil/skate_dice/provider/TrickProvider.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/ObstacleProvider.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/SettingProvider.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/TrickProvider.dart';
 import 'package:rollbrett_rottweil/theme/theme_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'skate_dice/provider/DiceList.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ListenableProvider<PlayerList>(create: (_) => PlayerList()),
-        ListenableProvider<DiceList>(create: (_) => DiceList()),
+        ListenableProvider<SettingsProvider>(create: (_) => SettingsProvider()),
         ListenableProvider<ObstacleProvider>(create: (_) => ObstacleProvider()),
         ListenableProvider<TrickProvider>(create: (_) => TrickProvider()),
         ListenableProvider<SettingsProvider>(create: (_) => SettingsProvider()),

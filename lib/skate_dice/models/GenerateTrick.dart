@@ -3,10 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/TrickObstacleItem.dart';
-import 'package:rollbrett_rottweil/skate_dice/provider/DiceList.dart';
-import 'package:rollbrett_rottweil/skate_dice/provider/ObstacleProvider.dart';
-import 'package:rollbrett_rottweil/skate_dice/provider/SettingProvider.dart';
-import 'package:rollbrett_rottweil/skate_dice/provider/TrickProvider.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/ObstacleProvider.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/SettingProvider.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/TrickProvider.dart';
 
 class GenerateTrick {
   static GenerateTrick _instance;
@@ -27,7 +26,7 @@ class GenerateTrick {
   GenerateTrick._(BuildContext context) {
     providerObstacle = Provider.of<ObstacleProvider>(context, listen: false);
     providerTrick = Provider.of<TrickProvider>(context, listen: false);
-    settingProvider = Provider.of<DiceList>(context, listen: false);
+    settingProvider = Provider.of<SettingsProvider>(context, listen: false);
   }
 
   static GenerateTrick getInstace(BuildContext context) {
@@ -76,7 +75,7 @@ class GenerateTrick {
     TrickObstacleItem _trick = _getTrick(_tricks, _obstacle);
     if (_trick == null) return List<String>.empty();
 
-    switch (settingProvider.currentDifficulty) {
+    switch (settingProvider.gameDifficulty) {
       case Difficulty.Easy:
         diceTexts.add(_trick.name);
         diceTexts.add(_obstacle.name);

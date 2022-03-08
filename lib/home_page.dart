@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
 import 'package:rollbrett_rottweil/course_preview/course_preview.dart';
-import 'package:rollbrett_rottweil/local_dealer/local_dealer.dart';
+import 'package:rollbrett_rottweil/credits/credits.dart';
 import 'package:rollbrett_rottweil/reusable/rollbrett_logo.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice.dart';
 import 'custom_icons.dart';
@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
 
   _localeDealerPressed(BuildContext context) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LocalDealer()));
+        context, MaterialPageRoute(builder: (context) => Credits()));
   }
 
   @override
@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
               children: [
                 DisabledHomePageButton(
                     "Own the Spot", CustomIcons.video_camera, null),
-                HomePageButton("Local Dealer", CustomIcons.skateboard,
+                HomePageButton("Credits", CustomIcons.skateboard,
                     () => _localeDealerPressed(context)),
               ],
             ),

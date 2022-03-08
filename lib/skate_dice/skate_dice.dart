@@ -5,14 +5,12 @@ import 'package:rollbrett_rottweil/reusable/button.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/GenerateTrick.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
-import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/nav_bar.dart';
-import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/skate_dice_place_holder.dart';
-import 'package:rollbrett_rottweil/skate_dice/skate_dice_dice.dart';
-import 'package:rollbrett_rottweil/skate_dice/skate_dice_player.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/SettingProvider.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/nav_bar.dart';
+import 'package:rollbrett_rottweil/skate_dice/widgets/skate_dice_place_holder.dart';
+import 'package:rollbrett_rottweil/skate_dice/widgets/skate_dice_dice.dart';
+import 'package:rollbrett_rottweil/skate_dice/widgets/skate_dice_player.dart';
 import 'dart:async';
-
-import 'provider/DiceList.dart';
-import 'provider/SettingProvider.dart';
 
 //dynamicly create skate dices
 class SkateDice extends StatefulWidget {
@@ -57,7 +55,7 @@ class _SkateDiceState extends State<SkateDice> {
         for (int i = 0; i < diceTexts.length; i++) {
           Timer(Duration(milliseconds: duration), () {
             SkateDiceDice dice =
-                Provider.of<DiceList>(context, listen: false).diceList[i];
+                Provider.of<SettingsProvider>(context, listen: false).diceList[i];
             dice.state.animate(diceTexts[i]);
           });
           duration += 100;
@@ -104,7 +102,7 @@ class _SkateDiceState extends State<SkateDice> {
         );
       });
 
-  _dices() => Consumer<DiceList>(builder: (context, dices, child) {
+  _dices() => Consumer<SettingsProvider>(builder: (context, dices, child) {
         return Column(children: [
           SizedBox(height: MediaQuery.of(context).size.height / 100),
           Row(

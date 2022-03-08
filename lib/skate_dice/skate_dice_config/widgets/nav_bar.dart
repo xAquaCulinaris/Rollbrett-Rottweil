@@ -1,11 +1,9 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:rollbrett_rottweil/app_localizations.dart';
 import 'package:rollbrett_rottweil/custom_icons.dart';
-import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/add_player.dart';
-import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/configure_obstacle.dart';
-import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/configure_settings.dart';
-import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/configure_tricks.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/views/settings_configuration.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/views/obstacle_configuration.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/views/tricks_configuration.dart';
 
 //TODO redesign nav bar
 class NavBar extends StatefulWidget {
@@ -27,13 +25,12 @@ class _NavBarState extends State<NavBar> {
 
   Widget _buildPages() {
     switch (_index) {
+      case 0:
+        return AddPlayer();
       case 1:
         return ConfigureObstacles();
       case 2:
         return ConfigureTricks();
-      case 3:
-        return ConfigureSettings();
-      case 0:
       default:
         return AddPlayer();
     }
@@ -41,7 +38,7 @@ class _NavBarState extends State<NavBar> {
 
   Widget buildBottomNavBar() {
     return BottomNavyBar(
-      itemCornerRadius: 16,
+        itemCornerRadius: 16,
         containerHeight: MediaQuery.of(context).size.height / 11,
         selectedIndex: _index,
         items: <BottomNavyBarItem>[
@@ -65,14 +62,6 @@ class _NavBarState extends State<NavBar> {
               icon: Icon(CustomIcons.skateboard),
               title: Text(
                 'Tricks',
-                textAlign: TextAlign.center,
-              ),
-              activeColor: Theme.of(context).accentColor,
-              inactiveColor: Theme.of(context).accentColor),
-          BottomNavyBarItem(
-              icon: Icon(Icons.settings),
-              title: Text(
-                AppLocalizations.of(context).translate("settings"),
                 textAlign: TextAlign.center,
               ),
               activeColor: Theme.of(context).accentColor,

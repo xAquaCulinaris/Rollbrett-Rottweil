@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rollbrett_rottweil/skate_dice/skate_dice_dice.dart';
+import 'package:rollbrett_rottweil/skate_dice/widgets/skate_dice_dice.dart';
 
 class SkateDicePlaceholder extends StatelessWidget {
   const SkateDicePlaceholder();

@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:rollbrett_rottweil/skate_dice/models/EnumSettingItem/EnumItem.dart';
-import 'package:rollbrett_rottweil/skate_dice/models/EnumSettingItem/EnumItemHeader.dart';
-import 'package:rollbrett_rottweil/skate_dice/provider/DiceList.dart';
-import 'package:rollbrett_rottweil/skate_dice/provider/SettingProvider.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/SettingProvider.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/DifficultySettingsItems/DifficultyItem.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/DifficultySettingsItems/DifficultyItemHeader.dart';
 
 class DropDownWidget extends StatefulWidget {
-  const DropDownWidget(this.enumItemHeader);
+  const DropDownWidget(this.header, this.updateFunction);
 
-  final EnumItemHeader enumItemHeader;
+  final DifficultyItemHeader header;
+  final Function updateFunction;
 
   @override
   State<DropDownWidget> createState() => _DropDownWidgetState();
 }
 
 class _DropDownWidgetState extends State<DropDownWidget> {
-  bool expanded = false;
-
   _textPressed() {
     if (mounted) {
       setState(() {
-        expanded = !expanded;
+        widget.header.expanded = !widget.header.expanded;
       });
     }
   }
@@ -33,14 +30,14 @@ class _DropDownWidgetState extends State<DropDownWidget> {
         child: Row(
           children: [
             buildIcon(),
-            Text("Difficulty",
+            Text(widget.header.name,
                 style: TextStyle(
                     color: Theme.of(context).accentColor,
                     fontSize: MediaQuery.of(context).size.height / 25)),
           ],
         ),
       ),
-      if (expanded)
+      if (widget.header.expanded)
         //Change
         ListView.builder(
             physics: NeverScrollableScrollPhysics(),
@@ -49,44 +46,32 @@ class _DropDownWidgetState extends State<DropDownWidget> {
             itemCount: 3,
             itemBuilder: (context, index) {
               return EnumListItem(
-                  widget.enumItemHeader.items[index], updateCurrentSelection);
+                 widget.header.items[index], updateCurrentSelection);
             })
     ]);
   }
 
-  void updateCurrentSelection(String name, BuildContext context) {
+  void updateCurrentSelection(String name) {
     if (name == "Easy") {
-      Provider.of<DiceList>(context, listen: false)
-          .updateDifficulty(Difficulty.Easy);
       if (mounted)
         setState(() {
-          widget.enumItemHeader.items[0].checked = true;
-          widget.enumItemHeader.items[1].checked = false;
-          widget.enumItemHeader.items[2].checked = false;
+          widget.updateFunction(Difficulty.Easy);
         });
     } else if (name == "Medium") {
-      Provider.of<DiceList>(context, listen: false)
-          .updateDifficulty(Difficulty.Medium);
       if (mounted)
         setState(() {
-          widget.enumItemHeader.items[0].checked = false;
-          widget.enumItemHeader.items[1].checked = true;
-          widget.enumItemHeader.items[2].checked = false;
+          widget.updateFunction(Difficulty.Medium);;
         });
     } else if (name == "Hard") {
-      Provider.of<DiceList>(context, listen: false)
-          .updateDifficulty(Difficulty.Hard);
       if (mounted)
         setState(() {
-          widget.enumItemHeader.items[0].checked = false;
-          widget.enumItemHeader.items[1].checked = false;
-          widget.enumItemHeader.items[2].checked = true;
+          widget.updateFunction(Difficulty.Hard);
         });
     }
   }
 
   Widget buildIcon() {
-    return expanded
+    return widget.header.expanded
         ? Icon(Icons.arrow_drop_down, color: Theme.of(context).accentColor)
         : Icon(Icons.arrow_right, color: Theme.of(context).accentColor);
   }
@@ -95,7 +80,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
 class EnumListItem extends StatefulWidget {
   const EnumListItem(this.enumItem, this.updateFunction);
 
-  final EnumItem enumItem;
+  final DifficultyItem enumItem;
   final Function updateFunction;
 
   @override
@@ -111,7 +96,7 @@ class _EnumListItemState extends State<EnumListItem> {
         children: [
           TextButton(
             onPressed: () {
-              widget.updateFunction(widget.enumItem.name, context);
+              widget.updateFunction(widget.enumItem.name);
             },
             child: Text(
               widget.enumItem.name,
