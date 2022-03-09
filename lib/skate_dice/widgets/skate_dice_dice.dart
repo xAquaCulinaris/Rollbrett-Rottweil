@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class SkateDiceDice extends StatefulWidget {
   SkateDiceDice({Key key}) : super(key: key);
 
-  final _SkateDiceDiceState state = _SkateDiceDiceState();
+  _SkateDiceDiceState state = _SkateDiceDiceState();
 
   @override
-  _SkateDiceDiceState createState() => state;
+  _SkateDiceDiceState createState() => this.state = new _SkateDiceDiceState();
 }
 
 class _SkateDiceDiceState extends State<SkateDiceDice>

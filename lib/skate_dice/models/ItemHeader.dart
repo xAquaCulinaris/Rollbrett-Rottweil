@@ -17,13 +17,14 @@ class ItemHeader {
       String name = item['name'];
       String obstacleType = item['obstacleType'];
       bool directional = item['directional'].toString().parseBool();
+      String difficulty = item['difficulty'];
 
       // If obstacle type is not set create a settings item
       if (obstacleType == null)
         itemList.add(SettingItem(name, directional));
       //else create a Trick/Obstacle Item
       else
-        itemList.add(TrickObstacleItem(name, obstacleType, directional));
+        itemList.add(TrickObstacleItem(name, obstacleType, directional, difficulty));
     }
     return ItemHeader(json['name'], itemList);
   }

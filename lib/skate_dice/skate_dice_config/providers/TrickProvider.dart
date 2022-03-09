@@ -27,6 +27,16 @@ class TrickProvider with ChangeNotifier {
     return _selectedTricks.cast<TrickObstacleItem>();
   }
 
+   List<TrickObstacleItem> getTrickByDifficultyAndType(ExtendedDifficulty difficulty, ObstacleType obstacleType) {
+    List<ItemInterface> _selectedTricks = [];
+    for (ItemHeader header in _items) {
+      _selectedTricks.addAll(
+          header.items.where((element) => element.checked && element.difficulty == difficulty).toList());
+    }
+    List<TrickObstacleItem> list = _selectedTricks.cast<TrickObstacleItem>();
+    return list.where((element) => element.obstacleType == obstacleType).toList();
+  }
+
   Future loadTricks() async {
     String data =
         await rootBundle.loadString("assets/skate_dice/tricks.json");

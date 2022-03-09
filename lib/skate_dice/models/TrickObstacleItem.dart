@@ -7,9 +7,10 @@ class TrickObstacleItem extends ItemInterface{
   
   ObstacleType obstacleType;
 
-  TrickObstacleItem(String name, String obstacleType, bool directional) {
+  TrickObstacleItem(String name, String obstacleType, bool directional, String difficulty) {
     this.name = name;
     this.directional = directional;
+    this.difficulty = ExtendedDifficulty.values.firstWhere((e) => e.toString() == "ExtendedDifficulty."+difficulty);
     switch (obstacleType) {
       case 'flat':
         this.obstacleType = ObstacleType.Flat;

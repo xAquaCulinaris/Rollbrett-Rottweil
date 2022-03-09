@@ -10,19 +10,29 @@ class ObstacleProvider with ChangeNotifier {
   List<ItemHeader> _items = [];
 
   ObstacleProvider() {
+    if (_items == null || _items.length == 0) _loadObstacles();
+  }
+
+  void _loadObstacles() {
     loadObstacles().then((items) {
       _items = items;
       notifyListeners();
+      print("loaded obstacles");
     });
   }
 
   List<ItemHeader> get items => _items;
 
-  List<TrickObstacleItem> getSelectedObstacles() {
+
+  List<TrickObstacleItem> getObstaclesByDifficulty(
+      ExtendedDifficulty difficulty) {
+    if (_items == null || _items.length == 0) _loadObstacles();
     List<ItemInterface> _selectedObstacles = [];
     for (ItemHeader header in _items) {
-      _selectedObstacles.addAll(
-          header.items.where((element) => element.checked).toList());
+      _selectedObstacles.addAll(header.items
+          .where(
+              (element) => element.checked && element.difficulty == difficulty)
+          .toList());
     }
     return _selectedObstacles.cast<TrickObstacleItem>();
   }

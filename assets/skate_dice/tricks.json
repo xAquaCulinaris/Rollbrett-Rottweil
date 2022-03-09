@@ -3,49 +3,64 @@
         "name": "Flat tricks",
         "items": [
             {
+                "name": "Ollie",
+                "obstacleType": "flat",
+                "directional": "false",
+                "difficulty": "easy"
+            },
+            {
                 "name": "Kickflip",
                 "obstacleType": "flat",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "medium"
             },
             {
                 "name": "Heelflip",
                 "obstacleType": "flat",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "medium"
             },
             {
                 "name": "180",
                 "obstacleType": "flat",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "easy"
             },
             {
                 "name": "360 Flip",
                 "obstacleType": "flat",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "advanced"
             },
             {
                 "name": "Shuvit",
                 "obstacleType": "flat",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "easy"
             },
             {
                 "name": "Varial Flip",
                 "obstacleType": "flat",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "advanced"
             },
             {
                 "name": "Varial Heel",
                 "obstacleType": "flat",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "advanced"
             },
             {
                 "name": "Hardflip",
                 "obstacleType": "flat",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "expert"
             },
             {
                 "name": "Inwardheel",
                 "obstacleType": "flat",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "expert"
             }
         ]
     },
@@ -55,58 +70,69 @@
             {
                 "name": "50-50",
                 "obstacleType": "grind",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "medium"
             },
             {
                 "name": "Nosegrind",
                 "obstacleType": "grind",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "advanced"
                 
             },
             {
                 "name": "Smithgrind",
                 "obstacleType": "grind",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "expert"
             },
             {
                 "name": "5-0",
                 "obstacleType": "grind",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "advanced"
             },
             {
                 "name": "Boardslide",
                 "obstacleType": "grind",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "medium"
             },
             {
                 "name": "Tailslide",
                 "obstacleType": "grind",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "advanced"
             },
             {
                 "name": "Lipslide",
                 "obstacleType": "grind",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "advanced"
             },
             {
                 "name": "Noseslide",
                 "obstacleType": "grind",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "advanced"
             },
             {
                 "name": "Croocked",
                 "obstacleType": "grind",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "advanced"
             },
             {
                 "name": "Salad",
                 "obstacleType": "grind",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "advanced"
             },
             {
                 "name": "Suski",
                 "obstacleType": "grind",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "advanced"
             }
         ]
     },
@@ -116,12 +142,14 @@
             {
                 "name": "Nose Manual",
                 "obstacleType": "manual",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "advanced"
             },
             {
                 "name": "Manual",
                 "obstacleType": "manual",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "medium"
             }
         ]
     },
@@ -131,32 +159,45 @@
             {
                 "name": "50-50",
                 "obstacleType": "transition",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "advanced"
+
             },
             {
                 "name": "Axel Stall",
                 "obstacleType": "transition",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "medium"
             },
             {
                 "name": "Disaster",
                 "obstacleType": "transition",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "advanced"
             },
             {
                 "name": "Noseblunt",
                 "obstacleType": "transition",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "expert"
             },
             {
                 "name": "Blunt",
                 "obstacleType": "transition",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "advanced"
             },
             {
                 "name": "Slasher",
                 "obstacleType": "transition",
-                "directional": "true"
+                "directional": "true",
+                "difficulty": "easy"
+            },
+            {
+                "name": "Rock to fakie",
+                "obstacleType": "transition",
+                "directional": "false",
+                "difficulty": "easy"
             }
         ]
     }

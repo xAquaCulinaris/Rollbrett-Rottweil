@@ -5,17 +5,26 @@
             {
                 "name": "Mannypad Ledge",
                 "obstacleType": "grind",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "advanced"
+            },
+            {
+                "name": "Complete Mannypad Ledge",
+                "obstacleType": "grind",
+                "directional": "false",
+                "difficulty": "expert"
             },
             {
                 "name": "Hubba",
                 "obstacleType": "grind",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "advanced"
             },
             {
-                "name": "Brunnen",
+                "name": "Fountain Curb",
                 "obstacleType": "grind",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "advanced"
             }
         ]
     },
@@ -25,17 +34,32 @@
             {
                 "name": "Bump to Rail",
                 "obstacleType": "grind",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "advanced"
             },
             {
                 "name": "Down Rail",
                 "obstacleType": "grind",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "advanced"
+            },
+            {
+                "name": "Complete Rail",
+                "obstacleType": "grind",
+                "directional": "false",
+                "difficulty": "expert"
+            },
+            {
+                "name": "Up the Rail",
+                "obstacleType": "grind",
+                "directional": "false",
+                "difficulty": "expert"
             },
             {
                 "name": "Flat Rail",
                 "obstacleType": "grind",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "medium"
             }
         ]
     },
@@ -43,29 +67,58 @@
         "name": "Gaps",
         "items": [
             {
+                "name": "down Mannypad",
+                "obstacleType": "flat",
+                "directional": "false",
+                "difficulty": "easy"
+            },
+            {
                 "name": "Stair",
                 "obstacleType": "flat",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "medium"
             },
             {
                 "name": "Rottweiler",
                 "obstacleType": "flat",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "advanced"
             },
             {
                 "name": "Lodongap",
                 "obstacleType": "flat",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "easy"
             },
             {
-                "name": "Brunnen",
+                "name": "of the Fountain",
                 "obstacleType": "flat",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "medium"
             },
             {
                 "name": "Hipp",
                 "obstacleType": "flat",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "easy"
+            },
+            {
+                "name": "Up & down Fountain",
+                "obstacleType": "flat",
+                "directional": "false",
+                "difficulty": "advanced"
+            },
+            {
+                "name": "down Fountain",
+                "obstacleType": "flat",
+                "directional": "false",
+                "difficulty": "medium"
+            },
+            {
+                "name": "up Fountain",
+                "obstacleType": "flat",
+                "directional": "false",
+                "difficulty": "medium"
             }
         ]
     },
@@ -75,36 +128,43 @@
             {
                 "name": "Mannypad",
                 "obstacleType": "manual",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "easy"
             },
             {
-                "name": "Brunnen",
+                "name": "Fountain",
                 "obstacleType": "manual",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "medium"
             },
             {
                 "name": "Bump to Mannypad",
                 "obstacleType": "manual",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "medium"
             }
         ]
-    }, {
+    },
+    {
         "name": "Transition",
         "items": [
             {
                 "name": "Taco",
                 "obstacleType": "transition",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "expert"
             },
             {
-                "name": "Rounded Quarter",
+                "name": "Big Quarter",
                 "obstacleType": "transition",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "medium"
             },
             {
-                "name": "Quarter",
+                "name": "Small Quarter",
                 "obstacleType": "transition",
-                "directional": "false"
+                "directional": "false",
+                "difficulty": "easy"
             }
         ]
     }
