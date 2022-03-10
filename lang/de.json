@@ -17,5 +17,8 @@
     "roll_dice": "Würfeln",
     "add_player": "Spieler hinzufügen",
     "settings": "Einstellungen",
-    "no_players": "Kein Spieler"
+    "no_players": "Kein Spieler",
+    "restart": "Neustart",
+    "restart_game": "Spiel neustarten",
+    "restart_game_message": "Das Spiel wurde neu gestartet"
 }

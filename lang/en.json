@@ -17,5 +17,8 @@
     "roll_dice": "Roll dice",
     "add_player": "Add player",
     "settings": "Settings",
-    "no_players": "No players"
+    "no_players": "No players",
+    "restart": "Restart",
+    "restart_game": "Restart Game",
+    "restart_game_message": "Game has been restarted"
 }

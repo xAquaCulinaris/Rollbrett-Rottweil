@@ -109,7 +109,8 @@ class LogoutButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TextButton(
-              onPressed: () => {Navigator.of(context).pop()},
+              onPressed: () => null,
+              //onPressed: () => {Navigator.of(context).pop()},
               child: Column(
                 children: [
                   Icon(

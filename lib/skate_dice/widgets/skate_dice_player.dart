@@ -1,26 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rollbrett_rottweil/app_localizations.dart';
+import 'package:rollbrett_rottweil/reusable/custom_dialog.dart';
+import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
 
 class SkateDicePlayer extends StatefulWidget {
-  const SkateDicePlayer({Key key, this.name}) : super(key: key);
-  final String name;
+  const SkateDicePlayer({Key key, this.player}) : super(key: key);
+  final Player player;
 
   @override
   _SkateDicePlayerState createState() => _SkateDicePlayerState();
 }
 
 class _SkateDicePlayerState extends State<SkateDicePlayer> {
-  int _letterCounter = 0;
   static const Set<String> _skate = {'S', 'K', 'A', 'T', 'E'};
 
   _addLetter() {
     setState(() {
-      if (_letterCounter < 5) _letterCounter++;
+      if (widget.player.letters < 5) widget.player.letters++;
     });
+
+    String winnerName =
+        Provider.of<PlayerList>(context, listen: false).getWinnerName();
+    if (winnerName != null) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            //TODO replace with other screen
+            return CustomDialog(
+              title: AppLocalizations.of(context).translate('restart_game'),
+              description: winnerName + "has won the game",
+              firstButtonText: "Okay",
+              secondButtonText: "Restart",
+              firstButtonCallback: () => Navigator.pop(context),
+              secondButtonCallback: () {
+                Provider.of<PlayerList>(context, listen: false).restartGame();
+                Navigator.pop(context);
+              },
+            );
+          });
+    }
   }
 
   _removeLetter() {
     setState(() {
-      if (_letterCounter > 0) _letterCounter--;
+      if (widget.player.letters > 0) widget.player.letters--;
     });
   }
 
@@ -31,7 +55,7 @@ class _SkateDicePlayerState extends State<SkateDicePlayer> {
       children: [
         SizedBox(width: MediaQuery.of(context).size.width / 30),
         Text(
-          widget.name,
+          widget.player.name,
           style: TextStyle(
               color: Theme.of(context).accentColor,
               fontSize: MediaQuery.of(context).size.height / 25,
@@ -44,7 +68,7 @@ class _SkateDicePlayerState extends State<SkateDicePlayer> {
             onPressed: _removeLetter),
 
         for (var i = 0; i < 5; i++)
-          _letterCounter > i
+          widget.player.letters > i
               ? LetterItem(
                   letter: _skate.elementAt(i),
                 )

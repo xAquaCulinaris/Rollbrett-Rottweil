@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
+import 'package:rollbrett_rottweil/home_page.dart';
 import 'package:rollbrett_rottweil/login/login_view.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/ObstacleProvider.dart';
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
           }
           return retLocale;
         },
-        home: Login(),
+        //home: Login(),
+        home: HomePage(),
       ),
     );
   }

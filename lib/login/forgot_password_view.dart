@@ -27,7 +27,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             title: AppLocalizations.of(context).translate('password_reset'),
             description: AppLocalizations.of(context)
                 .translate('password_reset_message'),
-            buttonText: "Okay",
+            firstButtonText: "Okay",
           );
         });
   }

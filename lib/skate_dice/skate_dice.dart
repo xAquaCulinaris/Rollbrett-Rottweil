@@ -115,7 +115,7 @@ class _SkateDiceState extends State<SkateDice> {
           shrinkWrap: true,
           itemCount: players.players.length,
           itemBuilder: (BuildContext context, int index) =>
-              SkateDicePlayer(name: players.players[index].name),
+              SkateDicePlayer(player: players.players[index]),
         );
       });
 

@@ -12,6 +12,7 @@ class Stance {
     Stance("Switch", ExtendedDifficulty.expert)
   ];
 
+  //get a list of available stances mapped by diffyculty 
   static List<Stance> getStancesByDifficulty(ExtendedDifficulty maxDifficulty) {
     List<ExtendedDifficulty> difficultys = [];
     List<Stance> availableStances = [];
@@ -53,6 +54,7 @@ class Stance {
     return availableStances;
   }
 }
+
 
 // is used to choose stance by obstacle and trick diffculty
 class ObstacleTrickStanceDifficulty {

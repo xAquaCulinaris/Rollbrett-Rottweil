@@ -3,9 +3,19 @@ import 'package:flutter/material.dart';
 class CustomDialog extends StatefulWidget {
   final String title;
   final String description;
-  final String buttonText;
+  final String firstButtonText;
+  final String secondButtonText;
+  final Function firstButtonCallback;
+  final Function secondButtonCallback;
 
-  const CustomDialog({Key key, this.title, this.description, this.buttonText});
+  const CustomDialog(
+      {Key key,
+      this.title,
+      this.description,
+      this.firstButtonText,
+      this.secondButtonText,
+      this.firstButtonCallback,
+      this.secondButtonCallback});
 
   @override
   _CustomDialogState createState() => _CustomDialogState();
@@ -21,18 +31,34 @@ class _CustomDialogState extends State<CustomDialog> {
       elevation: 0,
       backgroundColor: Colors.transparent,
       child: ContentBox(
-          context, widget.title, widget.description, widget.buttonText),
+          context,
+          widget.title,
+          widget.description,
+          widget.firstButtonText,
+          widget.secondButtonText,
+          widget.firstButtonCallback,
+          widget.secondButtonCallback),
     );
   }
 }
 
 class ContentBox extends StatelessWidget {
-  ContentBox(this.context, this.title, this.description, this.buttonText);
+  ContentBox(
+      this.context,
+      this.title,
+      this.description,
+      this.firstButtonText,
+      this.secondButtonText,
+      this.firstButtonCallback,
+      this.secondButtonCallback);
 
-  BuildContext context;
+  final BuildContext context;
   final String title;
   final String description;
-  final String buttonText;
+  final String firstButtonText;
+  final String secondButtonText;
+  final Function firstButtonCallback;
+  final Function secondButtonCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +71,6 @@ class ContentBox extends StatelessWidget {
             shape: BoxShape.rectangle,
             color: Theme.of(context).accentColor,
             borderRadius: BorderRadius.circular(20),
-           
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -57,20 +82,50 @@ class ContentBox extends StatelessWidget {
                       color: Theme.of(context).primaryColor)),
               SizedBox(height: 17),
               Text(description,
-                  style: TextStyle(fontSize: 14, color: Theme.of(context).primaryColor),
+                  style: TextStyle(
+                      fontSize: 14, color: Theme.of(context).primaryColor),
                   textAlign: TextAlign.center),
               SizedBox(height: 22),
               Align(
                 alignment: Alignment.center,
-                child: FlatButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(
-                    buttonText,
-                    style: TextStyle(fontSize: 18, color: Theme.of(context).primaryColor),
-                  ),
+                child: Row(
+                  children: [
+                    if (secondButtonText == null) Spacer(),
+                    FlatButton(
+                      onPressed: () {
+                        if (firstButtonCallback == null) {
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                        } else {
+                          firstButtonCallback();
+                        }
+                      },
+                      child: Text(
+                        firstButtonText,
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Theme.of(context).primaryColor),
+                      ),
+                    ),
+                    Spacer(),
+                    if (secondButtonText != null)
+                      FlatButton(
+                        onPressed: () {
+                          if (secondButtonCallback == null) {
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pop();
+                          } else {
+                            secondButtonCallback();
+                          }
+                        },
+                        child: Text(
+                          secondButtonText,
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Theme.of(context).primaryColor),
+                        ),
+                      ),
+                  ],
                 ),
               )
             ],

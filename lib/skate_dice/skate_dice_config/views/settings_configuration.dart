@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
+import 'package:rollbrett_rottweil/reusable/button.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
+import 'package:rollbrett_rottweil/reusable/custom_dialog.dart';
 import 'package:rollbrett_rottweil/reusable/textBox.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
 import 'package:provider/provider.dart';
@@ -23,15 +25,9 @@ class _AddPlayerState extends State<AddPlayer> {
   //TODO name max 6 letters or it will be to big on skate dice screen
   String _name = "";
 
-  //Game difficulty
-  /* EnumItemHeader difficultyGame = EnumItemHeader("Game Difficulty", [
-    EnumItem("Easy", true),
-    EnumItem("Medium", false),
-    EnumItem("Hard", false)
-  ]);*/
-
   //Trick difficulty
-  DifficultyItemHeader difficultyTrick = DifficultyItemHeader("Trick Difficulty", [
+  DifficultyItemHeader difficultyTrick =
+      DifficultyItemHeader("Trick Difficulty", [
     DifficultyItem("Easy", true),
     DifficultyItem("Medium", false),
     DifficultyItem("Hard", false)
@@ -65,24 +61,28 @@ class _AddPlayerState extends State<AddPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        CustomAppBar(
-            text: AppLocalizations.of(context).translate("add_player")),
-        SizedBox(height: MediaQuery.of(context).size.width / 15),
-        CustomTextBox(
-          labelText: AppLocalizations.of(context).translate("add_player"),
-          icon: Icons.person_add,
-          setText: setName,
-          textInputType: TextInputType.name,
-          suffixIcon: Icons.add,
-          suffixFunction: _addButtonPressed,
-          controller: _controller,
-        ),
-        _players(),
-        _settings()
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CustomAppBar(
+              text: AppLocalizations.of(context).translate("add_player")),
+          SizedBox(height: MediaQuery.of(context).size.width / 15),
+          CustomTextBox(
+            labelText: AppLocalizations.of(context).translate("add_player"),
+            icon: Icons.person_add,
+            setText: setName,
+            textInputType: TextInputType.name,
+            suffixIcon: Icons.add,
+            suffixFunction: _addButtonPressed,
+            controller: _controller,
+          ),
+          _players(),
+          _settings(),
+          //Spacer(),
+          _restart()
+        ],
+      ),
     );
   }
 
@@ -117,6 +117,29 @@ class _AddPlayerState extends State<AddPlayer> {
         ],
       ),
     );
+  }
+
+  _restart() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Button(
+          text: AppLocalizations.of(context).translate('restart'),
+          function: () => _restartFunction()),
+    );
+  }
+
+  _restartFunction() {
+    Provider.of<PlayerList>(context, listen: false).restartGame();
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CustomDialog(
+            title: AppLocalizations.of(context).translate('restart_game'),
+            description:
+                AppLocalizations.of(context).translate('restart_game_message'),
+            firstButtonText: "Okay",
+          );
+        });
   }
 }
 

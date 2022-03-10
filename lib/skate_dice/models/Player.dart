@@ -21,4 +21,28 @@ class PlayerList extends ChangeNotifier {
     notifyListeners();
     return name;
   }
+
+  void restartGame() {
+    for (Player player in _players) {
+      player.letters = 0;
+    }
+    notifyListeners();
+  }
+
+  String getWinnerName() {
+    if (_players.length >= 2) {
+      int counter = 0;
+      Player winner;
+
+      //check how manny players have 5 letters
+      for (Player player in _players) {
+        if (player.letters == 5)
+          counter++;
+        else
+          winner = player;
+      }
+      if (counter == _players.length - 1) return winner.name;
+    }
+    return null;
+  }
 }

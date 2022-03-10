@@ -189,6 +189,8 @@ class GenerateTrick {
     //get random obstacle
     obstacle = _getObstacleByDifficultyMap(currentDifficultyMap);
     if (obstacle == null) return List<String>.empty();
+
+    
     //get random trick that matches obstacle and diffculty
     trick = _getTrickByDifficultyMapAndObstacle(currentDifficultyMap, obstacle);
 
