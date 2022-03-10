@@ -13,6 +13,7 @@ class TrickProvider with ChangeNotifier {
     loadTricks().then((items) {
       _items = items;
       notifyListeners();
+      print("loaded tricks");
     });
   }
 

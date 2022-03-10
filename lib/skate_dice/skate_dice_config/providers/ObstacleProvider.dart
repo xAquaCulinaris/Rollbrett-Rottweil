@@ -10,11 +10,11 @@ class ObstacleProvider with ChangeNotifier {
   List<ItemHeader> _items = [];
 
   ObstacleProvider() {
-    if (_items == null || _items.length == 0) _loadObstacles();
+    if (_items == null || _items.length == 0) loadObstacles();
   }
 
-  void _loadObstacles() {
-    loadObstacles().then((items) {
+  void loadObstacles() {
+    _loadObstacles().then((items) {
       _items = items;
       notifyListeners();
       print("loaded obstacles");
@@ -26,7 +26,6 @@ class ObstacleProvider with ChangeNotifier {
 
   List<TrickObstacleItem> getObstaclesByDifficulty(
       ExtendedDifficulty difficulty) {
-    if (_items == null || _items.length == 0) _loadObstacles();
     List<ItemInterface> _selectedObstacles = [];
     for (ItemHeader header in _items) {
       _selectedObstacles.addAll(header.items
@@ -37,7 +36,7 @@ class ObstacleProvider with ChangeNotifier {
     return _selectedObstacles.cast<TrickObstacleItem>();
   }
 
-  Future loadObstacles() async {
+  Future _loadObstacles() async {
     String data =
         await rootBundle.loadString("assets/skate_dice/obstacles.json");
     final jsonResult = json.decode(data);

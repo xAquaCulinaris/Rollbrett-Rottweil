@@ -5,7 +5,9 @@ import 'package:rollbrett_rottweil/reusable/button.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/GenerateTrick.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/ObstacleProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/SettingProvider.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/TrickProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/nav_bar.dart';
 import 'package:rollbrett_rottweil/skate_dice/widgets/skate_dice_place_holder.dart';
 import 'package:rollbrett_rottweil/skate_dice/widgets/skate_dice_dice.dart';
@@ -28,6 +30,12 @@ class _SkateDiceState extends State<SkateDice> {
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       settingProvider = Provider.of<SettingsProvider>(context, listen: false);
+      ObstacleProvider obstacleProvider =
+          Provider.of<ObstacleProvider>(context, listen: false);
+      TrickProvider trickProvider =
+          Provider.of<TrickProvider>(context, listen: false);
+      obstacleProvider.loadObstacles();
+      trickProvider.loadTricks();
     });
   }
 
@@ -42,26 +50,35 @@ class _SkateDiceState extends State<SkateDice> {
       );
     }
 
+    void _updatDices(List<String> diceTexts) {
+      int duration = 0;
+      for (int i = 0; i < diceTexts.length; i++) {
+        Timer(Duration(milliseconds: duration), () {
+          SkateDiceDice dice =
+              Provider.of<SettingsProvider>(context, listen: false).diceList[i];
+          dice.state.animate(diceTexts[i]);
+        });
+        duration += 100;
+      }
+    }
+
     _rollDiceButtonPressed() {
-      //TODO check why at first press no tricks available
       List<String> diceTexts =
           GenerateTrick.getInstace(context).generateTrick();
 
-      if (diceTexts.isEmpty)
-        //TODO show error message
+      if (diceTexts.isEmpty) {
+        //TODO limit reroll to amount of tries 
         print("no possible tricks");
-      else {
-        int duration = 0;
-        for (int i = 0; i < diceTexts.length; i++) {
-          Timer(Duration(milliseconds: duration), () {
-            SkateDiceDice dice =
-                Provider.of<SettingsProvider>(context, listen: false).diceList[i];
-            dice.state.animate(diceTexts[i]);
-          });
-          duration += 100;
-        }
-      }
+        int rerollTries = 0;
+        while (diceTexts.isEmpty)
+          diceTexts = GenerateTrick.getInstace(context).generateTrick();
+        rerollTries++;
+        print("reroll succeded after " + rerollTries.toString() + " tries");
+        _updatDices(diceTexts);
+      } else {_updatDices(diceTexts);}
     }
+
+    
 
     return Scaffold(
       body: Column(
