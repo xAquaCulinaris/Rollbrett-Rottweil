@@ -26,7 +26,6 @@ class _SkateDicePlayerState extends State<SkateDicePlayer> {
       showDialog(
           context: context,
           builder: (BuildContext context) {
-            //TODO replace with other screen
             return CustomDialog(
               title: AppLocalizations.of(context).translate('restart_game'),
               description: winnerName + "has won the game",
@@ -62,18 +61,15 @@ class _SkateDicePlayerState extends State<SkateDicePlayer> {
               fontWeight: FontWeight.w700),
         ),
         Spacer(),
-        //TODO get custom bold icons
         IconButton(
             icon: Icon(Icons.remove, color: Theme.of(context).accentColor),
             onPressed: _removeLetter),
-
         for (var i = 0; i < 5; i++)
           widget.player.letters > i
               ? LetterItem(
                   letter: _skate.elementAt(i),
                 )
               : LetterPlaceholder(),
-
         IconButton(
             icon: Icon(Icons.add, color: Theme.of(context).accentColor),
             onPressed: _addLetter),

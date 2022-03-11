@@ -3,17 +3,17 @@ import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/Settin
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/DifficultySettingsItems/DifficultyItem.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/DifficultySettingsItems/DifficultyItemHeader.dart';
 
-class DropDownWidget extends StatefulWidget {
-  const DropDownWidget(this.header, this.updateFunction);
+class DifficultyWidget extends StatefulWidget {
+  const DifficultyWidget(this.header, this.updateFunction);
 
   final DifficultyItemHeader header;
   final Function updateFunction;
 
   @override
-  State<DropDownWidget> createState() => _DropDownWidgetState();
+  State<DifficultyWidget> createState() => _DifficultyWidgetState();
 }
 
-class _DropDownWidgetState extends State<DropDownWidget> {
+class _DifficultyWidgetState extends State<DifficultyWidget> {
   _textPressed() {
     if (mounted) {
       setState(() {
@@ -46,7 +46,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
             itemCount: 3,
             itemBuilder: (context, index) {
               return EnumListItem(
-                 widget.header.items[index], updateCurrentSelection);
+                  widget.header.items[index], updateCurrentSelection);
             })
     ]);
   }
@@ -60,7 +60,8 @@ class _DropDownWidgetState extends State<DropDownWidget> {
     } else if (name == "Medium") {
       if (mounted)
         setState(() {
-          widget.updateFunction(Difficulty.Medium);;
+          widget.updateFunction(Difficulty.Medium);
+          ;
         });
     } else if (name == "Hard") {
       if (mounted)

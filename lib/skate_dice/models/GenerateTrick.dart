@@ -156,9 +156,14 @@ class GenerateTrick {
 
   //generate a complete new trick
   List<String> generateTrick() {
+    //if diceCount == Random upadte dices to random dice count
+  /*  if (settingProvider.currentDiceCount == "Random") {
+      List<String> diceCountPossibilities = ["2", "3", "4"];
+      settingProvider.updateGameDifficulty(diceCountPossibilities[
+          Random().nextInt(diceCountPossibilities.length)], updateCurrentDiceCount: false);
+    }*/
     Difficulty gameDifficulty = settingProvider.gameDifficulty;
     Difficulty trickDifficulty = settingProvider.trickDifficulty;
-    int numberDices = settingProvider.diceList.length;
 
     //obstacle and trick which are randomly choosen by difficulty
     TrickObstacleItem obstacle;
@@ -204,6 +209,7 @@ class GenerateTrick {
       TrickObstacleItem obstacle,
       List<ObstacleTrickStanceDifficulty> currentStanceDifficultyMap) {
     List<String> diceTexts = [];
+
     switch (gameDifficulty) {
       case Difficulty.Easy:
         diceTexts.add(trick.name);

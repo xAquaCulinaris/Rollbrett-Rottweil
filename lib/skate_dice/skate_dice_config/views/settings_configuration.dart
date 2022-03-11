@@ -9,7 +9,8 @@ import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/SettingProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/DifficultySettingsItems/DifficultyItem.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/DifficultySettingsItems/DifficultyItemHeader.dart';
-import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/drop_down_widget.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/dice_count_drop_down_widget.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/difficulty_widget.dart';
 
 class AddPlayer extends StatefulWidget {
   const AddPlayer({Key key}) : super(key: key);
@@ -79,7 +80,6 @@ class _AddPlayerState extends State<AddPlayer> {
           ),
           _players(),
           _settings(),
-          //Spacer(),
           _restart()
         ],
       ),
@@ -104,16 +104,13 @@ class _AddPlayerState extends State<AddPlayer> {
       padding: const EdgeInsets.only(top: 64),
       child: Column(
         children: [
-          DropDownWidget(
-              Provider.of<SettingsProvider>(context, listen: false)
-                  .gameDifficultyHeader,
-              Provider.of<SettingsProvider>(context, listen: false)
-                  .updateGameDifficulty),
-          DropDownWidget(
+          DiceCountDropDown(),
+          DifficultyWidget(
               Provider.of<SettingsProvider>(context, listen: false)
                   .trickDifficultyHeader,
               Provider.of<SettingsProvider>(context, listen: false)
                   .updateTrickDifficulty),
+         
         ],
       ),
     );

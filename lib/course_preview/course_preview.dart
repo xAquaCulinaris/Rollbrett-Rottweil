@@ -11,10 +11,10 @@ class CoursePreview extends StatelessWidget {
           CustomAppBar(
             text: AppLocalizations.of(context).translate('course_preview'),
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [ObstacleListViewItem(), ObstacleListViewItem()],
-          // )
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [ObstacleListViewItem(), ObstacleListViewItem()],
+          )
         ],
       ),
     );
@@ -38,8 +38,8 @@ class ObstacleListViewItem extends StatelessWidget {
           print("test");
         },
         child: Container(
-          height: MediaQuery.of(context).size.height / 3.6,
-          width: MediaQuery.of(context).size.width / 2.6,
+          height: MediaQuery.of(context).size.height / 4.2,
+          width: MediaQuery.of(context).size.width / 2.7,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -51,8 +51,14 @@ class ObstacleListViewItem extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 20, color: Theme.of(context).primaryColor),
                 ),
-                Image(
-                  image: AssetImage('assets/images/mannypad.jpeg'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image(
+                      image: AssetImage('assets/images/rollbrett_rottweil.jpg'),
+                    ),
+                  ),
                 )
               ],
             ),
