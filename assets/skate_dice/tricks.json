@@ -27,6 +27,18 @@
                 "difficulty": "easy"
             },
             {
+                "name": "180 Flip",
+                "obstacleType": "flat",
+                "directional": "true",
+                "difficulty": "advanced"
+            },
+            {
+                "name": "360",
+                "obstacleType": "flat",
+                "directional": "true",
+                "difficulty": "advanced"
+            },
+            {
                 "name": "360 Flip",
                 "obstacleType": "flat",
                 "directional": "false",
@@ -42,7 +54,7 @@
                 "name": "Varial Flip",
                 "obstacleType": "flat",
                 "directional": "false",
-                "difficulty": "advanced"
+                "difficulty": "medium"
             },
             {
                 "name": "Varial Heel",
@@ -78,7 +90,6 @@
                 "obstacleType": "grind",
                 "directional": "true",
                 "difficulty": "advanced"
-                
             },
             {
                 "name": "Smithgrind",
@@ -161,7 +172,6 @@
                 "obstacleType": "transition",
                 "directional": "true",
                 "difficulty": "advanced"
-
             },
             {
                 "name": "Axel Stall",

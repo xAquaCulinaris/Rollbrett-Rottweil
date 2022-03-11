@@ -6,7 +6,7 @@
                 "name": "Mannypad Ledge",
                 "obstacleType": "grind",
                 "directional": "false",
-                "difficulty": "advanced"
+                "difficulty": "medium"
             },
             {
                 "name": "Complete Mannypad Ledge",
@@ -19,6 +19,12 @@
                 "obstacleType": "grind",
                 "directional": "false",
                 "difficulty": "advanced"
+            },
+            {
+                "name": "Up the Hubba",
+                "obstacleType": "grind",
+                "directional": "false",
+                "difficulty": "expert"
             },
             {
                 "name": "Fountain Curb",

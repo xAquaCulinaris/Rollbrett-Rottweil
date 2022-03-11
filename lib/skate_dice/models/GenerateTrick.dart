@@ -9,6 +9,7 @@ import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/Obstac
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/SettingProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/TrickProvider.dart';
 import 'package:quiver/collection.dart';
+import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/DifficultySettingsItems/DifficultyItem.dart';
 
 class GenerateTrick {
   static GenerateTrick _instance;
@@ -50,6 +51,7 @@ class GenerateTrick {
         ExtendedDifficulty.advanced, ExtendedDifficulty.easy);
     mediumDifficultyMap.add(
         ExtendedDifficulty.advanced, ExtendedDifficulty.medium);
+    mediumDifficultyMap.add(ExtendedDifficulty.easy, ExtendedDifficulty.expert);
 
     hardDifficultyMap.add(
         ExtendedDifficulty.medium, ExtendedDifficulty.advanced);
@@ -116,8 +118,6 @@ class GenerateTrick {
         ExtendedDifficulty.easy,
         ExtendedDifficulty.expert,
         ExtendedDifficulty.expert));
-
-    //TODO add other difficultys
   }
 
   static GenerateTrick getInstace(BuildContext context) {
@@ -156,8 +156,6 @@ class GenerateTrick {
 
   //generate a complete new trick
   List<String> generateTrick() {
-    List<String> diceTexts = [];
-
     Difficulty gameDifficulty = settingProvider.gameDifficulty;
     Difficulty trickDifficulty = settingProvider.trickDifficulty;
     int numberDices = settingProvider.diceList.length;
@@ -190,24 +188,53 @@ class GenerateTrick {
     obstacle = _getObstacleByDifficultyMap(currentDifficultyMap);
     if (obstacle == null) return List<String>.empty();
 
-    
     //get random trick that matches obstacle and diffculty
     trick = _getTrickByDifficultyMapAndObstacle(currentDifficultyMap, obstacle);
 
     //if not possible trick was found
     if (trick == null) return List<String>.empty();
 
+    return writeTrickToList(
+        gameDifficulty, trick, obstacle, currentStanceDifficultyMap);
+  }
+
+  List<String> writeTrickToList(
+      Difficulty gameDifficulty,
+      TrickObstacleItem trick,
+      TrickObstacleItem obstacle,
+      List<ObstacleTrickStanceDifficulty> currentStanceDifficultyMap) {
+    List<String> diceTexts = [];
     switch (gameDifficulty) {
       case Difficulty.Easy:
         diceTexts.add(trick.name);
         diceTexts.add(obstacle.name);
         break;
       case Difficulty.Medium:
-        diceTexts.add(_getRandomStance(
-            obstacle.difficulty, trick.difficulty, currentStanceDifficultyMap));
-        diceTexts.add(trick.name);
-        diceTexts.add(obstacle.name);
+        //if grindable obstacle 25% change of getting trick to fakie else random stance get choosen
+        if (toFakieOrNot(obstacle)) {
+          diceTexts.add(trick.name);
+          diceTexts.add("to fakie");
+          diceTexts.add(obstacle.name);
+          return diceTexts;
+        } else {
+          //10% chance to get easy/medium trick into grind
+          String trickName =
+              trickIntoGrindOrNot(obstacle, ExtendedDifficulty.medium);
+          if (trickName != null)
+            diceTexts.add(trickName);
+
+          //66% chance to get direction
+          else if (directionOrNot(trick))
+            diceTexts.add(_getRandomDirection());
+          //33% chance to get stance
+          else
+            diceTexts.add(_getRandomStance(obstacle.difficulty,
+                trick.difficulty, currentStanceDifficultyMap));
+          diceTexts.add(trick.name);
+          diceTexts.add(obstacle.name);
+        }
         break;
+
       case Difficulty.Hard:
         diceTexts.add(_getRandomStance(
             obstacle.difficulty, trick.difficulty, currentStanceDifficultyMap));
@@ -218,12 +245,42 @@ class GenerateTrick {
         } else {
           diceTexts.add(trick.name);
           diceTexts.add(obstacle.name);
-          diceTexts.add("Placeholder");
         }
 
         break;
     }
     return diceTexts;
+  }
+
+  //if grindable obstacle 25% change of getting trick to fakie
+  bool toFakieOrNot(TrickObstacleItem obstacle) {
+    if (obstacle.obstacleType == ObstacleType.Grind) {
+      //25% chance
+      if (Random().nextInt(4) == 0) return true;
+    }
+    return false;
+  }
+
+  //if trick can be done fs or bs 66% chance that direction is displayed
+  bool directionOrNot(TrickObstacleItem trick) {
+    if (trick.directional) {
+      int random = Random().nextInt(3);
+      if (random == 0 || random == 1) return true;
+    }
+    return false;
+  }
+
+  String trickIntoGrindOrNot(
+      TrickObstacleItem obstacle, ExtendedDifficulty difficulty) {
+    if (obstacle.obstacleType == ObstacleType.Grind ||
+        obstacle.obstacleType == ObstacleType.Manual) {
+      if (Random().nextInt(10) == 0) {
+        TrickObstacleItem trick = _getTrickIntoGrindByMaxDifficulty(difficulty);
+        return trick.name;
+      }
+    }
+
+    return null;
   }
 
   //get random obstacle with correct difficutly
@@ -267,5 +324,30 @@ class GenerateTrick {
       return tricks[Random().nextInt(tricks.length)];
     else
       return null;
+  }
+
+  //TODO update for hard difficulty
+  //get trick into grind by difficulty
+  TrickObstacleItem _getTrickIntoGrindByMaxDifficulty(
+      ExtendedDifficulty difficulty) {
+    List<TrickObstacleItem> availableTricks = [];
+    if (difficulty == ExtendedDifficulty.medium) {
+      availableTricks.addAll(providerTrick.getTrickByDifficultyAndType(
+          difficulty, ObstacleType.Flat));
+      availableTricks.addAll(providerTrick.getTrickByDifficultyAndType(
+          ExtendedDifficulty.medium, ObstacleType.Flat));
+    }
+
+    //get random trick from this list (except ollie)
+    if (availableTricks.length > 0) {
+      TrickObstacleItem trick;
+      trick = availableTricks[Random().nextInt(availableTricks.length)];
+      //if trick was ollie reroll until not ollie
+      while (trick.name == "Ollie")
+        trick = availableTricks[Random().nextInt(availableTricks.length)];
+      return trick;
+    }
+    print("trick into grind went wrong");
+    return null;
   }
 }
