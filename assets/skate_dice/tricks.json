@@ -194,7 +194,7 @@
             {
                 "name": "Blunt",
                 "obstacleType": "transition",
-                "directional": "true",
+                "directional": "false",
                 "difficulty": "advanced"
             },
             {

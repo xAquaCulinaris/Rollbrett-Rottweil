@@ -28,8 +28,11 @@ dependencies:
   flutter_native_splash: ^1.2.1
   bottom_navy_bar: ^6.0.0
   quiver: ^3.0.1+1
+  #beacon
+  flutter_blue: ^0.8.0
 
-flutter_icons: 
+
+flutter_icons:
   image_path: "assets/images/app_icon.png"
   android: true
   ios: true

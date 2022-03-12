@@ -51,15 +51,18 @@ class GenerateTrick {
         ExtendedDifficulty.advanced, ExtendedDifficulty.easy);
     mediumDifficultyMap.add(
         ExtendedDifficulty.advanced, ExtendedDifficulty.medium);
-    mediumDifficultyMap.add(ExtendedDifficulty.easy, ExtendedDifficulty.expert);
+    mediumDifficultyMap.add(ExtendedDifficulty.easy, ExtendedDifficulty.expert); 
+    mediumDifficultyMap.add(ExtendedDifficulty.advanced, ExtendedDifficulty.advanced);
 
     hardDifficultyMap.add(
         ExtendedDifficulty.medium, ExtendedDifficulty.advanced);
     hardDifficultyMap.add(ExtendedDifficulty.medium, ExtendedDifficulty.expert);
     hardDifficultyMap.add(ExtendedDifficulty.expert, ExtendedDifficulty.medium);
+    hardDifficultyMap.add(ExtendedDifficulty.expert, ExtendedDifficulty.advanced);
     hardDifficultyMap.add(
         ExtendedDifficulty.advanced, ExtendedDifficulty.advanced);
     hardDifficultyMap.add(ExtendedDifficulty.easy, ExtendedDifficulty.expert);
+    hardDifficultyMap.add(ExtendedDifficulty.expert, ExtendedDifficulty.expert);
 
     //easy stance
     easyStanceDifficultyMap.add(ObstacleTrickStanceDifficulty(

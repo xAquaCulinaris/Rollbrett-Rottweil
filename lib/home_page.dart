@@ -8,7 +8,6 @@ import 'custom_icons.dart';
 
 class HomePage extends StatelessWidget {
   _coursePreviewPressed(BuildContext context) {
-    print(MediaQuery.of(context).size.height);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => CoursePreview()));
   }

@@ -1,70 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
+import 'package:rollbrett_rottweil/course_preview/detailedView.dart';
+import 'package:rollbrett_rottweil/course_preview/obstacles.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 
-class CoursePreview extends StatelessWidget {
+import 'package:flutter_blue/flutter_blue.dart';
+
+import 'widgets/ObstacleListViewItem.dart';
+
+class CoursePreview extends StatefulWidget {
+  final FlutterBlue ble = FlutterBlue.instance;
+  final List<BluetoothDevice> devicesList = [];
+
+  @override
+  _CoursePreviewState createState() => _CoursePreviewState();
+}
+
+class _CoursePreviewState extends State<CoursePreview> {
+  CoursePreviewObstaclesProvider obstaclesProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.ble.scanResults.listen((List<ScanResult> results) {
+      for (ScanResult result in results) {
+        _addDeviceTolist(result.device);
+      }
+    });
+    widget.ble.startScan();
+  }
+
   @override
   Widget build(BuildContext context) {
+    obstaclesProvider = Provider.of<CoursePreviewObstaclesProvider>(context);
+
     return Scaffold(
       body: Column(
         children: [
           CustomAppBar(
             text: AppLocalizations.of(context).translate('course_preview'),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [ObstacleListViewItem(), ObstacleListViewItem()],
-          )
+          _obstacleList()
         ],
       ),
     );
   }
-}
 
-class ObstacleListViewItem extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: ElevatedButton(
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18.0),
-            ),
-          ),
-        ),
-        onPressed: () {
-          print("test");
-        },
-        child: Container(
-          height: MediaQuery.of(context).size.height / 4.2,
-          width: MediaQuery.of(context).size.width / 2.7,
-          child: Center(
-            child: Column(
+  _obstacleList() {
+    int i = 0;
+    return Expanded(
+      child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: obstaclesProvider.obstacles.length ~/ 2,
+          itemBuilder: (BuildContext context, int index) {
+            i += 2;
+            return Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  "test",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 20, color: Theme.of(context).primaryColor),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image(
-                      image: AssetImage('assets/images/rollbrett_rottweil.jpg'),
-                    ),
-                  ),
-                )
+                ObstacleListViewItem(obstaclesProvider.obstacles[i - 2]),
+                ObstacleListViewItem(obstaclesProvider.obstacles[i - 1])
               ],
-            ),
-          ),
-        ),
-      ),
+            );
+          }),
     );
+  }
+
+  _addDeviceTolist(final BluetoothDevice device) {
+    if (!widget.devicesList.contains(device)) {
+      widget.devicesList.add(device);
+      obstaclesProvider.addUidInRange(device.id.toString());
+      print("device id: " + device.id.toString());
+    }
   }
 }
