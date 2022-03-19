@@ -26,6 +26,7 @@ class _ConfigureTricksState extends State<ConfigureTricks> {
           ListView(
             padding: EdgeInsets.all(0),
             shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             children: _allTrickHeaders.map((obstacleHeader) {
               int _index = _allTrickHeaders.indexOf(obstacleHeader);
               return CustomCheckboxHeader(

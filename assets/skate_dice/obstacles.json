@@ -97,12 +97,6 @@
                 "difficulty": "easy"
             },
             {
-                "name": "of the Fountain",
-                "obstacleType": "flat",
-                "directional": "false",
-                "difficulty": "medium"
-            },
-            {
                 "name": "Hipp",
                 "obstacleType": "flat",
                 "directional": "false",

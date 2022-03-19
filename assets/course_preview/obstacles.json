@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Stair",
+        "image": "assets/course_preview/images/stair.jpeg",
+        "uid": "EE:22:E1:46:D4:82",
+        "videos": [
+            {
+                "title": "Kickflip",
+                "video": "assets/course_preview/videos/xxx.mp4"
+            },
+            {
+                "title": "Heelflip",
+                "video": "assets/course_preview/videos/xxx.mp4"
+            }
+        ]
+    },
+    {
+        "name": "Rail",
+        "image": "assets/course_preview/images/rail.jpg",
+        "uid": "EE:22:E1:46:D4:81"
+    },
+    {
+        "name": "Ledge",
+        "image": "assets/course_preview/images/ledge.jpg",
+        "uid": "EE:22:E1:46:D4:81"
+    },
+    {
+        "name": "Hubba",
+        "image": "assets/course_preview/images/hubba.jpg",
+        "uid": "EE:22:E1:46:D4:81"
+    },
+    {
+        "name": "Mannypad",
+        "image": "assets/course_preview/images/mannypad.jpeg",
+        "uid": "EE:22:E1:46:D4:81"
+    },
+    {
+        "name": "Rollbrett",
+        "image": "assets/course_preview/images/rollbrett_rottweil.jpg",
+        "uid": "EE:22:E1:46:D4:81"
+    }
+]

@@ -23,7 +23,11 @@ class _DiceCountDropDownState extends State<DiceCountDropDown> {
                   fontSize: MediaQuery.of(context).size.height / 25)),
           DropdownButtonHideUnderline(
             child: DropdownButton<String>(
-              value: Provider.of<SettingsProvider>(context, listen: false).currentDiceCount,
+              value: Provider.of<SettingsProvider>(context, listen: false)
+                      .randomActivated
+                  ? "Random"
+                  : Provider.of<SettingsProvider>(context, listen: false)
+                      .currentDiceCount,
               icon: Icon(Icons.arrow_drop_down,
                   color: Theme.of(context).accentColor),
               style: TextStyle(
@@ -31,8 +35,8 @@ class _DiceCountDropDownState extends State<DiceCountDropDown> {
                   fontSize: MediaQuery.of(context).size.height / 25),
               onChanged: (newValue) {
                 setState(() {
-                  Provider.of<SettingsProvider>(context, listen: false).updateGameDifficulty(newValue);
-                  Provider.of<SettingsProvider>(context, listen: false).currentDiceCount = newValue;
+                  Provider.of<SettingsProvider>(context, listen: false)
+                      .updateGameDifficulty(newValue);
                 });
               },
               items: items.map((String value) {

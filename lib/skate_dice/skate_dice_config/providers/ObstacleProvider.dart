@@ -6,10 +6,10 @@ import 'package:rollbrett_rottweil/skate_dice/models/ItemInterface.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/TrickObstacleItem.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/ItemHeader.dart';
 
-class ObstacleProvider with ChangeNotifier {
+class SkateDiceObstacleProvider with ChangeNotifier {
   List<ItemHeader> _items = [];
 
-  ObstacleProvider() {
+  SkateDiceObstacleProvider() {
     if (_items == null || _items.length == 0) loadObstacles();
   }
 

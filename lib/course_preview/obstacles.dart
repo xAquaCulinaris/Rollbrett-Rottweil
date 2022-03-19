@@ -1,37 +1,41 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Obstacle {
   Obstacle(this.name, this.imagePath, this.uid);
 
+  factory Obstacle.fromJson(Map<String, dynamic> json) {
+    String name = json['name'];
+    String imagePath = json['image'];
+    String uid = json['uid'];
+
+    return Obstacle(name, imagePath, uid);
+  }
+
   final String name;
   final String imagePath;
   final String uid;
-  bool inRange = false;
+  bool inRange = true;
 }
 
 class CoursePreviewObstaclesProvider extends ChangeNotifier {
-  CoursePreviewObstaclesProvider() {
-    Obstacle stair =
-        Obstacle("Stair", "assets/images/stair.jpeg", "EE:22:E1:46:D4:82");
-    Obstacle rail =
-        Obstacle("Rail", "assets/images/rail.jpg", "EE:22:E1:46:D4:81");
-    Obstacle ledge =
-        Obstacle("Ledge", "assets/images/ledge.jpg", "EE:22:E1:46:D4:81");
-    Obstacle hubba =
-        Obstacle("Hubba", "assets/images/hubba.jpg", "EE:22:E1:46:D4:81");
-    Obstacle mannypad = Obstacle(
-        "Mannypad", "assets/images/mannypad.jpeg", "EE:22:E1:46:D4:81");
-    Obstacle rollbrett = Obstacle("Rollbrett",
-        "assets/images/rollbrett_rottweil.jpg", "EE:22:E1:46:D4:81");
-
-    //stair.inRange = true;
-    //rail.inRange = true;
-    _obstacles.addAll([stair, rail, ledge, hubba, mannypad, rollbrett]);
-  }
-
   List<Obstacle> _obstacles = [];
 
   List<Obstacle> get obstacles => _obstacles;
+
+  CoursePreviewObstaclesProvider() {
+    if (_obstacles == null || _obstacles.length == 0) loadObstacles();
+  }
+
+  void loadObstacles() {
+    _loadObstacles().then((obstacles) {
+      _obstacles = obstacles;
+      notifyListeners();
+      print("loaded obstacles");
+    });
+  }
 
   void addUidInRange(String uid) {
     for (Obstacle obstacle in _obstacles) {
@@ -39,5 +43,20 @@ class CoursePreviewObstaclesProvider extends ChangeNotifier {
     }
 
     notifyListeners();
+  }
+
+  void resetInRange() {
+    for (Obstacle obstacle in _obstacles) {
+      if (obstacle.inRange) obstacle.inRange = false;
+    }
+  }
+
+  Future _loadObstacles() async {
+    String data =
+        await rootBundle.loadString("assets/course_preview/obstacles.json");
+    final jsonResult = json.decode(data);
+    return jsonResult
+        .map<Obstacle>((obstacleHeader) => Obstacle.fromJson(obstacleHeader))
+        .toList();
   }
 }

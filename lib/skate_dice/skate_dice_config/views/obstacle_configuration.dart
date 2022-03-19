@@ -15,7 +15,7 @@ class ConfigureObstacles extends StatefulWidget {
 class _ConfigureObstaclesState extends State<ConfigureObstacles> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ObstacleProvider>(context);
+    final provider = Provider.of<SkateDiceObstacleProvider>(context);
     final _allObstacleHeaders = provider.items;
 
     return SingleChildScrollView(
@@ -25,6 +25,7 @@ class _ConfigureObstaclesState extends State<ConfigureObstacles> {
           ListView(
             padding: EdgeInsets.all(0),
             shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             children: _allObstacleHeaders.map((obstacleHeader) {
               int _index = _allObstacleHeaders.indexOf(obstacleHeader);
               return CustomCheckboxHeader(

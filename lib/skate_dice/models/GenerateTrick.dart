@@ -13,7 +13,7 @@ import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/Difficul
 
 class GenerateTrick {
   static GenerateTrick _instance;
-  ObstacleProvider providerObstacle;
+  SkateDiceObstacleProvider providerObstacle;
   TrickProvider providerTrick;
   SettingsProvider settingProvider;
   final List<String> directions = ["FS", "BS"];
@@ -27,7 +27,7 @@ class GenerateTrick {
   List<ObstacleTrickStanceDifficulty> hardStanceDifficultyMap = [];
 
   GenerateTrick._(BuildContext context) {
-    providerObstacle = Provider.of<ObstacleProvider>(context, listen: false);
+    providerObstacle = Provider.of<SkateDiceObstacleProvider>(context, listen: false);
     providerTrick = Provider.of<TrickProvider>(context, listen: false);
     settingProvider = Provider.of<SettingsProvider>(context, listen: false);
 

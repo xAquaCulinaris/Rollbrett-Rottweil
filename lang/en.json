@@ -20,5 +20,6 @@
     "no_players": "No players",
     "restart": "Restart",
     "restart_game": "Restart Game",
-    "restart_game_message": "Game has been restarted"
+    "restart_game_message": "Game has been restarted",
+    "winner_game_text": " has won the game"
 }

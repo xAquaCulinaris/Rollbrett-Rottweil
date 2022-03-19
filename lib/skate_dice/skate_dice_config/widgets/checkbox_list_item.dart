@@ -106,7 +106,7 @@ class _CustomCheckboxListItemState extends State<CustomCheckboxListItem> {
               widget.updateFunction(_allObstacleHeaders, widget.headerIndex, widget.obstacleIndex);
             },
             child: Text(
-              _allObstacleHeaders[widget.headerIndex]
+              "    " + _allObstacleHeaders[widget.headerIndex]
                   .items[widget.obstacleIndex]
                   .name,
               style: TextStyle(
@@ -115,7 +115,7 @@ class _CustomCheckboxListItemState extends State<CustomCheckboxListItem> {
                           .checked
                       ? Theme.of(context).accentColor
                       : Theme.of(context).disabledColor,
-                  fontSize: MediaQuery.of(context).size.height / 25),
+                  fontSize: MediaQuery.of(context).size.height / 30),
             ),
           ),
           Spacer()

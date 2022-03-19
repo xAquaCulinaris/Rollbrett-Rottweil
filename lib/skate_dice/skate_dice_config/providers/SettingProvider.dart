@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/DifficultySettingsItems/DifficultyItem.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/widgets/DifficultySettingsItems/DifficultyItemHeader.dart';
@@ -7,6 +9,7 @@ class SettingsProvider extends ChangeNotifier {
   //diificulty modes
   Difficulty gameDifficulty = Difficulty.Easy;
   String currentDiceCount = "2";
+  bool randomActivated = false;
   Difficulty trickDifficulty = Difficulty.Easy;
 
   //dices which display the trick
@@ -16,14 +19,6 @@ class SettingsProvider extends ChangeNotifier {
   List<SkateDiceDice> get diceList => _diceList;
 
   //game difficulty option menu
-  DifficultyItemHeader gameDifficultyHeader =
-      DifficultyItemHeader("Game Difficulty", [
-    DifficultyItem("Easy", true),
-    DifficultyItem("Medium", false),
-    DifficultyItem("Hard", false)
-  ]);
-
-  //game difficulty option menu
   DifficultyItemHeader trickDifficultyHeader =
       DifficultyItemHeader("Trick Difficulty", [
     DifficultyItem("Easy", true),
@@ -31,39 +26,32 @@ class SettingsProvider extends ChangeNotifier {
     DifficultyItem("Hard", false)
   ]);
 
-  void updateGameDifficulty(String diceCount,
-      {bool updateCurrentDiceCount = true}) {
+  void updateGameDifficulty(String diceCount) {
+    //if random mode is set
+    if (diceCount == "Random") {
+      diceCount = (Random().nextInt(3) + 2).toString();
+      randomActivated = true;
+    } else {
+      randomActivated = false;
+    }
     if (diceCount != currentDiceCount) {
       if (diceCount == "2") {
         if (gameDifficulty == Difficulty.Hard) diceList.removeLast();
         diceList.removeLast();
-
-        gameDifficultyHeader.items[0].checked = true;
-        gameDifficultyHeader.items[1].checked = false;
-        gameDifficultyHeader.items[2].checked = false;
         gameDifficulty = Difficulty.Easy;
-      } else if (diceCount == "3" || diceCount == "Random") {
+      } else if (diceCount == "3") {
         if (gameDifficulty == Difficulty.Easy)
           diceList.add(SkateDiceDice());
         else
           diceList.removeLast();
-
-        gameDifficultyHeader.items[0].checked = false;
-        gameDifficultyHeader.items[1].checked = true;
-        gameDifficultyHeader.items[2].checked = false;
         gameDifficulty = Difficulty.Medium;
       } else if (diceCount == "4") {
         if (gameDifficulty == Difficulty.Easy) diceList.add(SkateDiceDice());
         diceList.add(SkateDiceDice());
-
-        gameDifficultyHeader.items[0].checked = false;
-        gameDifficultyHeader.items[1].checked = false;
-        gameDifficultyHeader.items[2].checked = true;
         gameDifficulty = Difficulty.Hard;
       }
     }
-    //only update if updateCurrentDiceCount is true (false when using random mode)
-    if (updateCurrentDiceCount) currentDiceCount = diceCount;
+    currentDiceCount = diceCount;
     notifyListeners();
   }
 

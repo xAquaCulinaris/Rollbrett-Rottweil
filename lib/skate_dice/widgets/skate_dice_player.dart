@@ -28,9 +28,9 @@ class _SkateDicePlayerState extends State<SkateDicePlayer> {
           builder: (BuildContext context) {
             return CustomDialog(
               title: AppLocalizations.of(context).translate('restart_game'),
-              description: winnerName + "has won the game",
+              description: winnerName + AppLocalizations.of(context).translate('winner_game_text'),
               firstButtonText: "Okay",
-              secondButtonText: "Restart",
+              secondButtonText: AppLocalizations.of(context).translate('restart'),
               firstButtonCallback: () => Navigator.pop(context),
               secondButtonCallback: () {
                 Provider.of<PlayerList>(context, listen: false).restartGame();

@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ListenableProvider<PlayerList>(create: (_) => PlayerList()),
         ListenableProvider<SettingsProvider>(create: (_) => SettingsProvider()),
-        ListenableProvider<ObstacleProvider>(create: (_) => ObstacleProvider()),
+        ListenableProvider<SkateDiceObstacleProvider>(create: (_) => SkateDiceObstacleProvider()),
         ListenableProvider<TrickProvider>(create: (_) => TrickProvider()),
         ListenableProvider<SettingsProvider>(create: (_) => SettingsProvider()),
         ListenableProvider<CoursePreviewObstaclesProvider>(create: (_) => CoursePreviewObstaclesProvider()),

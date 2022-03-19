@@ -21,7 +21,7 @@ class SkateDice extends StatefulWidget {
 }
 
 class _SkateDiceState extends State<SkateDice> {
-  var settingProvider;
+  SettingsProvider settingProvider;
 
   // TODO currently default difficulty is easy and gets never changed
   @override
@@ -30,8 +30,8 @@ class _SkateDiceState extends State<SkateDice> {
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       settingProvider = Provider.of<SettingsProvider>(context, listen: false);
-      ObstacleProvider obstacleProvider =
-          Provider.of<ObstacleProvider>(context, listen: false);
+      SkateDiceObstacleProvider obstacleProvider =
+          Provider.of<SkateDiceObstacleProvider>(context, listen: false);
       TrickProvider trickProvider =
           Provider.of<TrickProvider>(context, listen: false);
       obstacleProvider.loadObstacles();
@@ -63,22 +63,32 @@ class _SkateDiceState extends State<SkateDice> {
     }
 
     _rollDiceButtonPressed() {
+      //if random mode is currently change amount of dice to random number
+      if (settingProvider.randomActivated)
+        settingProvider.updateGameDifficulty("Random");
+
+      //generate the trick
       List<String> diceTexts =
           GenerateTrick.getInstace(context).generateTrick();
 
       if (diceTexts.isEmpty) {
-        //TODO limit reroll to amount of tries 
         print("no possible tricks");
         int rerollTries = 0;
-        while (diceTexts.isEmpty)
+        while (diceTexts.isEmpty && rerollTries < 10) {
           diceTexts = GenerateTrick.getInstace(context).generateTrick();
-        rerollTries++;
-        print("reroll succeded after " + rerollTries.toString() + " tries");
+          rerollTries++;
+        }
+        if (rerollTries == 10) {
+          print("Rerolled 10 times, could get any possible tricks");
+          return;
+        } else {
+          print("reroll succeded after " + rerollTries.toString() + " tries");
+          _updatDices(diceTexts);
+        }
+      } else {
         _updatDices(diceTexts);
-      } else {_updatDices(diceTexts);}
+      }
     }
-
-    
 
     return Scaffold(
       body: Column(
