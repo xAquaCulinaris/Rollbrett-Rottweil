@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rollbrett_rottweil/course_preview/provider/obstacle.dart';
 
 import '../detailedView.dart';
-import '../obstacles.dart';
+import '../provider/obstacleProvider.dart';
 
 class ObstacleListViewItem extends StatefulWidget {
   const ObstacleListViewItem(this.obstacle);
@@ -46,12 +47,15 @@ class _ObstacleListViewItemState extends State<ObstacleListViewItem> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          widget.obstacle.name,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Theme.of(context).primaryColor),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            widget.obstacle.name,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Theme.of(context).primaryColor),
+                          ),
                         ),
                         Spacer(),
                         ClipRRect(
@@ -60,6 +64,7 @@ class _ObstacleListViewItemState extends State<ObstacleListViewItem> {
                             image: AssetImage(widget.obstacle.imagePath),
                           ),
                         ),
+                        Spacer(),
                       ],
                     ),
                   ),

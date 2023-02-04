@@ -60,6 +60,11 @@ class _SkateDiceState extends State<SkateDice> {
         });
         duration += 100;
       }
+      if(Provider.of<SettingsProvider>(context, listen: false).diceList.length == 4 && diceTexts.length == 3) {
+         SkateDiceDice dice =
+              Provider.of<SettingsProvider>(context, listen: false).diceList[3];
+          dice.state.animate("");
+      }
     }
 
     _rollDiceButtonPressed() {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
 import 'package:rollbrett_rottweil/course_preview/detailedView.dart';
-import 'package:rollbrett_rottweil/course_preview/obstacles.dart';
+import 'package:rollbrett_rottweil/course_preview/provider/obstacleProvider.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 
 import 'package:flutter_blue/flutter_blue.dart';
@@ -22,20 +23,27 @@ class _CoursePreviewState extends State<CoursePreview> {
     return StreamBuilder<BluetoothState>(
         stream: FlutterBlue.instance.state,
         initialData: BluetoothState.unknown,
-        builder: (c, snapshot) {
-          final state = snapshot.data;
-          if (state == BluetoothState.on) {
-            return ObstacleView();
-          }
-          return BluetoothOffScreen(state: state);
+        builder: (c, snapshotBluetooth) {
+          return FutureBuilder(
+              future: Location().serviceEnabled(),
+              initialData: false,
+              builder: (context, AsyncSnapshot snapshotLocation) {
+                if (snapshotBluetooth.data == BluetoothState.on &&
+                    snapshotLocation.data) {
+                  return ObstacleView();
+                }
+                return BluetoothOffScreen(state: snapshotBluetooth.data, locationEnabled: snapshotLocation.data,);
+              });
         });
   }
 }
 
 class BluetoothOffScreen extends StatelessWidget {
-  const BluetoothOffScreen({Key key, this.state}) : super(key: key);
+  const BluetoothOffScreen({Key key, this.state, this.locationEnabled})
+      : super(key: key);
 
   final BluetoothState state;
+  final bool locationEnabled;
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +55,15 @@ class BluetoothOffScreen extends StatelessWidget {
               text: AppLocalizations.of(context).translate('course_preview'),
             ),
             Spacer(),
-            Icon(
-              Icons.bluetooth_disabled,
-              size: MediaQuery.of(context).size.width / 3,
-              color: Colors.white54,
-            ),
+            state != BluetoothState.on
+                ? Icon(
+                    Icons.bluetooth_disabled,
+                    size: MediaQuery.of(context).size.width / 3,
+                    color: Colors.white54,
+                  )
+                : Spacer(),
             Text('Bluetooth is required for this function'),
+            !locationEnabled ? Text("Location needs to be enabled") : Spacer(),
             Spacer()
           ],
         ),

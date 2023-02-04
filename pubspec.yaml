@@ -32,6 +32,7 @@ dependencies:
   flutter_blue: ^0.8.0
   #video player
   video_player: ^2.2.3
+  location: ^4.2.0
 
 
 flutter_icons:

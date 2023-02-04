@@ -43,7 +43,8 @@ class _CustomCheckboxHeaderState extends State<CustomCheckboxHeader> {
               Text(_allObstacleHeaders[widget.headerIndex].name,
                   style: TextStyle(
                       color: Theme.of(context).accentColor,
-                      fontSize: MediaQuery.of(context).size.height / 25)),
+                      fontSize: MediaQuery.of(context).size.height / 25,
+                      fontWeight: FontWeight.bold)),
             ],
           ),
         ),
@@ -77,7 +78,7 @@ class CustomCheckboxListItem extends StatefulWidget {
   final int headerIndex;
   final int obstacleIndex;
   final bool selectOnlyOne;
-   final Function updateFunction;
+  final Function updateFunction;
   final allObstacleHeaders;
 
   const CustomCheckboxListItem(
@@ -103,19 +104,21 @@ class _CustomCheckboxListItemState extends State<CustomCheckboxListItem> {
         children: [
           TextButton(
             onPressed: () {
-              widget.updateFunction(_allObstacleHeaders, widget.headerIndex, widget.obstacleIndex);
+              widget.updateFunction(_allObstacleHeaders, widget.headerIndex,
+                  widget.obstacleIndex);
             },
             child: Text(
-              "    " + _allObstacleHeaders[widget.headerIndex]
-                  .items[widget.obstacleIndex]
-                  .name,
+              "    " +
+                  _allObstacleHeaders[widget.headerIndex]
+                      .items[widget.obstacleIndex]
+                      .name,
               style: TextStyle(
                   color: _allObstacleHeaders[widget.headerIndex]
                           .items[widget.obstacleIndex]
                           .checked
                       ? Theme.of(context).accentColor
                       : Theme.of(context).disabledColor,
-                  fontSize: MediaQuery.of(context).size.height / 30),
+                  fontSize: MediaQuery.of(context).size.height / 32),
             ),
           ),
           Spacer()
@@ -123,35 +126,4 @@ class _CustomCheckboxListItemState extends State<CustomCheckboxListItem> {
       ),
     );
   }
-
-/*
-//TODO investigate why not updated
-  void updateChecks(List<ItemHeader> _allObstacleHeaders) {
-    if (!widget.selectOnlyOne) {
-      if (mounted)
-        setState(() {
-          _allObstacleHeaders[widget.headerIndex]
-                  .items[widget.obstacleIndex]
-                  .checked =
-              !_allObstacleHeaders[widget.headerIndex]
-                  .items[widget.obstacleIndex]
-                  .checked;
-        });
-    } else {
-      for (int i = 0;
-          i < _allObstacleHeaders[widget.headerIndex].items.length;
-          i++) {
-        if (mounted)
-          setState(() {
-            _allObstacleHeaders[widget.headerIndex].items[i].checked = false;
-          });
-      }
-      if (mounted)
-        setState(() {
-          _allObstacleHeaders[widget.headerIndex]
-              .items[widget.obstacleIndex]
-              .checked = true;
-        });
-    }
-  }*/
 }

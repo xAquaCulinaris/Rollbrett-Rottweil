@@ -6,31 +6,36 @@
                 "name": "Mannypad Ledge",
                 "obstacleType": "grind",
                 "directional": "false",
-                "difficulty": "medium"
+                "difficulty": "medium", 
+                "obstacle_link": "Ledge"
             },
             {
                 "name": "Complete Mannypad Ledge",
                 "obstacleType": "grind",
                 "directional": "false",
-                "difficulty": "expert"
+                "difficulty": "expert", 
+                "obstacle_link": "Ledge"
             },
             {
                 "name": "Hubba",
                 "obstacleType": "grind",
                 "directional": "false",
-                "difficulty": "advanced"
+                "difficulty": "advanced", 
+                "obstacle_link": "Hubba"
             },
             {
                 "name": "Up the Hubba",
                 "obstacleType": "grind",
                 "directional": "false",
-                "difficulty": "expert"
+                "difficulty": "expert", 
+                "obstacle_link": "Hubba"
             },
             {
                 "name": "Fountain Curb",
                 "obstacleType": "grind",
                 "directional": "false",
-                "difficulty": "medium"
+                "difficulty": "medium", 
+                "obstacle_link": "Ledge"
             }
         ]
     },
@@ -41,31 +46,36 @@
                 "name": "Bump to Rail",
                 "obstacleType": "grind",
                 "directional": "false",
-                "difficulty": "advanced"
+                "difficulty": "advanced", 
+                "obstacle_link": "Rail"
             },
             {
                 "name": "Down Rail",
                 "obstacleType": "grind",
                 "directional": "false",
-                "difficulty": "advanced"
+                "difficulty": "advanced", 
+                "obstacle_link": "Rail"
             },
             {
                 "name": "Complete Rail",
                 "obstacleType": "grind",
                 "directional": "false",
-                "difficulty": "expert"
+                "difficulty": "expert", 
+                "obstacle_link": "Rail"
             },
             {
                 "name": "Up the Rail",
                 "obstacleType": "grind",
                 "directional": "false",
-                "difficulty": "expert"
+                "difficulty": "expert", 
+                "obstacle_link": "Rail"
             },
             {
                 "name": "Flat Rail",
                 "obstacleType": "grind",
                 "directional": "false",
-                "difficulty": "medium"
+                "difficulty": "medium", 
+                "obstacle_link": "Rail"
             }
         ]
     },
@@ -76,49 +86,57 @@
                 "name": "down Mannypad",
                 "obstacleType": "flat",
                 "directional": "false",
-                "difficulty": "easy"
+                "difficulty": "easy", 
+                "obstacle_link": "Stair"
             },
             {
                 "name": "Stair",
                 "obstacleType": "flat",
                 "directional": "false",
-                "difficulty": "medium"
+                "difficulty": "medium", 
+                "obstacle_link": "Stair"
             },
             {
                 "name": "Rottweiler",
                 "obstacleType": "flat",
                 "directional": "false",
-                "difficulty": "advanced"
+                "difficulty": "advanced", 
+                "obstacle_link": "Rottweiler"
             },
             {
                 "name": "Lodongap",
                 "obstacleType": "flat",
                 "directional": "false",
-                "difficulty": "easy"
+                "difficulty": "easy", 
+                "obstacle_link": "Stair"
             },
             {
                 "name": "Hipp",
                 "obstacleType": "flat",
                 "directional": "false",
-                "difficulty": "easy"
+                "difficulty": "easy", 
+                "obstacle_link": "Stair"
             },
             {
                 "name": "Up & down Fountain",
                 "obstacleType": "flat",
                 "directional": "false",
-                "difficulty": "advanced"
+                "difficulty": "advanced", 
+                "obstacle_link": "Stair"
             },
             {
                 "name": "down Fountain",
                 "obstacleType": "flat",
                 "directional": "false",
-                "difficulty": "medium"
+                "difficulty": "medium", 
+                "obstacle_link": "Stair"
             },
             {
                 "name": "up Fountain",
                 "obstacleType": "flat",
                 "directional": "false",
-                "difficulty": "medium"
+                "difficulty": "medium", 
+                "obstacle_link": "Stair"
             }
         ]
     },
@@ -129,19 +147,22 @@
                 "name": "Mannypad",
                 "obstacleType": "manual",
                 "directional": "false",
-                "difficulty": "easy"
+                "difficulty": "easy", 
+                "obstacle_link": "Mannypad"
             },
             {
                 "name": "Fountain",
                 "obstacleType": "manual",
                 "directional": "false",
-                "difficulty": "medium"
+                "difficulty": "medium", 
+                "obstacle_link": "Mannypad"
             },
             {
                 "name": "Bump to Mannypad",
                 "obstacleType": "manual",
                 "directional": "false",
-                "difficulty": "medium"
+                "difficulty": "medium", 
+                "obstacle_link": "Mannypad"
             }
         ]
     },
@@ -152,19 +173,22 @@
                 "name": "Taco",
                 "obstacleType": "transition",
                 "directional": "false",
-                "difficulty": "expert"
+                "difficulty": "expert", 
+                "obstacle_link": "Stair"
             },
             {
                 "name": "Big Quarter",
                 "obstacleType": "transition",
                 "directional": "false",
-                "difficulty": "medium"
+                "difficulty": "medium", 
+                "obstacle_link": "Stair"
             },
             {
                 "name": "Small Quarter",
                 "obstacleType": "transition",
                 "directional": "false",
-                "difficulty": "easy"
+                "difficulty": "easy", 
+                "obstacle_link": "Stair"
             }
         ]
     }

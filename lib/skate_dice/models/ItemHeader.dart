@@ -18,17 +18,20 @@ class ItemHeader {
       String obstacleType = item['obstacleType'];
       bool directional = item['directional'].toString().parseBool();
       String difficulty = item['difficulty'];
+      String obstacleLink = item['obstacle_link'];
 
       // If obstacle type is not set create a settings item
       if (obstacleType == null)
         itemList.add(SettingItem(name, directional));
       //else create a Trick/Obstacle Item
       else
-        itemList.add(TrickObstacleItem(name, obstacleType, directional, difficulty));
+        itemList.add(TrickObstacleItem(name, obstacleType, directional, difficulty, obstacleLink));
     }
     return ItemHeader(json['name'], itemList);
   }
 }
+
+
 
 
 extension BoolParsing on String {

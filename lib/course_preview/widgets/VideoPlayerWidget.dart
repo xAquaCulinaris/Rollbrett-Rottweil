@@ -34,7 +34,6 @@ class VideoOverlayWidget extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        print("pressed");
         return controller.value.isPlaying
             ? controller.pause()
             : controller.play();

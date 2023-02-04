@@ -73,6 +73,18 @@
                 "obstacleType": "flat",
                 "directional": "false",
                 "difficulty": "expert"
+            },
+            {
+                "name": "Bigspin",
+                "obstacleType": "flat",
+                "directional": "true",
+                "difficulty": "advanced"
+            },
+            {
+                "name": "Bigflip",
+                "obstacleType": "flat",
+                "directional": "true",
+                "difficulty": "expert"
             }
         ]
     },
@@ -144,6 +156,12 @@
                 "obstacleType": "grind",
                 "directional": "true",
                 "difficulty": "advanced"
+            },
+            {
+                "name": "Blunt",
+                "obstacleType": "grind",
+                "directional": "true",
+                "difficulty": "expert"
             }
         ]
     },

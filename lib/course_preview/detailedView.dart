@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rollbrett_rottweil/course_preview/obstacles.dart';
+import 'package:rollbrett_rottweil/course_preview/provider/obstacle.dart';
 import 'package:rollbrett_rottweil/course_preview/widgets/VideoPlayerWidget.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 import 'package:video_player/video_player.dart';
@@ -13,22 +13,24 @@ class DetailObstacleView extends StatefulWidget {
 }
 
 class _DetailObstacleViewState extends State<DetailObstacleView> {
-  VideoPlayerController videoController;
+  List<VideoPlayerController> videoControllers = [];
 
   @override
   void initState() {
     super.initState();
-    videoController = VideoPlayerController.asset(
-        "assets/course_preview/videos/kickflip_nosemanual.mp4")
-      ..addListener(() {
-        setState(() {});
-      })
-      ..initialize().then((_) => videoController.play());
+    //add all video controllers to list
+    for (var video in widget.obstacle.videos)
+      videoControllers.add(VideoPlayerController.asset(video.videoPath)
+        ..addListener(() {
+          setState(() {});
+        })
+        ..initialize());
   }
 
   @override
   void dispose() {
-    videoController.dispose();
+    //dispose all video controllers
+    for (var videoController in videoControllers) videoController.dispose();
     super.dispose();
   }
 
@@ -40,8 +42,32 @@ class _DetailObstacleViewState extends State<DetailObstacleView> {
           CustomAppBar(
             text: widget.obstacle.name,
           ),
-          Image(image: AssetImage(widget.obstacle.imagePath)),
-          VideoPlayerWidget(controller: videoController)
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                //Image of the obstacle
+                //Image(image: AssetImage(widget.obstacle.imagePath)),
+                //Display all the videos
+
+          
+                ListView(
+                 // padding: EdgeInsets.only(top: 50),
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    children: videoControllers.map((videoController) {
+                      return VideoPlayerWidget(controller: videoController);
+                    }).toList()),
+
+                // ListView.builder(
+                //     shrinkWrap: true,
+                //     //physics: NeverScrollableScrollPhysics(),
+                //     itemCount: videoControllers.length,
+                //     itemBuilder: (BuildContext context, int index) {
+                //       return VideoPlayerWidget(controller: videoControllers[index]);
+                //     }),
+              ],
+            ),
+          ),
         ],
       ),
     );

@@ -5,38 +5,68 @@
         "uid": "EE:22:E1:46:D4:82",
         "videos": [
             {
-                "title": "Kickflip",
-                "video": "assets/course_preview/videos/xxx.mp4"
-            },
-            {
-                "title": "Heelflip",
-                "video": "assets/course_preview/videos/xxx.mp4"
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/fs_flip_sw_5-0.mp4"
             }
         ]
     },
     {
         "name": "Rail",
         "image": "assets/course_preview/images/rail.jpg",
-        "uid": "EE:22:E1:46:D4:81"
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "Feeble up Rail",
+                "video": "assets/course_preview/videos/feeble_uprail.mp4"
+            },
+            {
+                "title": "BS Smith down Rail",
+                "video": "assets/course_preview/videos/bs_smith_downrail.mp4"
+            }
+        ]
     },
     {
         "name": "Ledge",
         "image": "assets/course_preview/images/ledge.jpg",
-        "uid": "EE:22:E1:46:D4:81"
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/fs_flip_sw_5-0.mp4"
+            }
+        ]
     },
     {
         "name": "Hubba",
         "image": "assets/course_preview/images/hubba.jpg",
-        "uid": "EE:22:E1:46:D4:81"
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/fs_flip_sw_5-0.mp4"
+            }
+        ]
     },
     {
         "name": "Mannypad",
         "image": "assets/course_preview/images/mannypad.jpeg",
-        "uid": "EE:22:E1:46:D4:81"
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "Kickflip Nosemanual",
+                "video": "assets/course_preview/videos/kickflip_nosemanual.mp4"
+            }
+        ]
     },
     {
-        "name": "Rollbrett",
+        "name": "Rottweiler",
         "image": "assets/course_preview/images/rollbrett_rottweil.jpg",
-        "uid": "EE:22:E1:46:D4:81"
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/kickflip_hund.mp4"
+            }
+        ]
     }
 ]

@@ -23,7 +23,6 @@ class SkateDiceObstacleProvider with ChangeNotifier {
 
   List<ItemHeader> get items => _items;
 
-
   List<TrickObstacleItem> getObstaclesByDifficulty(
       ExtendedDifficulty difficulty) {
     List<ItemInterface> _selectedObstacles = [];
@@ -34,6 +33,14 @@ class SkateDiceObstacleProvider with ChangeNotifier {
           .toList());
     }
     return _selectedObstacles.cast<TrickObstacleItem>();
+  }
+
+  String getObstacleLinkNameByName(String name) {
+    for (ItemHeader header in _items) {
+      for (var obstacle in header.items) {
+        if (obstacle.name == name) return obstacle.obstacleLink;
+      }
+    }
   }
 
   Future _loadObstacles() async {
