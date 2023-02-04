@@ -11,6 +11,10 @@ class SkateDicePlaceholder extends StatelessWidget {
       child: Container(
         height: MediaQuery.of(context).size.width / 2.3,
         width: MediaQuery.of(context).size.width / 2.3,
+        decoration: new BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: new BorderRadius.all(const Radius.circular(30.0)),
+            ),
       ),
     );
   }

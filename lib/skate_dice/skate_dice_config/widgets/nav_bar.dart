@@ -5,7 +5,7 @@ import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/views/settings_c
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/views/obstacle_configuration.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/views/tricks_configuration.dart';
 
-//TODO redesign nav bar
+
 class NavBar extends StatefulWidget {
   const NavBar({Key key}) : super(key: key);
 

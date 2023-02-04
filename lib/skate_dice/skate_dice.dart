@@ -23,7 +23,6 @@ class SkateDice extends StatefulWidget {
 class _SkateDiceState extends State<SkateDice> {
   SettingsProvider settingProvider;
 
-  // TODO currently default difficulty is easy and gets never changed
   @override
   void initState() {
     super.initState();
@@ -60,10 +59,14 @@ class _SkateDiceState extends State<SkateDice> {
         });
         duration += 100;
       }
-      if(Provider.of<SettingsProvider>(context, listen: false).diceList.length == 4 && diceTexts.length == 3) {
-         SkateDiceDice dice =
-              Provider.of<SettingsProvider>(context, listen: false).diceList[3];
-          dice.state.animate("");
+      if (Provider.of<SettingsProvider>(context, listen: false)
+                  .diceList
+                  .length ==
+              4 &&
+          diceTexts.length == 3) {
+        SkateDiceDice dice =
+            Provider.of<SettingsProvider>(context, listen: false).diceList[3];
+        dice.state.animate("");
       }
     }
 
@@ -125,12 +128,15 @@ class _SkateDiceState extends State<SkateDice> {
           );
         }
 
-        return ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: players.players.length,
-          itemBuilder: (BuildContext context, int index) =>
-              SkateDicePlayer(player: players.players[index]),
+        return 
+        SizedBox(
+          height: MediaQuery.of(context).size.width / 1.8,
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            itemCount: players.players.length,
+            itemBuilder: (BuildContext context, int index) =>
+                SkateDicePlayer(player: players.players[index]),
+          ),
         );
       });
 

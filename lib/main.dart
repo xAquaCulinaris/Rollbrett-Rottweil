@@ -55,8 +55,9 @@ class MyApp extends StatelessWidget {
           }
           return retLocale;
         },
-        //home: Login(),
-        home: HomePage(),
+        //TODO add check if logged in or not
+        home: Login(),
+        // home: HomePage(),
       ),
     );
   }

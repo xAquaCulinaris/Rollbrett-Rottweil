@@ -23,7 +23,6 @@ class _AddPlayerState extends State<AddPlayer> {
   int index = 0;
   final key = GlobalKey<AnimatedListState>();
   TextEditingController _controller = TextEditingController();
-  //TODO name max 6 letters or it will be to big on skate dice screen
   String _name = "";
 
   //Trick difficulty
@@ -77,6 +76,7 @@ class _AddPlayerState extends State<AddPlayer> {
             suffixIcon: Icons.add,
             suffixFunction: _addButtonPressed,
             controller: _controller,
+            startWithCapitalLetter: true,
           ),
           _players(),
           _settings(),
@@ -105,6 +105,7 @@ class _AddPlayerState extends State<AddPlayer> {
       child: Column(
         children: [
           DiceCountDropDown(),
+
           DifficultyWidget(
               Provider.of<SettingsProvider>(context, listen: false)
                   .trickDifficultyHeader,
@@ -162,11 +163,17 @@ class PlayerItem extends StatelessWidget {
               child: Row(
                 children: [
                   Spacer(),
-                  Text(name,
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: MediaQuery.of(context).size.width / 12)),
+                  SizedBox(
+                    width: (MediaQuery.of(context).size.width / 3) * 2,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(name,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: MediaQuery.of(context).size.width / 12)),
+                    ),
+                  ),
                   Spacer(),
                   IconButton(
                     icon: Icon(

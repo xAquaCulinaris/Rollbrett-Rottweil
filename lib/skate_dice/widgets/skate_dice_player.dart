@@ -28,9 +28,11 @@ class _SkateDicePlayerState extends State<SkateDicePlayer> {
           builder: (BuildContext context) {
             return CustomDialog(
               title: AppLocalizations.of(context).translate('restart_game'),
-              description: winnerName + AppLocalizations.of(context).translate('winner_game_text'),
+              description: winnerName +
+                  AppLocalizations.of(context).translate('winner_game_text'),
               firstButtonText: "Okay",
-              secondButtonText: AppLocalizations.of(context).translate('restart'),
+              secondButtonText:
+                  AppLocalizations.of(context).translate('restart'),
               firstButtonCallback: () => Navigator.pop(context),
               secondButtonCallback: () {
                 Provider.of<PlayerList>(context, listen: false).restartGame();
@@ -53,14 +55,20 @@ class _SkateDicePlayerState extends State<SkateDicePlayer> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(width: MediaQuery.of(context).size.width / 30),
-        Text(
-          widget.player.name,
-          style: TextStyle(
-              color: Theme.of(context).accentColor,
-              fontSize: MediaQuery.of(context).size.height / 25,
-              fontWeight: FontWeight.w700),
+        SizedBox(
+          width: MediaQuery.of(context).size.width / 3.5,
+          //FitteBox scales down text if to big
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              widget.player.name,
+              style: TextStyle(
+                  color: Theme.of(context).accentColor,
+                  fontSize: MediaQuery.of(context).size.height / 25,
+                  fontWeight: FontWeight.w700),
+            ),
+          ),
         ),
-        Spacer(),
         IconButton(
             icon: Icon(Icons.remove, color: Theme.of(context).accentColor),
             onPressed: _removeLetter),

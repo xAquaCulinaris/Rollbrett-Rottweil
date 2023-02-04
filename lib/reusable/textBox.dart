@@ -11,7 +11,8 @@ class CustomTextBox extends StatefulWidget {
       this.initialText,
       this.suffixIcon,
       this.suffixFunction,
-      this.controller})
+      this.controller,
+      this.startWithCapitalLetter = false})
       : super(key: key);
 
   final String labelText;
@@ -23,6 +24,7 @@ class CustomTextBox extends StatefulWidget {
   final IconData suffixIcon;
   final Function suffixFunction;
   final TextEditingController controller;
+  final bool startWithCapitalLetter;
 
   @override
   _TextBoxState createState() => _TextBoxState();
@@ -34,9 +36,17 @@ class _TextBoxState extends State<CustomTextBox> {
     return Padding(
       padding: EdgeInsets.only(left: 16, right: 16),
       child: TextFormField(
+        textCapitalization: widget.startWithCapitalLetter ? TextCapitalization.sentences : TextCapitalization.none,
+        //when suffix fuction is set, on enter press on keyboard function is called
+        onFieldSubmitted: (value) {
+          if (widget.suffixFunction != null) widget.suffixFunction();
+        },
         controller: widget.controller,
         initialValue: widget.initialText,
-        style: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width /20),
+        style: TextStyle(
+            color: Theme.of(context).primaryColor,
+            fontWeight: FontWeight.bold,
+            fontSize: MediaQuery.of(context).size.width / 20),
         keyboardType: widget.textInputType,
         obscureText: widget.isPassword,
         onChanged: (value) {
