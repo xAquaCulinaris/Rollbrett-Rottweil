@@ -145,18 +145,17 @@ class _ObstacleViewState extends State<ObstacleView>
   }
 
   _obstacleList() {
-    int i = 0;
     return Expanded(
       child: ListView.builder(
           shrinkWrap: true,
           itemCount: obstaclesProvider.obstacles.length ~/ 2,
+          
           itemBuilder: (BuildContext context, int index) {
-            i += 2;
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ObstacleListViewItem(obstaclesProvider.obstacles[i - 2]),
-                ObstacleListViewItem(obstaclesProvider.obstacles[i - 1])
+                ObstacleListViewItem(obstaclesProvider.obstacles[index*2]),
+                ObstacleListViewItem(obstaclesProvider.obstacles[index*2+1])
               ],
             );
           }),

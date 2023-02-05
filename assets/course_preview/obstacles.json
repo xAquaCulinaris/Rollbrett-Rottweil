@@ -60,7 +60,117 @@
     },
     {
         "name": "Rottweiler",
-        "image": "assets/course_preview/images/rollbrett_rottweil.jpg",
+        "image": "assets/course_preview/images/mannypad.jpeg",
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/kickflip_hund.mp4"
+            }
+        ]
+    },
+    {
+        "name": "Fountain",
+        "image": "assets/course_preview/images/mannypad.jpeg",
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/kickflip_hund.mp4"
+            }
+        ]
+    },
+    {
+        "name": "Orange Rail",
+        "image": "assets/course_preview/images/mannypad.jpeg",
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/kickflip_hund.mp4"
+            }
+        ]
+    },
+    {
+        "name": "Flat Rail",
+        "image": "assets/course_preview/images/mannypad.jpeg",
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/kickflip_hund.mp4"
+            }
+        ]
+    },
+    {
+        "name": "Londongap",
+        "image": "assets/course_preview/images/mannypad.jpeg",
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/kickflip_hund.mp4"
+            }
+        ]
+    },
+    {
+        "name": "Hipp",
+        "image": "assets/course_preview/images/mannypad.jpeg",
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/kickflip_hund.mp4"
+            }
+        ]
+    },
+    {
+        "name": "Bump to Mannypad",
+        "image": "assets/course_preview/images/mannypad.jpeg",
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/kickflip_hund.mp4"
+            }
+        ]
+    },
+    {
+        "name": "Taco",
+        "image": "assets/course_preview/images/mannypad.jpeg",
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/kickflip_hund.mp4"
+            }
+        ]
+    },
+    {
+        "name": "Small Quarter",
+        "image": "assets/course_preview/images/mannypad.jpeg",
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/kickflip_hund.mp4"
+            }
+        ]
+    },
+    {
+        "name": "Big Quarter",
+        "image": "assets/course_preview/images/mannypad.jpeg",
+        "uid": "EE:22:E1:46:D4:81",
+        "videos": [
+            {
+                "title": "FS Flip to SS 5-0",
+                "video": "assets/course_preview/videos/kickflip_hund.mp4"
+            }
+        ]
+    },
+    {
+        "name": "Wall Ride",
+        "image": "assets/course_preview/images/mannypad.jpeg",
         "uid": "EE:22:E1:46:D4:81",
         "videos": [
             {

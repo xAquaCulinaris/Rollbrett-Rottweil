@@ -66,7 +66,7 @@ class _AddPlayerState extends State<AddPlayer> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CustomAppBar(
-              text: AppLocalizations.of(context).translate("add_player")),
+              text: AppLocalizations.of(context).translate("settings")),
           SizedBox(height: MediaQuery.of(context).size.width / 15),
           CustomTextBox(
             labelText: AppLocalizations.of(context).translate("add_player"),
