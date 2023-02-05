@@ -44,35 +44,35 @@
         "items": [
             {
                 "name": "Bump to Rail",
-                "obstacleType": "grind",
+                "obstacleType": "rail",
                 "directional": "false",
                 "difficulty": "advanced", 
                 "obstacle_link": "Rail"
             },
             {
                 "name": "Down Rail",
-                "obstacleType": "grind",
+                "obstacleType": "rail",
                 "directional": "false",
                 "difficulty": "advanced", 
                 "obstacle_link": "Rail"
             },
             {
                 "name": "Complete Rail",
-                "obstacleType": "grind",
+                "obstacleType": "rail",
                 "directional": "false",
                 "difficulty": "expert", 
                 "obstacle_link": "Rail"
             },
             {
                 "name": "Up the Rail",
-                "obstacleType": "grind",
+                "obstacleType": "rail",
                 "directional": "false",
                 "difficulty": "expert", 
                 "obstacle_link": "Rail"
             },
             {
                 "name": "Flat Rail",
-                "obstacleType": "grind",
+                "obstacleType": "rail",
                 "directional": "false",
                 "difficulty": "medium", 
                 "obstacle_link": "Rail"

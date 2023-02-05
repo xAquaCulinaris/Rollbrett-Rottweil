@@ -117,7 +117,7 @@
             },
             {
                 "name": "Boardslide",
-                "obstacleType": "grind",
+                "obstacleType": "rail",
                 "directional": "true",
                 "difficulty": "medium"
             },
@@ -129,7 +129,7 @@
             },
             {
                 "name": "Lipslide",
-                "obstacleType": "grind",
+                "obstacleType": "rail",
                 "directional": "true",
                 "difficulty": "advanced"
             },

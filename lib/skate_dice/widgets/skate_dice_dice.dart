@@ -79,10 +79,14 @@ class _SkateDiceDiceState extends State<SkateDiceDice>
   }
 
   void _onDiceClick() {
-    //TODO get correct obstacle name 
-    String obstacleLinkName = Provider.of<SkateDiceObstacleProvider>(context, listen: false).getObstacleLinkNameByName(text);
-    Obstacle obstacle = Provider.of<CoursePreviewObstaclesProvider>(context, listen: false)
-        .getObstacleByName(obstacleLinkName);
+    //TODO get correct obstacle name
+    String obstacleLinkName =
+        Provider.of<SkateDiceObstacleProvider>(context, listen: false)
+            .getObstacleLinkNameByName(text);
+
+    Obstacle obstacle =
+        Provider.of<CoursePreviewObstaclesProvider>(context, listen: false)
+            .getObstacleByName(obstacleLinkName);
     if (obstacle != null) {
       Navigator.push(
           context,

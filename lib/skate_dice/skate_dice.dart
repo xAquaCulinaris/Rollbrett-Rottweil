@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rollbrett_rottweil/app_localizations.dart';
+import 'package:rollbrett_rottweil/course_preview/provider/obstacleProvider.dart';
 import 'package:rollbrett_rottweil/reusable/button.dart';
 import 'package:rollbrett_rottweil/reusable/custom_app_bar.dart';
 import 'package:rollbrett_rottweil/skate_dice/models/GenerateTrick.dart';
@@ -33,6 +34,13 @@ class _SkateDiceState extends State<SkateDice> {
           Provider.of<SkateDiceObstacleProvider>(context, listen: false);
       TrickProvider trickProvider =
           Provider.of<TrickProvider>(context, listen: false);
+
+      //load the course preview obstalce if they haven't been loaded already (is required to click on a obstacle skate dice)
+      if (!Provider.of<CoursePreviewObstaclesProvider>(context, listen: false)
+          .obstaclesLoaded)
+        Provider.of<CoursePreviewObstaclesProvider>(context, listen: false)
+            .loadObstacles();
+
       obstacleProvider.loadObstacles();
       trickProvider.loadTricks();
     });
@@ -128,8 +136,7 @@ class _SkateDiceState extends State<SkateDice> {
           );
         }
 
-        return 
-        SizedBox(
+        return SizedBox(
           height: MediaQuery.of(context).size.width / 1.8,
           child: ListView.builder(
             padding: EdgeInsets.zero,

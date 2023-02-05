@@ -123,6 +123,7 @@ class GenerateTrick {
         ExtendedDifficulty.expert));
   }
 
+  //Singleton get instance
   static GenerateTrick getInstace(BuildContext context) {
     if (_instance == null) _instance = GenerateTrick._(context);
     return _instance;
@@ -263,7 +264,7 @@ class GenerateTrick {
 
   //if grindable obstacle 25% change of getting trick to fakie
   bool toFakieOrNot(TrickObstacleItem obstacle) {
-    if (obstacle.obstacleType == ObstacleType.Grind) {
+    if (obstacle.obstacleType == ObstacleType.Grind || obstacle.obstacleType == ObstacleType.Rail) {
       //25% chance
       if (Random().nextInt(4) == 0) return true;
     }
@@ -281,7 +282,7 @@ class GenerateTrick {
 
   String trickIntoGrindOrNot(
       TrickObstacleItem obstacle, ExtendedDifficulty difficulty) {
-    if (obstacle.obstacleType == ObstacleType.Grind ||
+    if (obstacle.obstacleType == ObstacleType.Grind || obstacle.obstacleType == ObstacleType.Rail ||
         obstacle.obstacleType == ObstacleType.Manual) {
       if (Random().nextInt(10) == 0) {
         TrickObstacleItem trick = _getTrickIntoGrindByMaxDifficulty(difficulty);

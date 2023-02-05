@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:rollbrett_rottweil/course_preview/provider/obstacle.dart';
 
 class CoursePreviewObstaclesProvider extends ChangeNotifier {
+  bool obstaclesLoaded = false;
   List<Obstacle> _obstacles = [];
 
   List<Obstacle> get obstacles => _obstacles;
@@ -17,7 +18,8 @@ class CoursePreviewObstaclesProvider extends ChangeNotifier {
     _loadObstacles().then((obstacles) {
       _obstacles = obstacles;
       notifyListeners();
-      print("loaded obstacles");
+      obstaclesLoaded = true;
+      print("loaded obstacles for course_preview");
     });
   }
 

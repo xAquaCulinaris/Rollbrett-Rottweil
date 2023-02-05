@@ -17,7 +17,7 @@ class SkateDiceObstacleProvider with ChangeNotifier {
     _loadObstacles().then((items) {
       _items = items;
       notifyListeners();
-      print("loaded obstacles");
+      print("loaded obstacles for skate_dice");
     });
   }
 

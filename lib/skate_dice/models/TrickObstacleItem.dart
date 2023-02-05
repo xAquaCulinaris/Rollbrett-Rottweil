@@ -20,6 +20,9 @@ class TrickObstacleItem extends ItemInterface{
       case 'grind':
         this.obstacleType = ObstacleType.Grind;
         break;
+      case 'rail':
+        this.obstacleType = ObstacleType.Rail;
+        break;
       case 'manual':
         this.obstacleType = ObstacleType.Manual;
         break;
@@ -31,4 +34,4 @@ class TrickObstacleItem extends ItemInterface{
 
 }
 
-enum ObstacleType { Flat, Grind, Manual, Transition }
+enum ObstacleType { Flat, Grind, Rail, Manual, Transition }
