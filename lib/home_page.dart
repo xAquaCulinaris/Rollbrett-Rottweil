@@ -4,6 +4,7 @@ import 'package:rollbrett_rottweil/course_preview/course_preview.dart';
 import 'package:rollbrett_rottweil/credits/credits.dart';
 import 'package:rollbrett_rottweil/reusable/rollbrett_logo.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice.dart';
+import 'package:rollbrett_rottweil/skate_dice_new/skate_dice_main_view.dart';
 import 'custom_icons.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,7 +20,9 @@ class HomePage extends StatelessWidget {
 
   _localeDealerPressed(BuildContext context) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Credits()));
+      //TODO change back alter to credits
+        context, MaterialPageRoute(builder: (context) => SkateDiceMainView()));
+        //context, MaterialPageRoute(builder: (context) => Credits()));
   }
 
   @override

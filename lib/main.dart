@@ -4,13 +4,19 @@ import 'package:rollbrett_rottweil/app_localizations.dart';
 import 'package:rollbrett_rottweil/course_preview/provider/obstacleProvider.dart';
 import 'package:rollbrett_rottweil/home_page.dart';
 import 'package:rollbrett_rottweil/login/login_view.dart';
+//TODO old imports
 import 'package:rollbrett_rottweil/skate_dice/models/Player.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/ObstacleProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/SettingProvider.dart';
 import 'package:rollbrett_rottweil/skate_dice/skate_dice_config/providers/TrickProvider.dart';
+//new imports
+import 'package:rollbrett_rottweil/skate_dice_new/Providers/player_list.dart'
+    as playerListNew;
+import 'package:rollbrett_rottweil/skate_dice_new/Providers/trick_provider.dart'
+    as trickProvider;
+
 import 'package:rollbrett_rottweil/theme/theme_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 
 void main() {
   runApp(MyApp());
@@ -22,12 +28,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        //Old imports
         ListenableProvider<PlayerList>(create: (_) => PlayerList()),
-        ListenableProvider<SettingsProvider>(create: (_) => SettingsProvider()),
-        ListenableProvider<SkateDiceObstacleProvider>(create: (_) => SkateDiceObstacleProvider()),
         ListenableProvider<TrickProvider>(create: (_) => TrickProvider()),
+
+        //New imports
+        ListenableProvider<playerListNew.PlayerList>(
+            create: (_) => playerListNew.PlayerList()),
+        ListenableProvider<trickProvider.TrickProvider>(
+            create: (_) => trickProvider.TrickProvider()),
+
+
         ListenableProvider<SettingsProvider>(create: (_) => SettingsProvider()),
-        ListenableProvider<CoursePreviewObstaclesProvider>(create: (_) => CoursePreviewObstaclesProvider()),
+        ListenableProvider<SkateDiceObstacleProvider>(
+            create: (_) => SkateDiceObstacleProvider()),
+        ListenableProvider<SettingsProvider>(create: (_) => SettingsProvider()),
+        ListenableProvider<CoursePreviewObstaclesProvider>(
+            create: (_) => CoursePreviewObstaclesProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

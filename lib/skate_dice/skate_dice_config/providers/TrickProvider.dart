@@ -9,10 +9,12 @@ import 'package:rollbrett_rottweil/skate_dice/models/ItemHeader.dart';
 
 class TrickProvider with ChangeNotifier {
   List<ItemHeader> _items = [];
+  bool tricksLoaded = false;
 
   TrickProvider() {
     loadTricks().then((items) {
       _items = items;
+      tricksLoaded = true;
       notifyListeners();
       print("loaded tricks");
     });

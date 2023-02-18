@@ -8,6 +8,7 @@ import 'package:rollbrett_rottweil/skate_dice/models/ItemHeader.dart';
 
 class SkateDiceObstacleProvider with ChangeNotifier {
   List<ItemHeader> _items = [];
+  bool obstaclesLoaded = false;
 
   SkateDiceObstacleProvider() {
     if (_items == null || _items.length == 0) loadObstacles();
@@ -16,6 +17,7 @@ class SkateDiceObstacleProvider with ChangeNotifier {
   void loadObstacles() {
     _loadObstacles().then((items) {
       _items = items;
+      obstaclesLoaded = true;
       notifyListeners();
       print("loaded obstacles for skate_dice");
     });
